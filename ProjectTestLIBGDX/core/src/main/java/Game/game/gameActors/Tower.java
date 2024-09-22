@@ -9,7 +9,6 @@ public abstract class Tower extends GameObject{
 	
 	protected float damage;
 	protected float fireRate;
-	protected float elapsedTime; //Tempo decorrido
 	protected ShapeRenderer range;
 	protected ArrayList<Image> BulletsArray;
 	
