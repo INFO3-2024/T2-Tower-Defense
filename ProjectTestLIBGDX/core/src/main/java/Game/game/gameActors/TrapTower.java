@@ -12,12 +12,6 @@ public class TrapTower extends Tower{
 	}
 
 	@Override
-	public void shoot() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
 	public void act(float delta) {
 		super.act(delta);
 	}

@@ -9,12 +9,14 @@ public class Enemy extends GameObject {
 	private int healthPoints;
 	private double velocidade;
 	private int damage;
+	private static int counter = 0;
+	private int id;
 
-	public Enemy(int positionX, int positionY, int id) {
+	public Enemy(int positionX, int positionY, int configNumber) {
 		// TODO Auto-generated constructor stub
 		setPosition(positionX, positionY);
 
-		switch (id) {
+		switch (configNumber) {
 
 		case 1:
 			imagem = new Texture(Gdx.files.internal("EnemyLvl1.png"));
@@ -58,7 +60,8 @@ public class Enemy extends GameObject {
 			damage = 1;
 			break;
 		}
-
+		counter++;
+		id = counter;
 	}
 	
 	@Override
@@ -90,10 +93,16 @@ public class Enemy extends GameObject {
 			healthPoints = (int) (healthPoints - damageReceived);
 			elapsedTime = 0;
 		}
-		
-		if(healthPoints <= 0) {
-			System.out.println("morreu");
-		}
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Enemy [id=" + id + "]";
+	}
+	
 
 }
