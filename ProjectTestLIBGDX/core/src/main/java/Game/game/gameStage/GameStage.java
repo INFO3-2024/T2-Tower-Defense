@@ -58,44 +58,41 @@ public class GameStage extends Stage {
 		}
 
 		// loop percorrendo todos os Atores do GameStage
-		// este loop trata todos os eventos 
+		// este loop trata todos os eventos
 		for (int i = 0; i < this.getActors().size; i++) {
-			
-			//Act de todos os GameObjects
+
+			// Act de todos os GameObjects
 			if (this.getActors().get(i) instanceof GameObject) {
 				this.getActors().get(i).act(delta);
 			}
-			
-			//Causando dano a todos os inimigos
-			//Forma temporaria!!!
-			if(Gdx.input.isButtonPressed(Input.Buttons.LEFT) && this.getActors().get(i) instanceof Enemy) {
+
+			// Causando dano a todos os inimigos
+			// Forma temporaria!!!
+			if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && this.getActors().get(i) instanceof Enemy) {
 				Enemy enemyAux = (Enemy) this.getActors().get(i);
 				enemyAux.receiveDamage(1);
 			}
-			
-			//torres atirando
-			//isso posteriormente sera feito usando polimorfismo
-			//ainda nao esta pq preciso do mapa com os caminhos para
-			//programar a traptower
-			
+
+			// torres atirando
+			// isso posteriormente sera feito usando polimorfismo
+			// ainda nao esta pq preciso do mapa com os caminhos para
+			// programar a traptower
+
 			/*
-			if(this.getActors().get(i) instanceof SMGTower) {
-				SMGTower towerAux = (SMGTower) this.getActors().get(i);
-				towerAux.tryToShoot(getActors());
-			}
-			
-			if(this.getActors().get(i) instanceof SniperTower) {
-				SniperTower towerAux = (SniperTower) this.getActors().get(i);
-				towerAux.tryToShoot(getActors());
-			}
-			*/
-			if(this.getActors().get(i) instanceof BomberTower) {
+			 * if(this.getActors().get(i) instanceof SMGTower) { SMGTower towerAux =
+			 * (SMGTower) this.getActors().get(i); towerAux.tryToShoot(getActors()); }
+			 * 
+			 * if(this.getActors().get(i) instanceof SniperTower) { SniperTower towerAux =
+			 * (SniperTower) this.getActors().get(i); towerAux.tryToShoot(getActors()); }
+			 */
+			if (this.getActors().get(i) instanceof BomberTower) {
 				BomberTower towerAux = (BomberTower) this.getActors().get(i);
 				towerAux.tryToShoot(getActors());
 			}
-			
-			
+
 		}
+
+	
 
 	}
 
