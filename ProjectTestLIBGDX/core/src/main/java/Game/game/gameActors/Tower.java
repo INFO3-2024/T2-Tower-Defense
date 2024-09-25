@@ -3,6 +3,7 @@ package Game.game.gameActors;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
@@ -12,47 +13,58 @@ public abstract class Tower extends GameObject {
 	protected float damage;
 	protected double fireRate;
 	protected int shootingRange;
-	protected ArrayList<Image> BulletsArray;
+	protected ArrayList<Bullet> bulletsArray;
+	protected float projectileSpeed;
 	protected ArrayList<Enemy> enemiesInRange;
 
 	public Tower() {
-
+		bulletsArray = new ArrayList<Bullet>();
 		enemiesInRange = new ArrayList<Enemy>();
 	}
 
-	public void tryToShoot(Array<Actor> listaAtores) {
+	public ArrayList<Bullet> tryToShoot(Array<Actor> listaAtores) {
 		
 		seekEnemiesInRange(listaAtores);
-
+		
+		Vector2 position = getFarthestEnemyPosition();
+		
 		elapsedTime += Gdx.graphics.getDeltaTime();
 
 		if (!enemiesInRange.isEmpty() && elapsedTime >= fireRate) {
 
 			elapsedTime = 0;
-			System.out.println(getFarthestEnemyInRangeId());
-
+			
+			bulletsArray.add(new Bullet(this.getX(), this.getY(), position.x, position.y, projectileSpeed));
 		}
+		
+		return bulletsArray;
 
 	}
 
 	// get para pegar o inimigo mais perto do final que ainda esteja na range da
 	// torre
-	private int getFarthestEnemyInRangeId() {
+	private Vector2 getFarthestEnemyPosition() {
 
-		int farthestEnemyId = 0;
 		float farthestDistance = 0;
+		
+		float positionX = 0;
+		float positionY = 0;
+		
+		Vector2 position;
 		
 		if(!enemiesInRange.isEmpty()) {
 			for (int i = 0; i < enemiesInRange.size(); i++) {
 				if (enemiesInRange.get(i).getX() > farthestDistance) {
 					farthestDistance = enemiesInRange.get(i).getX();
-					farthestEnemyId = enemiesInRange.get(i).getId();
+					positionX = enemiesInRange.get(i).getX();
+					positionY = enemiesInRange.get(i).getY();
 				}
 			}
 		}
+		position = new Vector2(positionX, positionY);
 
 
-		return farthestEnemyId;
+		return position;
 	}
 
 	public void seekEnemiesInRange(Array<Actor> listaAtores) {

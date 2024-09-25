@@ -12,7 +12,7 @@ public class SMGTower extends Tower {
 		imagem = new Texture(Gdx.files.internal("SMGTower.png"));
 		fireRate = 0.2; // Cadencia de disparo temporaria
 		shootingRange = 200;
-		
+		projectileSpeed = 10;
 	}
 
 	@Override
@@ -26,7 +26,5 @@ public class SMGTower extends Tower {
 		batch.draw(imagem, getX(), getY(), imagem.getWidth(), imagem.getHeight());
 
 	}
-	public void dispose() {
-		imagem.dispose();
-	}
+
 }

@@ -1,5 +1,7 @@
 package Game.game.gameStage;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.*;
@@ -32,19 +34,19 @@ public class GameStage extends Stage {
 		// Spawn de torres
 		// forma temporaria de spawnar ate a juncao
 		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-			this.addActor(new SMGTower(100, 100));
+			this.addActor(new SMGTower(390, 100));
 		}
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
-			this.addActor(new TrapTower(150, 100));
+			this.addActor(new TrapTower(410, 100));
 		}
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
-			this.addActor(new BomberTower(200, 100));
+			this.addActor(new BomberTower(430, 100));
 		}
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
-			this.addActor(new SniperTower(250, 100));
+			this.addActor(new SniperTower(450, 100));
 		}
 
 		// Spawn dos inimigos
@@ -78,21 +80,46 @@ public class GameStage extends Stage {
 			// ainda nao esta pq preciso do mapa com os caminhos para
 			// programar a traptower
 
-			/*
-			 * if(this.getActors().get(i) instanceof SMGTower) { SMGTower towerAux =
-			 * (SMGTower) this.getActors().get(i); towerAux.tryToShoot(getActors()); }
-			 * 
-			 * if(this.getActors().get(i) instanceof SniperTower) { SniperTower towerAux =
-			 * (SniperTower) this.getActors().get(i); towerAux.tryToShoot(getActors()); }
-			 */
+			if (this.getActors().get(i) instanceof SMGTower) {
+
+				SMGTower towerAux = (SMGTower) this.getActors().get(i);
+
+				if (!towerAux.tryToShoot(getActors()).isEmpty()) {
+					ArrayList<Bullet> arrayAux = towerAux.tryToShoot(getActors());
+
+					for (int j = 0; j < arrayAux.size(); j++) {
+						this.addActor(arrayAux.get(j));
+					}
+				}
+			}
+
+			if (this.getActors().get(i) instanceof SniperTower) {
+
+				SniperTower towerAux = (SniperTower) this.getActors().get(i);
+
+				if (!towerAux.tryToShoot(getActors()).isEmpty()) {
+					ArrayList<Bullet> arrayAux = towerAux.tryToShoot(getActors());
+
+					for (int j = 0; j < arrayAux.size(); j++) {
+						this.addActor(arrayAux.get(j));
+					}
+				}
+			}
+
 			if (this.getActors().get(i) instanceof BomberTower) {
+
 				BomberTower towerAux = (BomberTower) this.getActors().get(i);
-				towerAux.tryToShoot(getActors());
+
+				if (!towerAux.tryToShoot(getActors()).isEmpty()) {
+					ArrayList<Bullet> arrayAux = towerAux.tryToShoot(getActors());
+
+					for (int j = 0; j < arrayAux.size(); j++) {
+						this.addActor(arrayAux.get(j));
+					}
+				}
 			}
 
 		}
-
-	
 
 	}
 
