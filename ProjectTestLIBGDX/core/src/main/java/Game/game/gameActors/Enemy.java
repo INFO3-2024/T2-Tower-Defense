@@ -11,7 +11,9 @@ public class Enemy extends GameObject {
 	private int damage;
 	private static int counter = 0;
 	private int id;
+	private boolean alreadyDoneDamage = false;
 
+	
 	public Enemy(int positionX, int positionY, int configNumber) {
 		// TODO Auto-generated constructor stub
 		setPosition(positionX, positionY);
@@ -95,10 +97,26 @@ public class Enemy extends GameObject {
 		}
 	}
 	
+	public boolean getAlreadyDoneDamage() {
+        return alreadyDoneDamage;
+    }
+	
+	public void setAlreadyDoneDamage(boolean alreadyDoneDamage) {
+		this.alreadyDoneDamage = alreadyDoneDamage;
+	}
+	
+	public int getHealthPoints() {
+		return healthPoints;
+	}
+
 	public int getId() {
 		return id;
 	}
 
+	public int getDamage() {
+		return damage;
+	}
+	
 	@Override
 	public String toString() {
 		return "Enemy [id=" + id + "]";

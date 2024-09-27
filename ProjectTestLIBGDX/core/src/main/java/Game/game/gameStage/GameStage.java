@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.*;
 
 import Game.game.gameActors.*;
@@ -13,15 +15,23 @@ public class GameStage extends Stage {
 
 	private OrthographicCamera ortho;
 	private Background background;
+	private int playerHealthPoints;
+	private BitmapFont font;
+	private SpriteBatch batch;
 
 	public GameStage() {
 		// TODO Auto-generated constructor stub
 		super();
+		
 		ortho = new OrthographicCamera();
 		ortho.setToOrtho(false, 640, 480);
 		background = new Background(ortho);
 		this.addActor(background);
-
+		playerHealthPoints = 100; //definicao da quantidade de vidas do jogador
+		font = new BitmapFont(); 
+		font.setColor(Color.WHITE);
+		font.getData().setScale(3.5f, 3.5f);
+		batch = new SpriteBatch();
 	}
 
 	@Override
@@ -57,12 +67,12 @@ public class GameStage extends Stage {
 			this.addActor(new Enemy(-40, 150, 3));
 			this.addActor(new Enemy(-20, 150, 4));
 			this.addActor(new Enemy(0, 150, 5));
-		}
+		}		
 
 		// loop percorrendo todos os Atores do GameStage
 		// este loop trata todos os eventos
 		for (int i = 0; i < this.getActors().size; i++) {
-
+			
 			// Act de todos os GameObjects
 			if (this.getActors().get(i) instanceof GameObject) {
 				this.getActors().get(i).act(delta);
@@ -74,7 +84,25 @@ public class GameStage extends Stage {
 				Enemy enemyAux = (Enemy) this.getActors().get(i);
 				enemyAux.receiveDamage(1);
 			}
-
+			
+			//teste para ver se o inimigo saiu da tela
+			// e caso sim, diminuir as vidas do jogador
+			//com base no tipo de inimigo
+			if (this.getActors().get(i) instanceof Enemy) { 
+				
+				//se o inimigo tiver saido da tela e se ele nao tiver dado dano ainda ao jogador
+				if (this.getActors().get(i).getX() > 639 && !((Enemy) this.getActors().get(i)).getAlreadyDoneDamage()) {
+			        
+					if(((Enemy) this.getActors().get(i)).getHealthPoints() > 0) {
+			        	
+						int damageEnemy = ((Enemy) this.getActors().get(i)).getDamage();
+			        	playerHealthPoints = playerHealthPoints - damageEnemy;
+			        	((Enemy) this.getActors().get(i)).setAlreadyDoneDamage(true); // define que o inimigo em i já deu dano no jogador
+			        }
+			    }
+			}		
+			
+			
 			// torres atirando
 			// isso posteriormente sera feito usando polimorfismo
 			// ainda nao esta pq preciso do mapa com os caminhos para
@@ -118,15 +146,17 @@ public class GameStage extends Stage {
 					}
 				}
 			}
-
 		}
-
 	}
 
 	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
 		super.draw();
+		
+		batch.begin();
+		font.draw(batch, "Vidas: " + playerHealthPoints, 1000, 780);
+		batch.end();
 
 	}
 
@@ -134,7 +164,8 @@ public class GameStage extends Stage {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		super.dispose();
-
+		font.dispose();
+	    batch.dispose();
 	}
 
 }
