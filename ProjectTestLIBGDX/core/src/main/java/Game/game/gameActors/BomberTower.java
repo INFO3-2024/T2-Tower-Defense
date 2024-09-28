@@ -12,6 +12,7 @@ public class BomberTower extends Tower{
 		fireRate = 1; // Cadencia de disparo temporaria
 		shootingRange = 150;
 		projectileSpeed = 60;
+		damage = 4;
 	}
 	
 	@Override

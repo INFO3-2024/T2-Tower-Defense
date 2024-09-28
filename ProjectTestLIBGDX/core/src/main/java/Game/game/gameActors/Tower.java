@@ -16,6 +16,7 @@ public abstract class Tower extends GameObject {
 	protected ArrayList<Bullet> bulletsArray;
 	protected float projectileSpeed;
 	protected ArrayList<Enemy> enemiesInRange;
+	protected float projectileActingTime;
 
 	public Tower() {
 		bulletsArray = new ArrayList<Bullet>();
@@ -24,9 +25,9 @@ public abstract class Tower extends GameObject {
 
 	public ArrayList<Bullet> tryToShoot(Array<Actor> listaAtores) {
 		
-		seekEnemiesInRange(listaAtores);
+		checkEnemiesInRange(listaAtores);
 		
-		Vector2 position = getFarthestEnemyPosition();
+		Vector2 positionToGo = getFarthestEnemyPosition();
 		
 		elapsedTime += Gdx.graphics.getDeltaTime();
 
@@ -34,7 +35,7 @@ public abstract class Tower extends GameObject {
 
 			elapsedTime = 0;
 			
-			bulletsArray.add(new Bullet(this.getX(), this.getY(), position.x, position.y, projectileSpeed));
+			bulletsArray.add(new Bullet(this.getX(), this.getY(), positionToGo.x, positionToGo.y, projectileSpeed, damage));
 		}
 		
 		return bulletsArray;
@@ -67,7 +68,7 @@ public abstract class Tower extends GameObject {
 		return position;
 	}
 
-	public void seekEnemiesInRange(Array<Actor> listaAtores) {
+	public void checkEnemiesInRange(Array<Actor> listaAtores) {
 
 		// algoritmo para inserir inimigos que estão dentro do alcance da torre no array
 		// enemiesInRange
@@ -85,7 +86,7 @@ public abstract class Tower extends GameObject {
 		// retirando do array inimigos fora do alcance da torre
 		if(!enemiesInRange.isEmpty()) {
 			for (int i = 0; i < enemiesInRange.size(); i++) {
-				if (calculateDistance(enemiesInRange.get(i)) > shootingRange) {
+				if (calculateDistance(enemiesInRange.get(i)) > shootingRange || enemiesInRange.get(i).getHealthPoints() <= 0) {
 					enemiesInRange.remove(i);
 				}
 			}
@@ -97,5 +98,4 @@ public abstract class Tower extends GameObject {
 				Math.pow((otherObject.getX() - this.getX()), 2) + Math.pow((otherObject.getY() - this.getY()), 2));
 		return distance;
 	}
-
 }

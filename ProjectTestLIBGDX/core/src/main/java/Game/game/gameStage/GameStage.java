@@ -22,13 +22,13 @@ public class GameStage extends Stage {
 	public GameStage() {
 		// TODO Auto-generated constructor stub
 		super();
-		
+
 		ortho = new OrthographicCamera();
 		ortho.setToOrtho(false, 640, 480);
 		background = new Background(ortho);
 		this.addActor(background);
-		playerHealthPoints = 100; //definicao da quantidade de vidas do jogador
-		font = new BitmapFont(); 
+		playerHealthPoints = 100; // definicao da quantidade de vidas do jogador
+		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		font.getData().setScale(3.5f, 3.5f);
 		batch = new SpriteBatch();
@@ -67,47 +67,52 @@ public class GameStage extends Stage {
 			this.addActor(new Enemy(-40, 150, 3));
 			this.addActor(new Enemy(-20, 150, 4));
 			this.addActor(new Enemy(0, 150, 5));
-		}		
+		}
 
 		// loop percorrendo todos os Atores do GameStage
 		// este loop trata todos os eventos
 		for (int i = 0; i < this.getActors().size; i++) {
-			
+
 			// Act de todos os GameObjects
 			if (this.getActors().get(i) instanceof GameObject) {
 				this.getActors().get(i).act(delta);
 			}
-
-			// Causando dano a todos os inimigos
-			// Forma temporaria!!!
-			if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && this.getActors().get(i) instanceof Enemy) {
-				Enemy enemyAux = (Enemy) this.getActors().get(i);
-				enemyAux.receiveDamage(1);
+		}
+		towersShoot();
+		enemyAttack();
+		deleteBullets();
+		deleteEnemies();
+		
+	}
+	
+	public void deleteBullets() {
+		for (int i = 0; i < this.getActors().size; i++) {
+			if (getActors().get(i) instanceof Bullet) {
+				Bullet bulletAux = (Bullet) getActors().get(i);
+				if (bulletAux.checkCollision() || bulletAux.getElapsedTime() > bulletAux.getActingTime()) {
+					getActors().removeIndex(i);
+				}
 			}
-			
-			//teste para ver se o inimigo saiu da tela
-			// e caso sim, diminuir as vidas do jogador
-			//com base no tipo de inimigo
-			if (this.getActors().get(i) instanceof Enemy) { 
-				
-				//se o inimigo tiver saido da tela e se ele nao tiver dado dano ainda ao jogador
-				if (this.getActors().get(i).getX() > 639 && !((Enemy) this.getActors().get(i)).getAlreadyDoneDamage()) {
-			        
-					if(((Enemy) this.getActors().get(i)).getHealthPoints() > 0) {
-			        	
-						int damageEnemy = ((Enemy) this.getActors().get(i)).getDamage();
-			        	playerHealthPoints = playerHealthPoints - damageEnemy;
-			        	((Enemy) this.getActors().get(i)).setAlreadyDoneDamage(true); // define que o inimigo em i já deu dano no jogador
-			        }
-			    }
-			}		
-			
-			
-			// torres atirando
-			// isso posteriormente sera feito usando polimorfismo
-			// ainda nao esta pq preciso do mapa com os caminhos para
-			// programar a traptower
+		}
+	}
+	
+	public void deleteEnemies() {
+		for (int i = 0; i < getActors().size; i++) {
+			if (getActors().get(i) instanceof Enemy) {
+				Enemy enemyAux = (Enemy) getActors().get(i);
+				if (enemyAux.getHealthPoints() <= 0) {
+					getActors().removeIndex(i);
+				}
+			}
+		}
+	}
 
+	// torres atirando
+	// isso posteriormente sera feito usando polimorfismo
+	// ainda nao esta pq preciso do mapa com os caminhos para
+	// programar a traptower
+	public void towersShoot() {
+		for (int i = 0; i < getActors().size; i++) {
 			if (this.getActors().get(i) instanceof SMGTower) {
 
 				SMGTower towerAux = (SMGTower) this.getActors().get(i);
@@ -149,11 +154,34 @@ public class GameStage extends Stage {
 		}
 	}
 
+	// teste para ver se o inimigo saiu da tela
+	// e caso sim, diminuir as vidas do jogador
+	// com base no tipo de inimigo
+	public void enemyAttack() {
+		for (int i = 0; i < getActors().size; i++) {
+			if (this.getActors().get(i) instanceof Enemy) {
+
+				// se o inimigo tiver saido da tela e se ele nao tiver dado dano ainda ao
+				// jogador
+				if (this.getActors().get(i).getX() > 639 && !((Enemy) this.getActors().get(i)).getAlreadyDoneDamage()) {
+
+					if (((Enemy) this.getActors().get(i)).getHealthPoints() > 0) {
+
+						int damageEnemy = ((Enemy) this.getActors().get(i)).getDamage();
+						playerHealthPoints = playerHealthPoints - damageEnemy;
+						((Enemy) this.getActors().get(i)).setAlreadyDoneDamage(true); // define que o inimigo em i já
+																						// deu dano no jogador
+					}
+				}
+			}
+		}
+	}
+
 	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
 		super.draw();
-		
+
 		batch.begin();
 		font.draw(batch, "Vidas: " + playerHealthPoints, 1000, 780);
 		batch.end();
@@ -165,7 +193,7 @@ public class GameStage extends Stage {
 		// TODO Auto-generated method stub
 		super.dispose();
 		font.dispose();
-	    batch.dispose();
+		batch.dispose();
 	}
 
 }

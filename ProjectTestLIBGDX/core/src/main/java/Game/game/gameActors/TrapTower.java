@@ -9,6 +9,7 @@ public class TrapTower extends Tower{
 	public TrapTower(int positionX, int positionY) {
 		setPosition(positionX, positionY);
 		imagem = new Texture(Gdx.files.internal("TrapTower.png"));
+		damage = 3;
 	}
 
 	@Override

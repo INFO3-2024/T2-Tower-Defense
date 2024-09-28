@@ -3,7 +3,6 @@ package Game.game.gameActors;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class SMGTower extends Tower {
 
@@ -13,6 +12,7 @@ public class SMGTower extends Tower {
 		fireRate = 0.2; // Cadencia de disparo temporaria
 		shootingRange = 200;
 		projectileSpeed = 10;
+		damage = 2;
 	}
 
 	@Override

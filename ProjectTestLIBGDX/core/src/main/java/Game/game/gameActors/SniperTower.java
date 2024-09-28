@@ -12,6 +12,7 @@ public class SniperTower extends Tower{
 		fireRate = 1.5; // Cadencia de disparo temporaria
 		shootingRange = 800;
 		projectileSpeed = 100;
+		damage = 5;
 	}
 	
 	@Override
