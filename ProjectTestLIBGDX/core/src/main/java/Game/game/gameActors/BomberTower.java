@@ -9,7 +9,7 @@ public class BomberTower extends Tower{
 	public BomberTower(int positionX, int positionY) {
 		setPosition(positionX, positionY);
 		imagem = new Texture(Gdx.files.internal("BomberTower.png"));
-		fireRate = 1; // Cadencia de disparo temporaria
+		fireRate = 2.5; // Cadencia de disparo temporaria
 		shootingRange = 150;
 		projectileSpeed = 60;
 		damage = 4;

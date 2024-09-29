@@ -10,8 +10,8 @@ public class Enemy extends GameObject {
 	private int healthPoints;
 	private double velocidade;
 	private int damage;
-	private static int counter = 0;
-	private int id;
+	//private static int counter = 0;
+	//private int id;
 	private boolean alreadyDoneDamage = false;
 
 	
@@ -23,54 +23,54 @@ public class Enemy extends GameObject {
 
 		case 1:
 			imagem = new Texture(Gdx.files.internal("EnemyLvl1.png"));
-			healthPoints = 1;
-			velocidade = 1 * 5 * Gdx.graphics.getDeltaTime(); 
+			healthPoints = 5;
+			velocidade = 1; 
 			damage = 1;
 			coinsDropped = 1;
 			break;
 		
 		case 2:
 			imagem = new Texture(Gdx.files.internal("EnemyLvl2.png"));
-			healthPoints = 2;
-			velocidade = 1.2 * 5 * Gdx.graphics.getDeltaTime();
+			healthPoints = 10;
+			velocidade = 1.2;
 			damage = 2;
 			coinsDropped = 2;
 			break;
 			
 		case 3:
 			imagem = new Texture(Gdx.files.internal("EnemyLvl3.png"));
-			healthPoints = 4;
-			velocidade = 1.5 * 5 * Gdx.graphics.getDeltaTime();
+			healthPoints = 15;
+			velocidade = 1.5;
 			damage = 3;
 			coinsDropped = 3;
 			break;
 		
 		case 4:
 			imagem = new Texture(Gdx.files.internal("EnemyLvl4.png"));
-			healthPoints = 6;
-			velocidade = 1.5 * 5 * Gdx.graphics.getDeltaTime();
+			healthPoints = 25;
+			velocidade = 1.5;
 			damage = 4;
 			coinsDropped = 4;
 			break;
 			
 		case 5:
 			imagem = new Texture(Gdx.files.internal("EnemyLvl5.png"));
-			healthPoints = 10;
-			velocidade = 2 * 5 * Gdx.graphics.getDeltaTime();
+			healthPoints = 40;
+			velocidade = 2;
 			damage = 5;
 			coinsDropped = 5;
 			break;
 		
 		default:
 			imagem = new Texture(Gdx.files.internal("EnemyLvl1.png"));
-			healthPoints = 1;
-			velocidade = 1 * 5 * Gdx.graphics.getDeltaTime();
+			healthPoints = 5;
+			velocidade = 1;
 			damage = 1;
 			coinsDropped = 1;
 			break;
 		}
-		counter++;
-		id = counter;
+		//counter++;
+		//id = counter;
 	}
 	
 	@Override
@@ -89,7 +89,7 @@ public class Enemy extends GameObject {
 
 	}
 	private void move() {
-		this.moveBy((float) velocidade,0);
+		this.moveBy((float) velocidade /5,0);
 	}
 
 	private void doDamage() {
@@ -118,19 +118,19 @@ public class Enemy extends GameObject {
 	public int getHealthPoints() {
 		return healthPoints;
 	}
-
+	/*
 	public int getId() {
 		return id;
 	}
-
+*/
 	public int getDamage() {
 		return damage;
 	}
-	
+	/*
 	@Override
 	public String toString() {
 		return "Enemy [id=" + id + "]";
 	}
 	
-
+*/
 }
