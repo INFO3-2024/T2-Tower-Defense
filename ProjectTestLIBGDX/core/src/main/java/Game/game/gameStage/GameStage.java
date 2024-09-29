@@ -16,6 +16,7 @@ public class GameStage extends Stage {
 	private OrthographicCamera ortho;
 	private Background background;
 	private int playerHealthPoints;
+	private int playerCoins;
 	private BitmapFont font;
 	private SpriteBatch batch;
 
@@ -28,6 +29,7 @@ public class GameStage extends Stage {
 		background = new Background(ortho);
 		this.addActor(background);
 		playerHealthPoints = 100; // definicao da quantidade de vidas do jogador
+		playerCoins = 0;
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		font.getData().setScale(3.5f, 3.5f);
@@ -101,6 +103,7 @@ public class GameStage extends Stage {
 			if (getActors().get(i) instanceof Enemy) {
 				Enemy enemyAux = (Enemy) getActors().get(i);
 				if (enemyAux.getHealthPoints() <= 0) {
+					playerCoins = playerCoins + enemyAux.getCoinsDropped();
 					getActors().removeIndex(i);
 				}
 			}
@@ -184,6 +187,7 @@ public class GameStage extends Stage {
 
 		batch.begin();
 		font.draw(batch, "Vidas: " + playerHealthPoints, 1000, 780);
+		font.draw(batch, "Moedas: " + playerCoins, 10, 780);
 		batch.end();
 
 	}

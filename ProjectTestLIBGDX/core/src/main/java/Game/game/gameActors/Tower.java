@@ -9,7 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
 public abstract class Tower extends GameObject {
-
+	
+	protected bulletTipe bulletTipe;
 	protected float damage;
 	protected double fireRate;
 	protected int shootingRange;
@@ -35,7 +36,7 @@ public abstract class Tower extends GameObject {
 
 			elapsedTime = 0;
 			
-			bulletsArray.add(new Bullet(this.getX(), this.getY(), positionToGo.x, positionToGo.y, projectileSpeed, damage));
+			bulletsArray.add(new Bullet(this.getX(), this.getY(), positionToGo.x, positionToGo.y, projectileSpeed, damage, bulletTipe));
 		}
 		
 		return bulletsArray;

@@ -1,5 +1,7 @@
 package Game.game.gameActors;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -8,18 +10,20 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Bullet extends GameObject {
 
-	float initialPositionX;
-	float initialPositionY;
-	float positionXToGo;
-	float positionYToGo;
-	float velocidade;
-	float damage;
-	boolean collided;
-	Vector2 lastPosition;
-	final static float actingTime = 3;
+	private float initialPositionX;
+	private float initialPositionY;
+	private float positionXToGo;
+	private float positionYToGo;
+	private float velocidade;
+	private float damage;
+	private boolean collided;
+	private Vector2 lastPosition;
+	private final static float actingTime = 3;
+	private bulletTipe bulletTipe;
+	private final static float explosionRange = 50;
 
 	public Bullet(float positionX, float positionY, float positionXToGo, float positionYToGo, float bulletSpeed,
-			float damage) {
+			float damage, bulletTipe bulletTipe) {
 
 		initialPositionX = positionX;
 		initialPositionY = positionY;
@@ -30,6 +34,7 @@ public class Bullet extends GameObject {
 		this.damage = damage;
 		collided = false;
 		lastPosition = new Vector2();
+		this.bulletTipe = bulletTipe;
 
 		this.imagem = new Texture(Gdx.files.internal("Bullet.png"));
 
@@ -87,9 +92,25 @@ public class Bullet extends GameObject {
 						collided = true;
 					}
 				}
+				if (collided && bulletTipe == Game.game.gameActors.bulletTipe.EXPLOSIVE_PROJECTILE) {
+					explode();
+				}
 			}
 		}
 		return collided;
+	}
+
+	private void explode() {
+		ArrayList<Enemy> enemiesInExplosionRange = new ArrayList<Enemy>();
+
+		for (int i = 0; i < getStage().getActors().size; i++) {
+			if (getStage().getActors().get(i) instanceof Enemy) {
+				Enemy enemy = (Enemy) getStage().getActors().get(i);
+				if(calculateDistance(enemy) < explosionRange) {
+					enemy.receiveDamage(damage);
+				}
+			}
+		}
 	}
 
 	public float calculateDistance(GameObject otherObject) {

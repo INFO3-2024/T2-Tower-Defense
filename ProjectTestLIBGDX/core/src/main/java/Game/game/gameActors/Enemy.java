@@ -5,7 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
 public class Enemy extends GameObject {
-
+	
+	private int coinsDropped;
 	private int healthPoints;
 	private double velocidade;
 	private int damage;
@@ -25,6 +26,7 @@ public class Enemy extends GameObject {
 			healthPoints = 1;
 			velocidade = 1 * 5 * Gdx.graphics.getDeltaTime(); 
 			damage = 1;
+			coinsDropped = 1;
 			break;
 		
 		case 2:
@@ -32,6 +34,7 @@ public class Enemy extends GameObject {
 			healthPoints = 2;
 			velocidade = 1.2 * 5 * Gdx.graphics.getDeltaTime();
 			damage = 2;
+			coinsDropped = 2;
 			break;
 			
 		case 3:
@@ -39,6 +42,7 @@ public class Enemy extends GameObject {
 			healthPoints = 4;
 			velocidade = 1.5 * 5 * Gdx.graphics.getDeltaTime();
 			damage = 3;
+			coinsDropped = 3;
 			break;
 		
 		case 4:
@@ -46,6 +50,7 @@ public class Enemy extends GameObject {
 			healthPoints = 6;
 			velocidade = 1.5 * 5 * Gdx.graphics.getDeltaTime();
 			damage = 4;
+			coinsDropped = 4;
 			break;
 			
 		case 5:
@@ -53,6 +58,7 @@ public class Enemy extends GameObject {
 			healthPoints = 10;
 			velocidade = 2 * 5 * Gdx.graphics.getDeltaTime();
 			damage = 5;
+			coinsDropped = 5;
 			break;
 		
 		default:
@@ -60,6 +66,7 @@ public class Enemy extends GameObject {
 			healthPoints = 1;
 			velocidade = 1 * 5 * Gdx.graphics.getDeltaTime();
 			damage = 1;
+			coinsDropped = 1;
 			break;
 		}
 		counter++;
@@ -103,6 +110,9 @@ public class Enemy extends GameObject {
 	
 	public void setAlreadyDoneDamage(boolean alreadyDoneDamage) {
 		this.alreadyDoneDamage = alreadyDoneDamage;
+	}
+	public int getCoinsDropped(){
+		return coinsDropped;
 	}
 	
 	public int getHealthPoints() {

@@ -13,6 +13,7 @@ public class BomberTower extends Tower{
 		shootingRange = 150;
 		projectileSpeed = 60;
 		damage = 4;
+		bulletTipe = Game.game.gameActors.bulletTipe.EXPLOSIVE_PROJECTILE;
 	}
 	
 	@Override

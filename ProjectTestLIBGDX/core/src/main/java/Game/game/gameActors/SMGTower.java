@@ -13,6 +13,7 @@ public class SMGTower extends Tower {
 		shootingRange = 200;
 		projectileSpeed = 10;
 		damage = 2;
+		bulletTipe = Game.game.gameActors.bulletTipe.NORMAL_PROJECTILE;
 	}
 
 	@Override
