@@ -45,7 +45,7 @@ public abstract class Tower extends GameObject {
 
 	// get para pegar o inimigo mais perto do final que ainda esteja na range da
 	// torre
-	private Vector2 getFarthestEnemyPosition() {
+	protected Vector2 getFarthestEnemyPosition() {
 
 		float farthestDistance = 0;
 		

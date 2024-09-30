@@ -46,7 +46,7 @@ public class GameStage extends Stage {
 		font.getData().setScale(3.5f, 3.5f);
 		batch = new SpriteBatch();
 
-		round = 5;
+		round = 1;
 		enemiesInThisRound = 0;
 
 		// a sequencia aqui e importante, pois o primeiro add vai pra primeira rodada
@@ -179,6 +179,18 @@ public class GameStage extends Stage {
 			if (this.getActors().get(i) instanceof BomberTower) {
 
 				BomberTower towerAux = (BomberTower) this.getActors().get(i);
+
+				if (!towerAux.tryToShoot(getActors()).isEmpty()) {
+					ArrayList<Bullet> arrayAux = towerAux.tryToShoot(getActors());
+
+					for (int j = 0; j < arrayAux.size(); j++) {
+						this.addActor(arrayAux.get(j));
+					}
+				}
+			}
+			if (this.getActors().get(i) instanceof TrapTower) {
+
+				TrapTower towerAux = (TrapTower) this.getActors().get(i);
 
 				if (!towerAux.tryToShoot(getActors()).isEmpty()) {
 					ArrayList<Bullet> arrayAux = towerAux.tryToShoot(getActors());
