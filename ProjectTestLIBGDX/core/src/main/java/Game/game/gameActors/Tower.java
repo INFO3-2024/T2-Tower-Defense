@@ -17,6 +17,7 @@ public abstract class Tower extends GameObject {
 	protected float projectileSpeed;
 	protected ArrayList<Enemy> enemiesInRange;
 
+	
 	public Tower() {
 		bulletsArray = new ArrayList<Bullet>();
 		enemiesInRange = new ArrayList<Enemy>();
