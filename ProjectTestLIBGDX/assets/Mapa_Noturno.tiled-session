@@ -1,0 +1,41 @@
+{
+    "activeFile": "Mapa_Noturno.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "Grass_Night.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Grass_day.tsx": {
+            "scaleInDock": 1
+        },
+        "Mapa_Diurno.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 750,
+                "y": 643.9393939393939
+            }
+        },
+        "Mapa_Noturno.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 980.6666666666666,
+                "y": 376.6666666666667
+            }
+        }
+    },
+    "openFiles": [
+        "Mapa_Diurno.tmx",
+        "Mapa_Noturno.tmx",
+        "Grass_Night.tsx"
+    ],
+    "recentFiles": [
+        "Mapa_Diurno.tmx",
+        "Grass_Night.tsx",
+        "Mapa_Noturno.tmx"
+    ]
+}
