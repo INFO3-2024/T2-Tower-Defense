@@ -19,13 +19,13 @@ public class Background extends Actor {
 
 		super();
 
-		mapa1 = new TmxMapLoader().load("novoMapa.tmx");
-		mapa2 = new TmxMapLoader().load("prototipoMapa.tmx");
+		mapa1 = new TmxMapLoader().load("Mapa_Diurno.tmx");
+		mapa2 = new TmxMapLoader().load("Mapa_Noturno.tmx");
 
 		renderer = new OrthogonalTiledMapRenderer(mapa1);
 
 		renderer.setView(ortho);
-		// 640, 480
+		// 1280, 736
 	}
 
 	@Override
