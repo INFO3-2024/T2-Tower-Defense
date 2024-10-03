@@ -34,7 +34,7 @@ public class GameStage extends Stage {
 		super();
 
 		ortho = new OrthographicCamera();
-		ortho.setToOrtho(false, 640, 480);
+		ortho.setToOrtho(false, 1280, 736);
 		background = new Background(ortho);
 		this.addActor(background);
 
@@ -62,7 +62,7 @@ public class GameStage extends Stage {
 		spawnCooldowns.add((double) 1);
 		spawnCooldowns.add((double) 1);
 		spawnCooldowns.add((double) 1);
-		
+
 	}
 
 	@Override
