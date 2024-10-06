@@ -13,7 +13,7 @@ public class TrapTower extends Tower{
 
 	public TrapTower(int positionX, int positionY) {
 		setPosition(positionX, positionY);
-		imagem = new Texture(Gdx.files.internal("TrapTower.png"));
+		imagem = new Texture(Gdx.files.internal("trap_tower_day1.png"));
 		fireRate = 3;
 		shootingRange = 800;
 		projectileSpeed = 10;
