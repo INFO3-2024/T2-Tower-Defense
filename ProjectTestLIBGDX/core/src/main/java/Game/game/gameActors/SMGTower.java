@@ -4,11 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
+import Game.game.gameAssets.TowerTexture;
+
 public class SMGTower extends Tower {
 
 	public SMGTower(int positionX, int positionY) {
 		setPosition(positionX, positionY);
-		imagem = new Texture(Gdx.files.internal("smg_tower_day.png"));
+		imagem = TowerTexture.getInstance().getTexture("SMGTower"); 
 		fireRate = 0.2; // Cadencia de disparo temporaria
 		shootingRange = 200;
 		projectileSpeed = 10;
