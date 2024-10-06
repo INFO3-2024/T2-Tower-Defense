@@ -4,11 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
+import Game.game.gameAssets.TowerTexture;
+
 public class BomberTower extends Tower{
 
 	public BomberTower(int positionX, int positionY) {
 		setPosition(positionX, positionY);
-		imagem = new Texture(Gdx.files.internal("bomber_tower_day1.png"));
+		imagem = TowerTexture.getInstance().getTexture("BomberTower"); 
 		fireRate = 2.5; // Cadencia de disparo temporaria
 		shootingRange = 150;
 		projectileSpeed = 60;

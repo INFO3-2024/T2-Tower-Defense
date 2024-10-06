@@ -8,12 +8,13 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
+import Game.game.gameAssets.TowerTexture; 
 
 public class TrapTower extends Tower{
 
 	public TrapTower(int positionX, int positionY) {
 		setPosition(positionX, positionY);
-		imagem = new Texture(Gdx.files.internal("trap_tower_day1.png"));
+		imagem = TowerTexture.getInstance().getTexture("TrapTower"); 
 		fireRate = 3;
 		shootingRange = 800;
 		projectileSpeed = 10;
