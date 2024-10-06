@@ -13,7 +13,7 @@ public class SniperTower extends Tower {
 
 	public SniperTower(int positionX, int positionY) {
 		setPosition(positionX, positionY);
-		imagem = new Texture(Gdx.files.internal("SniperTower.png"));
+		imagem = new Texture(Gdx.files.internal("sniper_tower_day1.png"));
 		fireRate = 3; // Cadencia de disparo temporaria
 		shootingRange = 800;
 		projectileSpeed = 100;

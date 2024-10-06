@@ -80,7 +80,7 @@ public class GameStage extends Stage {
 		// Spawn de torres
 		// forma temporaria de spawnar ate a juncao
 		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-			this.addActor(new SMGTower(390, 100));
+			this.addActor(new SMGTower(380, 100));
 		}
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
@@ -88,11 +88,11 @@ public class GameStage extends Stage {
 		}
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
-			this.addActor(new BomberTower(430, 100));
+			this.addActor(new BomberTower(445, 100));
 		}
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
-			this.addActor(new SniperTower(450, 100));
+			this.addActor(new SniperTower(470, 100));
 		}
 
 		// loop percorrendo todos os Atores do GameStage

@@ -8,7 +8,7 @@ public class SMGTower extends Tower {
 
 	public SMGTower(int positionX, int positionY) {
 		setPosition(positionX, positionY);
-		imagem = new Texture(Gdx.files.internal("SMGTower.png"));
+		imagem = new Texture(Gdx.files.internal("smg_tower_day.png"));
 		fireRate = 0.2; // Cadencia de disparo temporaria
 		shootingRange = 200;
 		projectileSpeed = 10;
