@@ -1,19 +1,14 @@
 package Game.game.gameActors;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.utils.Array;
 
 public class SniperTower extends Tower {
 
 	public SniperTower(int positionX, int positionY) {
 		setPosition(positionX, positionY);
-		imagem = new Texture(Gdx.files.internal("SniperTower.png"));
+		imagem = new Texture(Gdx.files.internal("sniper_tower_day.png"));
 		fireRate = 3; // Cadencia de disparo temporaria
 		shootingRange = 800;
 		projectileSpeed = 100;
