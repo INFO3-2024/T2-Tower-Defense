@@ -1,7 +1,11 @@
 # ⸰ Zombie Infection 🧪 ๋࣭ ⭑
 Trata-se de um projeto em andamento que se fundamenta na recriação e implementação do jogo "Ballon" no estilo tower defense, utilizando a biblioteca LibGDX. Além disso, envolve a recriação do jogo "Plants vs Zombies", buscando reviver a essência do sucesso original e adaptá-lo a uma experiência nostálgica, com inovações que atraem novos públicos, utilizando estímulos visuais únicos para prender a atenção.
 
-![zobieinfection](https://github.com/user-attachments/assets/cfce6de3-35ce-4b10-b16c-d3822a1bd785)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cfce6de3-35ce-4b10-b16c-d3822a1bd785" alt="zobieinfection">
+</p>
+
+
 
 ## 🌵( historia ) ！
 
