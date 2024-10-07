@@ -7,7 +7,7 @@ Trata-se de um projeto em andamento que se fundamenta na recriação e implement
 
 
 
-## 🌵( historia ) ！
+## 🌵( historia do jogo ) ！
 
 Em um laboratório isolado, um cientista explorava uma mutação genética inovadora, acreditando que poderia revolucionar a medicina. No entanto, durante um experimento, ele foi acidentalmente infectado pela própria mutação, transformando-se no "Paciente 0". Essa infecção não apenas o transformou em um zumbi, mas também liberou um vírus altamente contagioso que rapidamente se espalhou pela população, criando uma onda de mortos-vivos famintos. Mesmo com a intervenção militar, as cidades começaram a sucumbir à invasão zumbi, mergulhando o mundo no caos. Em meio a esse desespero, a única esperança da humanidade reside em plantas geneticamente modificadas, criadas para defender os sobreviventes e combater essa ameaça implacável, oferecendo uma última chance de restaurar a ordem e salvar o que restou da civilização.
 
