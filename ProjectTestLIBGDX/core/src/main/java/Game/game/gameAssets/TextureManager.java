@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.HashMap;
 
 public abstract class TextureManager {
+    
     protected HashMap<String, Texture> textures;
 
     public TextureManager() {
