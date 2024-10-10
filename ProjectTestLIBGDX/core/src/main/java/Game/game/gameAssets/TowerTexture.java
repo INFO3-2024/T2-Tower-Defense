@@ -28,7 +28,7 @@ public class TowerTexture extends TextureManager {
     public void loadTextures() {
         // Texturas individuais para torres estáticas
         textures.put("TrapTower", new Texture(Gdx.files.internal("trapTowerAssets/trap_tower_day1.png")));
-        textures.put("BombTower", new Texture(Gdx.files.internal("bomber_tower_day1.png")));
+        textures.put("BomberTower", new Texture(Gdx.files.internal("bomber_tower_day1.png")));
         textures.put("SMGTower", new Texture(Gdx.files.internal("smg_tower_day.png")));
         textures.put("SniperTower", new Texture(Gdx.files.internal("sniper_tower_day1.png")));
 
