@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.*;
 
 import Game.game.gameActors.*;
+import Game.game.rounds.Rounds;
 
 public class GameStage extends Stage {
 
@@ -22,12 +23,7 @@ public class GameStage extends Stage {
 	private BitmapFont font;
 	private SpriteBatch batch;
 
-	private int round;
-	private float counterRoundCooldown = 0;
-	private static final float roundCooldown = 5;
-	private float counterSpawnCooldown = 0;
-	private ArrayList<Double> spawnCooldowns;
-	private int enemiesInThisRound;
+	private Rounds rounds;
 
 	public GameStage() {
 		// TODO Auto-generated constructor stub
@@ -46,22 +42,7 @@ public class GameStage extends Stage {
 		font.getData().setScale(3.5f, 3.5f);
 		batch = new SpriteBatch();
 
-		round = 1;
-		enemiesInThisRound = 0;
-
-		// a sequencia aqui e importante, pois o primeiro add vai pra primeira rodada
-		// o segundo add pra segunda rodada e assim por diante
-		spawnCooldowns = new ArrayList<Double>();
-		spawnCooldowns.add((double) 1);
-		spawnCooldowns.add((double) 1);
-		spawnCooldowns.add((double) 0.5);
-		spawnCooldowns.add((double) 0.8);
-		spawnCooldowns.add((double) 1);
-		spawnCooldowns.add((double) 1);
-		spawnCooldowns.add((double) 1);
-		spawnCooldowns.add((double) 1);
-		spawnCooldowns.add((double) 1);
-		spawnCooldowns.add((double) 1);
+		rounds = new Rounds();
 
 	}
 
@@ -71,11 +52,11 @@ public class GameStage extends Stage {
 		super.act(delta);
 
 		background.act(delta);
-
-		counterSpawnCooldown += Gdx.graphics.getDeltaTime();
-		counterRoundCooldown += Gdx.graphics.getDeltaTime();
-
-		spawnEnemies();
+		rounds.updateSpawnCooldown();
+		
+		rounds.spawnMap1Enemies(getActors(), enemiesAlive());
+		//rounds.spawnMap2Enemies(getActors(), enemiesAlive());
+		//rounds.spawnMap2Enemies(getActors(), enemiesAlive());
 
 		// Spawn de torres
 		// forma temporaria de spawnar ate a juncao
@@ -226,253 +207,6 @@ public class GameStage extends Stage {
 		}
 	}
 
-	public double getRoundSpawnCooldown(int rodada) {
-		return spawnCooldowns.get(rodada - 1);
-	}
-
-	// por enquanto estou considerando apenas 1 mapa
-	public void spawnEnemies() {
-		switch (round) {
-
-		case 1:
-
-			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= getRoundSpawnCooldown(round)
-					&& enemiesInThisRound < 10) {
-
-				this.addActor(new Enemy(0, 150, 1));
-				enemiesInThisRound++;
-				counterSpawnCooldown = 0;
-			}
-
-			if (enemiesInThisRound == 10 && enemiesAlive() == 0) {
-				round++;
-				enemiesInThisRound = 0;
-				counterRoundCooldown = 0;
-			}
-			break;
-
-		case 2:
-
-			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= getRoundSpawnCooldown(round)
-					&& enemiesInThisRound < 10) {
-
-				if (enemiesInThisRound % 2 == 0) {
-					this.addActor(new Enemy(0, 150, 1));
-				} else {
-					this.addActor(new Enemy(0, 150, 2));
-				}
-				enemiesInThisRound++;
-				counterSpawnCooldown = 0;
-			}
-
-			if (enemiesInThisRound == 10 && enemiesAlive() == 0) {
-				round++;
-				enemiesInThisRound = 0;
-				counterRoundCooldown = 0;
-			}
-			break;
-
-		case 3:
-
-			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= getRoundSpawnCooldown(round)
-					&& enemiesInThisRound < 15) {
-
-				if (enemiesInThisRound <= 7) {
-					this.addActor(new Enemy(0, 150, 1));
-				} else {
-					this.addActor(new Enemy(0, 150, 2));
-				}
-
-				enemiesInThisRound++;
-				counterSpawnCooldown = 0;
-			}
-
-			if (enemiesInThisRound == 15 && enemiesAlive() == 0) {
-				round++;
-				enemiesInThisRound = 0;
-				counterRoundCooldown = 0;
-			}
-			break;
-
-		case 4:
-
-			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= getRoundSpawnCooldown(round)
-					&& enemiesInThisRound < 20) {
-
-				if (enemiesInThisRound % 3 == 2) { // 3
-					this.addActor(new Enemy(0, 150, 1));
-				} else if (enemiesInThisRound % 3 == 1) { // 1
-					this.addActor(new Enemy(0, 150, 2));
-				} else {
-					this.addActor(new Enemy(0, 150, 3)); // 2
-				}
-
-				enemiesInThisRound++;
-				counterSpawnCooldown = 0;
-			}
-
-			if (enemiesInThisRound == 20 && enemiesAlive() == 0) {
-				round++;
-				enemiesInThisRound = 0;
-				counterRoundCooldown = 0;
-			}
-			break;
-		// uma grande horda de zumbis se aproxima
-		case 5:
-
-			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= getRoundSpawnCooldown(round)
-					&& enemiesInThisRound < 50) {
-
-				if (enemiesInThisRound < 20) {
-					this.addActor(new Enemy(0, 150, 1));
-				} else if (enemiesInThisRound >= 20 && enemiesInThisRound < 35) {
-					this.addActor(new Enemy(0, 150, 2));
-				} else if (enemiesInThisRound >= 35) {
-					this.addActor(new Enemy(0, 150, 3));
-				}
-
-				enemiesInThisRound++;
-				System.out.println(enemiesInThisRound);
-				counterSpawnCooldown = 0;
-			}
-
-			if (enemiesInThisRound == 50 && enemiesAlive() == 0) {
-				round++;
-				enemiesInThisRound = 0;
-				counterRoundCooldown = 0;
-			}
-			break;
-
-		case 6:
-
-			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= getRoundSpawnCooldown(round)
-					&& enemiesInThisRound < 25) {
-
-				if (enemiesInThisRound <= 10) {
-					this.addActor(new Enemy(0, 150, 2));
-				} else {
-					this.addActor(new Enemy(0, 150, 3));
-				}
-
-				enemiesInThisRound++;
-				counterSpawnCooldown = 0;
-			}
-
-			if (enemiesInThisRound == 25 && enemiesAlive() == 0) {
-				round++;
-				enemiesInThisRound = 0;
-				counterRoundCooldown = 0;
-			}
-			break;
-
-		case 7:
-
-			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= getRoundSpawnCooldown(round)
-					&& enemiesInThisRound < 30) {
-
-				if (enemiesInThisRound <= 28) {
-					this.addActor(new Enemy(0, 150, 3));
-				} else {
-					this.addActor(new Enemy(0, 150, 4));
-				}
-
-				enemiesInThisRound++;
-				counterSpawnCooldown = 0;
-			}
-
-			if (enemiesInThisRound == 30 && enemiesAlive() == 0) {
-				round++;
-				enemiesInThisRound = 0;
-				counterRoundCooldown = 0;
-			}
-			break;
-
-		case 8:
-
-			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= getRoundSpawnCooldown(round)
-					&& enemiesInThisRound < 35) {
-
-				if (enemiesInThisRound <= 15) {
-					this.addActor(new Enemy(0, 150, 3));
-				} else if (enemiesInThisRound > 15 && enemiesInThisRound <= 28) {
-					this.addActor(new Enemy(0, 150, 4));
-				} else {
-					this.addActor(new Enemy(0, 150, 5));
-				}
-
-				enemiesInThisRound++;
-				counterSpawnCooldown = 0;
-			}
-
-			if (enemiesInThisRound == 35 && enemiesAlive() == 0) {
-				round++;
-				enemiesInThisRound = 0;
-				counterRoundCooldown = 0;
-			}
-			break;
-
-		case 9:
-
-			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= getRoundSpawnCooldown(round)
-					&& enemiesInThisRound < 40) {
-
-				if (enemiesInThisRound <= 5) {
-					this.addActor(new Enemy(0, 150, 1));
-				} else if (enemiesInThisRound > 5 && enemiesInThisRound <= 10) {
-					this.addActor(new Enemy(0, 150, 2));
-				} else if (enemiesInThisRound > 10 && enemiesInThisRound <= 20) {
-					this.addActor(new Enemy(0, 150, 3));
-				} else if (enemiesInThisRound > 20 && enemiesInThisRound <= 30) {
-					this.addActor(new Enemy(0, 150, 4));
-				} else {
-					this.addActor(new Enemy(0, 150, 5));
-				}
-
-				enemiesInThisRound++;
-				counterSpawnCooldown = 0;
-			}
-
-			if (enemiesInThisRound == 40 && enemiesAlive() == 0) {
-				round++;
-				enemiesInThisRound = 0;
-				counterRoundCooldown = 0;
-			}
-			break;
-
-		case 10:
-
-			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= getRoundSpawnCooldown(round)
-					&& enemiesInThisRound < 100) {
-
-				if (enemiesInThisRound <= 25) {
-					this.addActor(new Enemy(0, 150, 1));
-					this.addActor(new Enemy(-30, 150, 2));
-					enemiesInThisRound++;
-					enemiesInThisRound++;
-
-				} else if (enemiesInThisRound > 25 && enemiesInThisRound <= 45) {
-					this.addActor(new Enemy(0, 150, 3));
-					enemiesInThisRound++;
-				} else if (enemiesInThisRound > 45 && enemiesInThisRound <= 60) {
-					this.addActor(new Enemy(0, 150, 4));
-					enemiesInThisRound++;
-				} else if (enemiesInThisRound > 60) {
-					this.addActor(new Enemy(0, 150, 5));
-					enemiesInThisRound++;
-
-					counterSpawnCooldown = 0;
-				}
-
-				if (enemiesInThisRound == 100 && enemiesAlive() == 0) {
-					round = 0;
-					enemiesInThisRound = 0;
-					counterRoundCooldown = 0;
-				}
-				break;
-			}
-		}
-	}
-
 	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
@@ -481,7 +215,7 @@ public class GameStage extends Stage {
 		batch.begin();
 		font.draw(batch, "Vidas: " + playerHealthPoints, 1035, 780);
 		font.draw(batch, "Moedas: " + playerCoins, 10, 780);
-		font.draw(batch, "Rodada: " + round, 500, 780);
+		font.draw(batch, "Rodada: " + rounds.getRound(), 500, 780);
 		batch.end();
 
 	}
