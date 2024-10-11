@@ -22,12 +22,11 @@ public class BomberTower extends Tower{
 			Gdx.app.error("BomberTower", "Texture 'BomberTower' could not be loaded");
 		}
 
-		fireRate = 0.2; // Cadencia de disparo temporaria
-		shootingRange = 200;
-		projectileSpeed = 10;
-		damage = (float) 2.5;
-		//tipo da bala 
-		bulletTipe = Game.game.gameActors.bulletTipe.NORMAL_PROJECTILE;
+		fireRate = 2.5; // Cadencia de disparo temporaria
+		shootingRange = 150;
+		projectileSpeed = 60;
+		damage = 4;
+		bulletTipe = Game.game.gameActors.bulletTipe.EXPLOSIVE_PROJECTILE;
 	}
 
 	//ação 
