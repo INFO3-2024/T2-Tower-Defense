@@ -3,6 +3,8 @@ package Game.game.gameActors;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -18,6 +20,10 @@ public abstract class Tower extends GameObject {
 	protected float projectileSpeed;
 	protected ArrayList<Enemy> enemiesInRange;
 	protected float projectileActingTime;
+	protected TextureRegion imagemRegion; // Usando TextureRegion em vez de Texture
+    protected int currentFrame; // Frame atual para a animação
+    protected float towerAngle = 0f;
+    protected float elapsedTime = 0; // Inicializa o tempo decorrido
 
 	public Tower() {
 		bulletsArray = new ArrayList<Bullet>();
@@ -25,23 +31,25 @@ public abstract class Tower extends GameObject {
 	}
 
 	public ArrayList<Bullet> tryToShoot(Array<Actor> listaAtores) {
-		
-		checkEnemiesInRange(listaAtores);
-		
-		Vector2 positionToGo = getFarthestEnemyPosition();
-		
+        checkEnemiesInRange(listaAtores);
+        Vector2 positionToGo = getFarthestEnemyPosition();
+
 		elapsedTime += Gdx.graphics.getDeltaTime();
 
-		if (!enemiesInRange.isEmpty() && elapsedTime >= fireRate) {
+        if (positionToGo != null) {
+            updateTowerAngle(positionToGo);
+        }
 
-			elapsedTime = 0;
-			
-			bulletsArray.add(new Bullet(this.getX(), this.getY(), positionToGo.x, positionToGo.y, projectileSpeed, damage, bulletTipe));
-		}
-		
-		return bulletsArray;
+        if (!enemiesInRange.isEmpty() && elapsedTime >= fireRate) {
+            elapsedTime = 0;
+            bulletsArray.add(new Bullet(this.getX(), this.getY(), positionToGo.x, positionToGo.y, projectileSpeed, damage, bulletTipe));
 
-	}
+            // Altera o frame para simular a animação no disparo,
+            currentFrame = (currentFrame + 1) % 40;
+        }
+
+        return bulletsArray;
+    }
 
 	// get para pegar o inimigo mais perto do final que ainda esteja na range da
 	// torre
@@ -99,4 +107,17 @@ public abstract class Tower extends GameObject {
 				Math.pow((otherObject.getX() - this.getX()), 2) + Math.pow((otherObject.getY() - this.getY()), 2));
 		return distance;
 	}
+
+	protected void updateTowerAngle(Vector2 enemyPosition) {
+        Vector2 towerPosition = new Vector2(getX(), getY());
+        Vector2 direction = enemyPosition.sub(towerPosition);
+
+        if (direction.len() > 0) {
+            direction.nor();
+            towerAngle = MathUtils.atan2(direction.y, direction.x) * MathUtils.radiansToDegrees;
+
+            // atualização do angulo
+            towerAngle = (towerAngle + 360) % 360;
+        }
+    }
 }
