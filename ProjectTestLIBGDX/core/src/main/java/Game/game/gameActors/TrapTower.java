@@ -4,7 +4,7 @@ import Game.game.gameAssets.TowerTexture;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;  // Importação necessária
+import com.badlogic.gdx.graphics.g2d.TextureRegion; // Importação necessária
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -12,16 +12,10 @@ import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 
 public class TrapTower extends Tower {
-    private TextureRegion imagemRegion;  // Usando TextureRegion em vez de Texture
-    private int currentFrame; // Frame atual para a animação
-    private float towerAngle = 0f; 
-    private float elapsedTime = 0; // Inicializa o tempo decorrido
-    private ArrayList<Bullet> bulletsArray;
-
     // Construtor
     public TrapTower(int positionX, int positionY) {
         setPosition(positionX, positionY);
-        Texture imagem = TowerTexture.getInstance().getTexture("TrapTower");
+        imagem = TowerTexture.getInstance().getTexture("TrapTower");
 
         // Converter Texture para TextureRegion
         if (imagem != null) {
@@ -59,19 +53,10 @@ public class TrapTower extends Tower {
         return bulletsArray;
     }
 
-    // Atualiza o ângulo da torre para mirar no inimigo
-    private void updateTowerAngle(Vector2 enemyPosition) {
-        Vector2 towerPosition = new Vector2(getX(), getY());
-        Vector2 direction = enemyPosition.sub(towerPosition);
-
-        if (direction.len() > 0) {
-            direction.nor();
-            towerAngle = MathUtils.atan2(direction.y, direction.x) * MathUtils.radiansToDegrees;
-
-            //atualização do angulo 
-            towerAngle = (towerAngle + 360) % 360;
-        }
-    }
+    @Override
+	public void act(float delta) {
+		super.act(delta);
+	}
 
     public void draw(Batch batch, float parentAlpha) {
         // Obtenha o frame correto baseado no ângulo da torre
@@ -80,14 +65,13 @@ public class TrapTower extends Tower {
         if (currentFrameTexture != null) {
             TextureRegion textureRegion = new TextureRegion(currentFrameTexture);
             batch.draw(textureRegion, getX(), getY(),
-            textureRegion.getRegionWidth() / 2, textureRegion.getRegionHeight() / 2, 
-            textureRegion.getRegionWidth(), textureRegion.getRegionHeight(),
-            1, 1, // escala
-            0); // Não rotaciona a imagem
+                    textureRegion.getRegionWidth() / 2, textureRegion.getRegionHeight() / 2,
+                    textureRegion.getRegionWidth(), textureRegion.getRegionHeight(),
+                    1, 1, // escala
+                    0); // Não rotaciona a imagem
         } else {
             Gdx.app.error("TrapTower", "No frame available for the current angle");
         }
     }
-    
-}
 
+}
