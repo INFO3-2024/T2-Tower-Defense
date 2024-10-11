@@ -68,6 +68,8 @@ public abstract class Tower extends GameObject {
 					farthestDistance = enemiesInRange.get(i).getX();
 					positionX = enemiesInRange.get(i).getX();
 					positionY = enemiesInRange.get(i).getY();
+					
+					System.out.println( positionX + "-" + positionY);
 				}
 			}
 		}
@@ -109,8 +111,11 @@ public abstract class Tower extends GameObject {
 	}
 
 	protected void updateTowerAngle(Vector2 enemyPosition) {
+		
+		Vector2 aux = enemyPosition;
+		
         Vector2 towerPosition = new Vector2(getX(), getY());
-        Vector2 direction = enemyPosition.sub(towerPosition);
+        Vector2 direction = aux.sub(towerPosition);
 
         if (direction.len() > 0) {
             direction.nor();

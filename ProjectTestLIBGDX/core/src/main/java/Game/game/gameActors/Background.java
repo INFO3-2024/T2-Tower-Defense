@@ -1,6 +1,7 @@
 package Game.game.gameActors;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.tiled.*;
@@ -12,7 +13,7 @@ public class Background extends Actor {
 
 	private TiledMap mapa1, mapa2;
 	private OrthogonalTiledMapRenderer renderer;
-	private float deltaX = 0;
+	private int typeMap = 1;
 
 	public Background(OrthographicCamera ortho) {
 		// TODO Auto-generated constructor stub
@@ -27,18 +28,12 @@ public class Background extends Actor {
 		renderer.setView(ortho);
 		// 1280, 736
 	}
-
+	
 	@Override
 	public void act(float delta) {
 		// TODO Auto-generated method stub
 		super.act(delta);
 
-		deltaX += delta;
-
-		if (deltaX > 10) {
-			changeBackground();
-			deltaX = 0;
-		}
 	}
 
 	@Override
@@ -50,14 +45,29 @@ public class Background extends Actor {
 
 	}
 
-	private void changeBackground() {
+	public void changeBackground() {
 		// TODO Auto-generated method stub
 
-		if (renderer.getMap() == mapa1)
-			renderer.setMap(mapa2);
-		else
-			renderer.setMap(mapa1);
+		TiledMap aux = new TiledMap();
 
+		if (renderer.getMap() == mapa1) {
+			aux = mapa2;
+
+		} else {
+			aux = mapa1;
+
+		}
+
+		renderer.setMap(aux);
+
+	}
+
+	public int getTypeMap() {
+		return typeMap;
+	}
+
+	public void setTypeMap(int typeMap) {
+		this.typeMap = typeMap;
 	}
 
 }

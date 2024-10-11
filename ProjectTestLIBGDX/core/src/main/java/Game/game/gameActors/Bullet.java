@@ -56,7 +56,8 @@ public class Bullet extends GameObject {
 		}
 
 	}
-
+	
+	
 	private void move() {
 
 		// movimento vetorial da bala

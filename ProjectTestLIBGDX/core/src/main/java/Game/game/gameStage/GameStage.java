@@ -46,34 +46,45 @@ public class GameStage extends Stage {
 
 	}
 
+	public void generateActors() {
+
+		// Spawn de torres
+		// forma temporaria de spawnar ate a juncao
+
+		this.addActor(new SMGTower(380, 100));
+
+		this.addActor(new TrapTower(410, 100));
+
+		this.addActor(new BomberTower(445, 100));
+
+		this.addActor(new SniperTower(470, 100));
+
+	}
+
 	@Override
 	public void act(float delta) {
 		// TODO Auto-generated method stub
 		super.act(delta);
 
 		background.act(delta);
+
 		rounds.updateSpawnCooldown();
-		
-		rounds.spawnMap1Enemies(getActors(), enemiesAlive());
-		//rounds.spawnMap2Enemies(getActors(), enemiesAlive());
-		//rounds.spawnMap2Enemies(getActors(), enemiesAlive());
 
-		// Spawn de torres
-		// forma temporaria de spawnar ate a juncao
+		if (background.getTypeMap() == 1)
+			rounds.spawnMap1Enemies(getActors(), enemiesAlive(), background.getTypeMap());
+		else
+			rounds.spawnMap2Enemies(getActors(), enemiesAlive(), background.getTypeMap());
+		// rounds.spawnMap2Enemies(getActors(), enemiesAlive());
+		// rounds.spawnMap2Enemies(getActors(), enemiesAlive());
+
 		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-			this.addActor(new SMGTower(380, 100));
+			generateActors();
 		}
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
-			this.addActor(new TrapTower(410, 100));
-		}
+		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
-			this.addActor(new BomberTower(445, 100));
-		}
+			background.changeBackground();
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
-			this.addActor(new SniperTower(470, 100));
 		}
 
 		// loop percorrendo todos os Atores do GameStage
@@ -81,7 +92,7 @@ public class GameStage extends Stage {
 		for (int i = 0; i < this.getActors().size; i++) {
 
 			// Act de todos os GameObjects
-			if (this.getActors().get(i) instanceof GameObject) {
+			if (this.getActors().get(i) instanceof GameObject && (this.getActors().get(i) instanceof Enemy == false)) {
 				this.getActors().get(i).act(delta);
 			}
 		}
@@ -129,20 +140,9 @@ public class GameStage extends Stage {
 	// isso posteriormente sera feito usando polimorfismo
 	// ainda nao esta pq preciso do mapa com os caminhos para
 	// programar a traptower
+
 	public void towersShoot() {
 		for (int i = 0; i < getActors().size; i++) {
-			if (this.getActors().get(i) instanceof SMGTower) {
-
-				SMGTower towerAux = (SMGTower) this.getActors().get(i);
-
-				if (!towerAux.tryToShoot(getActors()).isEmpty()) {
-					ArrayList<Bullet> arrayAux = towerAux.tryToShoot(getActors());
-
-					for (int j = 0; j < arrayAux.size(); j++) {
-						this.addActor(arrayAux.get(j));
-					}
-				}
-			}
 
 			if (this.getActors().get(i) instanceof SniperTower) {
 
