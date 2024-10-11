@@ -14,7 +14,6 @@ public class SMGTower extends Tower {
 	//construtor 
 	public SMGTower(int positionX, int positionY) {
 		setPosition(positionX, positionY);
-		//Atribuição a imagem 
 		imagem = TowerTexture.getInstance().getTexture("SMGTower");
 
 		//conversão de tipo 

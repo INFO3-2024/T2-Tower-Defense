@@ -38,7 +38,7 @@ public class BomberTower extends Tower{
 	//carrega 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		Texture currentFrameTexture = TowerTexture.getInstance().getSMGTowerFrameForAngle(towerAngle);
+		Texture currentFrameTexture = TowerTexture.getInstance().getBomberTowerFrameForAngle(towerAngle);
 
         if (currentFrameTexture != null) {
             TextureRegion textureRegion = new TextureRegion(currentFrameTexture);

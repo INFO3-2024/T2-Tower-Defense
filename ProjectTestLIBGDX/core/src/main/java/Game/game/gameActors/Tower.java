@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
 public abstract class Tower extends GameObject {
-	
+
 	protected bulletTipe bulletTipe;
 	protected float damage;
 	protected double fireRate;
@@ -21,9 +21,9 @@ public abstract class Tower extends GameObject {
 	protected ArrayList<Enemy> enemiesInRange;
 	protected float projectileActingTime;
 	protected TextureRegion imagemRegion; // Usando TextureRegion em vez de Texture
-    protected int currentFrame; // Frame atual para a animação
-    protected float towerAngle = 0f;
-    protected float elapsedTime = 0; // Inicializa o tempo decorrido
+	protected int currentFrame; // Frame atual para a animação
+	protected float towerAngle = 0f;
+	protected float elapsedTime = 0; // Inicializa o tempo decorrido
 
 	public Tower() {
 		bulletsArray = new ArrayList<Bullet>();
@@ -31,50 +31,50 @@ public abstract class Tower extends GameObject {
 	}
 
 	public ArrayList<Bullet> tryToShoot(Array<Actor> listaAtores) {
-        checkEnemiesInRange(listaAtores);
-        Vector2 positionToGo = getFarthestEnemyPosition();
+		checkEnemiesInRange(listaAtores);
+		Vector2 positionToGo = getFarthestEnemyPosition();
 
 		elapsedTime += Gdx.graphics.getDeltaTime();
 
-        if (positionToGo != null) {
-            updateTowerAngle(positionToGo);
-        }
+		if (positionToGo != null) {
+			updateTowerAngle(positionToGo);
+		}
 
-        if (!enemiesInRange.isEmpty() && elapsedTime >= fireRate) {
-            elapsedTime = 0;
-            bulletsArray.add(new Bullet(this.getX(), this.getY(), positionToGo.x, positionToGo.y, projectileSpeed, damage, bulletTipe));
+		if (!enemiesInRange.isEmpty() && elapsedTime >= fireRate) {
+			elapsedTime = 0;
+			bulletsArray.add(new Bullet(this.getX(), this.getY(), positionToGo.x, positionToGo.y, projectileSpeed,
+					damage, bulletTipe));
 
-            // Altera o frame para simular a animação no disparo,
-            currentFrame = (currentFrame + 1) % 40;
-        }
+			// Altera o frame para simular a animação no disparo,
+			currentFrame = (currentFrame + 1) % 40;
+		}
 
-        return bulletsArray;
-    }
+		return bulletsArray;
+	}
 
 	// get para pegar o inimigo mais perto do final que ainda esteja na range da
 	// torre
 	protected Vector2 getFarthestEnemyPosition() {
 
 		float farthestDistance = 0;
-		
+
 		float positionX = 0;
 		float positionY = 0;
-		
+
 		Vector2 position;
-		
-		if(!enemiesInRange.isEmpty()) {
+
+		if (!enemiesInRange.isEmpty()) {
 			for (int i = 0; i < enemiesInRange.size(); i++) {
 				if (enemiesInRange.get(i).getX() > farthestDistance) {
 					farthestDistance = enemiesInRange.get(i).getX();
 					positionX = enemiesInRange.get(i).getX();
 					positionY = enemiesInRange.get(i).getY();
-					
-					System.out.println( positionX + "-" + positionY);
+
+					// System.out.println( positionX + "-" + positionY);
 				}
 			}
 		}
 		position = new Vector2(positionX, positionY);
-
 
 		return position;
 	}
@@ -95,9 +95,10 @@ public abstract class Tower extends GameObject {
 		}
 
 		// retirando do array inimigos fora do alcance da torre
-		if(!enemiesInRange.isEmpty()) {
+		if (!enemiesInRange.isEmpty()) {
 			for (int i = 0; i < enemiesInRange.size(); i++) {
-				if (calculateDistance(enemiesInRange.get(i)) > shootingRange || enemiesInRange.get(i).getHealthPoints() <= 0) {
+				if (calculateDistance(enemiesInRange.get(i)) > shootingRange
+						|| enemiesInRange.get(i).getHealthPoints() <= 0) {
 					enemiesInRange.remove(i);
 				}
 			}
@@ -111,18 +112,16 @@ public abstract class Tower extends GameObject {
 	}
 
 	protected void updateTowerAngle(Vector2 enemyPosition) {
-		
-		Vector2 aux = enemyPosition;
-		
-        Vector2 towerPosition = new Vector2(getX(), getY());
-        Vector2 direction = aux.sub(towerPosition);
 
-        if (direction.len() > 0) {
-            direction.nor();
-            towerAngle = MathUtils.atan2(direction.y, direction.x) * MathUtils.radiansToDegrees;
+		Vector2 towerPosition = new Vector2(getX(), getY());
+		Vector2 direction = new Vector2(enemyPosition.x - towerPosition.x, enemyPosition.y - towerPosition.y);
 
-            // atualização do angulo
-            towerAngle = (towerAngle + 360) % 360;
-        }
-    }
+		if (direction.len() > 0) {
+			direction.nor();
+			towerAngle = MathUtils.atan2(direction.y, direction.x) * MathUtils.radiansToDegrees;
+
+			// atualização do angulo
+			towerAngle = (towerAngle + 360) % 360;
+		}
+	}
 }
