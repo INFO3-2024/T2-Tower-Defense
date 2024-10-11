@@ -50,15 +50,16 @@ public class GameStage extends Stage {
 
 		// Spawn de torres
 		// forma temporaria de spawnar ate a juncao
-
-		this.addActor(new SMGTower(380, 100));
-
 		this.addActor(new TrapTower(410, 100));
 
 		this.addActor(new BomberTower(445, 100));
 
 		this.addActor(new SniperTower(470, 100));
 
+	}
+
+	public void spawnSMG(){
+		this.addActor(new SMGTower(380, 100));
 	}
 
 	@Override
@@ -79,6 +80,10 @@ public class GameStage extends Stage {
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
 			generateActors();
+		}
+
+		if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+			spawnSMG();
 		}
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
