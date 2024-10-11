@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.*;
 
 import Game.game.gameActors.*;
 import Game.game.rounds.Rounds;
+import Game.game.gameAssets.MapSoundManager;
 
 public class GameStage extends Stage {
 
@@ -24,6 +25,8 @@ public class GameStage extends Stage {
 	private SpriteBatch batch;
 
 	private Rounds rounds;
+
+	private MapSoundManager soundManager;
 
 	public GameStage() {
 		// TODO Auto-generated constructor stub
@@ -43,6 +46,15 @@ public class GameStage extends Stage {
 		batch = new SpriteBatch();
 
 		rounds = new Rounds();
+
+		soundManager = new MapSoundManager();
+		soundManager.loadSounds();
+
+		if (background.getTypeMap() == 1) {
+			soundManager.playMusic("morning");
+		} else {
+			soundManager.playMusic("night");
+		}
 
 	}
 
@@ -71,11 +83,14 @@ public class GameStage extends Stage {
 
 		rounds.updateSpawnCooldown();
 
-		if (background.getTypeMap() == 1)
+		if (background.getTypeMap() == 1){
+			//soundManager.playMusic("morning");
 			rounds.spawnMap1Enemies(getActors(), enemiesAlive(), background.getTypeMap());
-		else
+		}
+		else{
+			//soundManager.playMusic("night");
 			rounds.spawnMap2Enemies(getActors(), enemiesAlive(), background.getTypeMap());
-		// rounds.spawnMap2Enemies(getActors(), enemiesAlive());
+		}// rounds.spawnMap2Enemies(getActors(), enemiesAlive());
 		// rounds.spawnMap2Enemies(getActors(), enemiesAlive());
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
@@ -89,7 +104,6 @@ public class GameStage extends Stage {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 
 			background.changeBackground();
-
 		}
 
 		// loop percorrendo todos os Atores do GameStage
@@ -231,6 +245,7 @@ public class GameStage extends Stage {
 		super.dispose();
 		font.dispose();
 		batch.dispose();
+		soundManager.dispose();
 	}
 
 }
