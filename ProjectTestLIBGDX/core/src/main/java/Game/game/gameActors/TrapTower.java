@@ -30,7 +30,6 @@ public class TrapTower extends Tower {
         damage = 7;
         price = 700;
         bulletTipe = Game.game.gameActors.bulletTipe.NORMAL_PROJECTILE;
-        //bulletsArray = new ArrayList<>(); // Inicializa o array de balas
     }
 
     @Override
