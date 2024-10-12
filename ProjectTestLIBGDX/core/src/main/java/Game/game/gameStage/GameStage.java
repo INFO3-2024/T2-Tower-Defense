@@ -8,6 +8,13 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 import Game.game.gameActors.*;
 import Game.game.rounds.Rounds;
@@ -35,14 +42,13 @@ public class GameStage extends Stage {
 		ortho = new OrthographicCamera();
 		ortho.setToOrtho(false, 1280, 736);
 		background = new Background(ortho);
-		this.addActor(background);
 
 		playerHealthPoints = 100; // definicao da quantidade de vidas do jogador
 		playerCoins = 400;
 
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
-		font.getData().setScale(3.5f, 3.5f);
+
 		batch = new SpriteBatch();
 
 		rounds = new Rounds();
@@ -55,6 +61,10 @@ public class GameStage extends Stage {
 		} else {
 			soundManager.playMusic("night");
 		}
+
+		this.addActor(background);
+
+		Gdx.input.setInputProcessor(this);
 
 	}
 
@@ -114,11 +124,13 @@ public class GameStage extends Stage {
 				this.getActors().get(i).act(delta);
 			}
 		}
+
 		towersShoot();
 		enemyAttack();
 		deleteBullets();
 		deleteEnemies();
 
+		// System.out.println(Gdx.input.getX() + "-" + Gdx.input.getY());
 	}
 
 	public int enemiesAlive() {
@@ -186,7 +198,8 @@ public class GameStage extends Stage {
 
 				// se o inimigo tiver saido da tela e se ele nao tiver dado dano ainda ao
 				// jogador
-				if (this.getActors().get(i).getX() > 1279 && !((Enemy) this.getActors().get(i)).getAlreadyDoneDamage()) {
+				if (this.getActors().get(i).getX() > 1279
+						&& !((Enemy) this.getActors().get(i)).getAlreadyDoneDamage()) {
 
 					if (((Enemy) this.getActors().get(i)).getHealthPoints() > 0) {
 
@@ -199,16 +212,73 @@ public class GameStage extends Stage {
 			}
 		}
 	}
+	//Projeto de loja
+
+	/*
+	 * 
+	 * @Override public boolean touchDown(int screenX, int screenY, int pointer, int
+	 * button) { // TODO Auto-generated method stub
+	 * 
+	 * if (button == Input.Buttons.LEFT) { generateStore(Gdx.input.getX(),
+	 * Gdx.input.getX()); return true; } return false;
+	 * 
+	 * }
+	 * 
+	 * private void generateStore(int x, int y) { // TODO Auto-generated method stub
+	 * 
+	 * Table table = new Table(); table.setFillParent(true);
+	 * 
+	 * TextButton.TextButtonStyle textButtonStyle = new
+	 * TextButton.TextButtonStyle(); textButtonStyle.font = font;
+	 * 
+	 * 
+	 * 
+	 * TextButton BomberTower = new TextButton("TrapTower", textButtonStyle);
+	 * TextButton SniperTower = new TextButton("SniperTower", textButtonStyle);
+	 * TextButton SMGTower = new TextButton("SMGTower", textButtonStyle);
+	 * 
+	 * 
+	 * BomberTower.addListener(event -> { if (event instanceof InputEvent &&
+	 * ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
+	 * System.out.println("Play button clicked"); // screen.changeStage(0);
+	 * deleteStore(); return true; } return false; });
+	 * 
+	 * SniperTower.addListener(event -> { if (event instanceof InputEvent &&
+	 * ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
+	 * System.out.println("Settings button clicked"); // screen.changeStage(2);
+	 * deleteStore(); return true; } return false; });
+	 * 
+	 * SMGTower.addListener(event -> { if (event instanceof InputEvent &&
+	 * ((InputEvent) event).getType() == InputEvent.Type.touchDown) { deleteStore();
+	 * return true; } return false; });
+	 * 
+	 * 
+	 * BomberTower.setPosition(x, y);
+	 * 
+	 * table.add(BomberTower).fillX().uniformX().pad(20); table.row().pad(10, 0, 10,
+	 * 0); table.add(SniperTower).fillX().uniformX().pad(20); table.row();
+	 * table.add(SMGTower).fillX().uniformX().pad(20); this.addActor(table);
+	 * 
+	 * }
+	 * 
+	 * private void deleteStore() { // TODO Auto-generated method stub
+	 * 
+	 * for (int i = 0; i < this.getActors().size; i++) { if (this.getActors().get(i)
+	 * instanceof Table) { this.getActors().removeIndex(i); } }
+	 * 
+	 * }
+	 */
 
 	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
 		super.draw();
-
 		batch.begin();
-		font.draw(batch, "Vidas: " + playerHealthPoints, 1035, 780);
+
+		font.getData().setScale(3f, 3f);
 		font.draw(batch, "Moedas: " + playerCoins, 10, 780);
-		font.draw(batch, "Rodada: " + rounds.getRound(), 500, 780);
+		font.draw(batch, "Rodada: " + rounds.getRound(), 350, 780);
+		font.draw(batch, "Vidas: " + playerHealthPoints, 610, 780);
 		batch.end();
 
 	}
