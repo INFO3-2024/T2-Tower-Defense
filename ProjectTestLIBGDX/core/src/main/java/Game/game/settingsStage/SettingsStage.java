@@ -1,5 +1,6 @@
-package Game.game.menuStage;
+package Game.game.settingsStage;
 
+import Game.game.gameAssets.MapSoundManager;
 import Game.game.gameScreen.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -12,10 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import Game.game.gameAssets.MapSoundManager;
-
-public class MenuStage extends Stage {
-
+public class SettingsStage extends Stage {
     private static final int STAGE_INDEX = 3;
     private OrthographicCamera ortho;
     private BitmapFont font;
@@ -24,7 +22,7 @@ public class MenuStage extends Stage {
     private MapSoundManager soundManager;
     private Table table;
 
-    public MenuStage(GameScreen screen) {
+    public SettingsStage(GameScreen screen) {
         super(new ScreenViewport());
 
         Gdx.input.setInputProcessor(this);
@@ -51,14 +49,13 @@ public class MenuStage extends Stage {
         textButtonStyle.fontColor = Color.WHITE;
         textButtonStyle.font.getData().setScale(5f, 5f);
 
-        TextButton playButton = new TextButton("Jogar", textButtonStyle);
-        TextButton settingsButton = new TextButton("Configurações", textButtonStyle);
-        TextButton exitButton = new TextButton("Sair", textButtonStyle);
+        TextButton playButton = new TextButton("Teste1", textButtonStyle);
+        TextButton settingsButton = new TextButton("Teste2", textButtonStyle);
+        TextButton exitButton = new TextButton("Voltar", textButtonStyle);
 
         playButton.addListener(event -> {
             if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-                System.out.println("Play button clicked");
-                screen.changeStage(0);
+                System.out.println("Teste1 button clicked");
                 return true;
             }
             return false;
@@ -66,8 +63,8 @@ public class MenuStage extends Stage {
 
         settingsButton.addListener(event -> {
             if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-                System.out.println("Settings button clicked");
-                screen.changeStage(2);
+                System.out.println("Teste2 button clicked");
+
                 return true;
             }
             return false;
@@ -75,9 +72,9 @@ public class MenuStage extends Stage {
 
         exitButton.addListener(event -> {
             if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-                Gdx.app.exit();
+                screen.changeStage(1);
                 return true;
-          }
+            }
             return false;
         });
 
@@ -88,3 +85,4 @@ public class MenuStage extends Stage {
         table.add(exitButton).fillX().uniformX().pad(20);
     }
 }
+
