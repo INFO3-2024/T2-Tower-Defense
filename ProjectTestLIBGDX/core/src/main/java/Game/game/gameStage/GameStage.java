@@ -186,7 +186,7 @@ public class GameStage extends Stage {
 
 				// se o inimigo tiver saido da tela e se ele nao tiver dado dano ainda ao
 				// jogador
-				if (this.getActors().get(i).getX() > 639 && !((Enemy) this.getActors().get(i)).getAlreadyDoneDamage()) {
+				if (this.getActors().get(i).getX() > 1279 && !((Enemy) this.getActors().get(i)).getAlreadyDoneDamage()) {
 
 					if (((Enemy) this.getActors().get(i)).getHealthPoints() > 0) {
 
