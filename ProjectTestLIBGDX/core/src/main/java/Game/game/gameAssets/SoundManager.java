@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.Gdx;
 import java.util.HashMap;
 
+@SuppressWarnings("unused")
 public abstract class SoundManager {
 
     protected HashMap<String, Music> musicTracks;
@@ -31,12 +32,15 @@ public abstract class SoundManager {
             currentMusic.play();
         }
     }
+    public void stopMusic(){
+        if (currentMusic != null) {
+            currentMusic.stop(); 
+        }
+    }
 
     public void dispose() {
-        if (currentMusic != null) {
-            currentMusic.stop();
-            currentMusic.dispose();
-        }
+        stopMusic();
+        currentMusic.dispose();
 
         for (Music music : musicTracks.values()) {
             music.dispose();

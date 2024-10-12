@@ -1,7 +1,9 @@
 package Game.game.settingsStage;
 
-import Game.game.gameAssets.MapSoundManager;
+import Game.game.gameAssets.MapManager;
 import Game.game.gameScreen.GameScreen;
+import Game.game.menuStage.MenuStage;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -22,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class SettingsStage extends Stage {
     private static final int STAGE_INDEX = 3;
     private Image backgroundImage;
@@ -29,8 +32,10 @@ public class SettingsStage extends Stage {
     private BitmapFont font;
     private SpriteBatch batch;
     private GameScreen screen;
-    private MapSoundManager soundManager;
+    private MapManager soundManager;
     private Table table;
+
+    private MenuStage stageMenu;
 
     public SettingsStage(GameScreen screen) {
         super(new ScreenViewport());
@@ -40,7 +45,7 @@ public class SettingsStage extends Stage {
         ortho = new OrthographicCamera();
         ortho.setToOrtho(false, 1280, 736);
 
-        soundManager = new MapSoundManager();
+        soundManager = new MapManager();
         soundManager.loadSounds();
 
         table = new Table();
@@ -66,13 +71,14 @@ public class SettingsStage extends Stage {
         textButtonStyle.fontColor = Color.WHITE;
         textButtonStyle.font.getData().setScale(5f, 5f);
 
-        TextButton playButton = new TextButton("Teste1", textButtonStyle);
-        TextButton muteButton = new TextButton("Teste2", textButtonStyle);
+        TextButton playButton = new TextButton("Musica", textButtonStyle);
+        TextButton muteButton = new TextButton("Mutar", textButtonStyle);
         TextButton exitButton = new TextButton("Voltar", textButtonStyle);
 
         playButton.addListener(event -> {
             if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
                 System.out.println("Teste1 button clicked");
+                soundManager.playMusic("morning");
                 return true;
             }
             return false;
@@ -81,6 +87,7 @@ public class SettingsStage extends Stage {
         muteButton.addListener(event -> {
             if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
                 System.out.println("Mute button clicked");
+                soundManager.stopMusic();
                 return true;
             }
             return false;

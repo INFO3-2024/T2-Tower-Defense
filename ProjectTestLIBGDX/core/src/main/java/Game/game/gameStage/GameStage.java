@@ -18,8 +18,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 import Game.game.gameActors.*;
 import Game.game.rounds.Rounds;
-import Game.game.gameAssets.MapSoundManager;
+import Game.game.gameAssets.MapManager;
+import Game.game.gameScreen.GameScreen;
 
+@SuppressWarnings("unused")
 public class GameStage extends Stage {
 
 	private OrthographicCamera ortho;
@@ -33,7 +35,8 @@ public class GameStage extends Stage {
 
 	private Rounds rounds;
 
-	private MapSoundManager soundManager;
+	private GameScreen screen;
+	private MapManager soundManager;
 
 	public GameStage() {
 		// TODO Auto-generated constructor stub
@@ -43,6 +46,8 @@ public class GameStage extends Stage {
 		ortho.setToOrtho(false, 1280, 736);
 		background = new Background(ortho);
 
+		screen = new GameScreen();
+		
 		playerHealthPoints = 100; // definicao da quantidade de vidas do jogador
 		playerCoins = 400;
 
@@ -53,13 +58,17 @@ public class GameStage extends Stage {
 
 		rounds = new Rounds();
 
-		soundManager = new MapSoundManager();
+		soundManager = new MapManager();
 		soundManager.loadSounds();
-
+ 
 		if (background.getTypeMap() == 1) {
 			soundManager.playMusic("morning");
-		} else {
+		} 
+		else if(background.getTypeMap() == 2) {
 			soundManager.playMusic("night");
+		}
+		else if(background.getTypeMap() == 3) {
+			soundManager.playMusic("telha");
 		}
 
 		this.addActor(background);
@@ -94,10 +103,8 @@ public class GameStage extends Stage {
 		rounds.updateSpawnCooldown();
 
 		if (background.getTypeMap() == 1) {
-			// soundManager.playMusic("morning");
 			rounds.spawnMap1Enemies(getActors(), enemiesAlive(), background.getTypeMap());
 		} else {
-			// soundManager.playMusic("night");
 			rounds.spawnMap2Enemies(getActors(), enemiesAlive(), background.getTypeMap());
 		} // rounds.spawnMap2Enemies(getActors(), enemiesAlive());
 			// rounds.spawnMap2Enemies(getActors(), enemiesAlive());
