@@ -7,32 +7,28 @@ import Game.game.gameStage.GameStage;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class GameScreen implements Screen{
-
-
 	private Stage currentStage;
-
-
 	public GameScreen(){
-        currentStage = new MainMenu();
+        currentStage = new MainMenu(this);
 	}
-
-    public void changeStage(int stageIndex){
-        switch (stageIndex){
-            case 0:
-                currentStage = new MainMenu();
-                break;
-            case 1:
-                currentStage = new GameStage();
-                break;
-        }
-    }
 
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-
-
 	}
+
+    public void changeStage(int stageIndex) {
+        switch (stageIndex) {
+            case 0:
+                currentStage = new MainMenu(this);
+                break;
+            case 1:
+                currentStage = new GameStage();
+                currentStage.draw();
+                break;
+        }
+
+    }
 
 	@Override
 	public void render(float delta) {
@@ -70,7 +66,7 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
+		currentStage.dispose();
 
 	}
 

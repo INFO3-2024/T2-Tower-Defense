@@ -4,14 +4,16 @@ import com.badlogic.gdx.*;
 import Game.game.gameScreen.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
-public class BloonTower extends Game {
-   
+public class TowerDefense extends Game {
+
+    public GameScreen screen;
 
     @Override
     public void create() {
-       
-    	setScreen(new GameScreen());
-        
+
+        screen = new GameScreen();
+    	setScreen(screen);
+
     }
 
     @Override

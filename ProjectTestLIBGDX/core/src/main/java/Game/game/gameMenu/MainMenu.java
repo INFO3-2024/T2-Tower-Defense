@@ -1,6 +1,9 @@
 package Game.game.gameMenu;
 
+import Game.game.gameScreen.GameScreen;
+import Game.game.gameStage.GameStage;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -21,10 +24,11 @@ public class MainMenu extends Stage {
     private OrthographicCamera ortho;
     private BitmapFont font;
     private SpriteBatch batch;
+    private GameScreen screen;
     private MapSoundManager soundManager;
     private Table table;
 
-    public MainMenu() {
+    public MainMenu(GameScreen screen) {
         super(new ScreenViewport());
 
         Gdx.input.setInputProcessor(this);
@@ -38,6 +42,8 @@ public class MainMenu extends Stage {
         table = new Table();
         table.setFillParent(true);
         this.addActor(table);
+
+        this.screen = screen;
 
         createButtons();
     }
@@ -56,6 +62,7 @@ public class MainMenu extends Stage {
         playButton.addListener(event -> {
             if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
                 System.out.println("Play button clicked");
+                screen.changeStage(1);
                 return true;
             }
             return false;

@@ -28,7 +28,7 @@ public class Background extends Actor {
 		renderer.setView(ortho);
 		// 1280, 736
 	}
-	
+
 	@Override
 	public void act(float delta) {
 		// TODO Auto-generated method stub
@@ -38,7 +38,7 @@ public class Background extends Actor {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		// TODO Auto-generated method stub
+
 		super.draw(batch, parentAlpha);
 
 		renderer.render();
@@ -46,7 +46,6 @@ public class Background extends Actor {
 	}
 
 	public void changeBackground() {
-		// TODO Auto-generated method stub
 
 		TiledMap aux = new TiledMap();
 

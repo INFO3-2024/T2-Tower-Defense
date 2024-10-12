@@ -30,7 +30,6 @@ public class GameStage extends Stage {
 	private MapSoundManager soundManager;
 
 	public GameStage() {
-		// TODO Auto-generated constructor stub
 		super();
 
 		ortho = new OrthographicCamera();
@@ -61,8 +60,6 @@ public class GameStage extends Stage {
 
 	public void generateActors() {
 
-		// Spawn de torres
-		// forma temporaria de spawnar ate a juncao
 		this.addActor(new TrapTower(410, 100));
 
 		this.addActor(new BomberTower(445, 100));
