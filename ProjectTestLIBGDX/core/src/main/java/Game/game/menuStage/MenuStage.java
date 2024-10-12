@@ -14,8 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import Game.game.gameAssets.MapSoundManager;
+import Game.game.gameAssets.MapManager;
 
+@SuppressWarnings("unused")
 public class MenuStage extends Stage {
 
     private Image backgroundImage;
@@ -24,7 +25,6 @@ public class MenuStage extends Stage {
     private BitmapFont font;
     private SpriteBatch batch;
     private GameScreen screen;
-    private MapSoundManager soundManager;
     private Table table;
 
     public MenuStage(GameScreen screen) {
@@ -34,9 +34,6 @@ public class MenuStage extends Stage {
 
         ortho = new OrthographicCamera();
         ortho.setToOrtho(false, 1280, 736);
-
-        soundManager = new MapSoundManager();
-        soundManager.loadSounds();
 
         table = new Table();
         table.setFillParent(true);

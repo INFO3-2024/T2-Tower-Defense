@@ -9,6 +9,7 @@ public class TowerTexture extends TextureManager {
     private static TowerTexture instance;
 
     //Declaração do angulo inicial da Torre
+    @SuppressWarnings("unused")
     private float towerAngle = 0f; 
 
     private ArrayList<Texture> trapTowerFrames; 
