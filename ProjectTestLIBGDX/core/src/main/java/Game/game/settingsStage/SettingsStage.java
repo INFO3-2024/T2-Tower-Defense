@@ -3,18 +3,28 @@ package Game.game.settingsStage;
 import Game.game.gameAssets.MapSoundManager;
 import Game.game.gameScreen.GameScreen;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
 public class SettingsStage extends Stage {
     private static final int STAGE_INDEX = 3;
+    private Image backgroundImage;
     private OrthographicCamera ortho;
     private BitmapFont font;
     private SpriteBatch batch;
@@ -39,9 +49,16 @@ public class SettingsStage extends Stage {
 
         this.screen = screen;
 
+        createBackground();
         createButtons();
     }
 
+    private void createBackground() {
+        Texture backgroundTexture = new Texture(Gdx.files.internal("Assets/MenuBackground.jpeg"));
+        backgroundImage = new Image(backgroundTexture);
+        backgroundImage.setFillParent(true);
+        table.setBackground(backgroundImage.getDrawable());
+    }
     private void createButtons() {
         BitmapFont font = new BitmapFont();
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
@@ -50,7 +67,7 @@ public class SettingsStage extends Stage {
         textButtonStyle.font.getData().setScale(5f, 5f);
 
         TextButton playButton = new TextButton("Teste1", textButtonStyle);
-        TextButton settingsButton = new TextButton("Teste2", textButtonStyle);
+        TextButton muteButton = new TextButton("Teste2", textButtonStyle);
         TextButton exitButton = new TextButton("Voltar", textButtonStyle);
 
         playButton.addListener(event -> {
@@ -61,10 +78,9 @@ public class SettingsStage extends Stage {
             return false;
         });
 
-        settingsButton.addListener(event -> {
+        muteButton.addListener(event -> {
             if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-                System.out.println("Teste2 button clicked");
-
+                System.out.println("Mute button clicked");
                 return true;
             }
             return false;
@@ -80,7 +96,7 @@ public class SettingsStage extends Stage {
 
         table.add(playButton).fillX().uniformX().pad(20);
         table.row().pad(10, 0, 10, 0);
-        table.add(settingsButton).fillX().uniformX().pad(20);
+        table.add(muteButton).fillX().uniformX().pad(20);
         table.row();
         table.add(exitButton).fillX().uniformX().pad(20);
     }

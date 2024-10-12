@@ -4,10 +4,12 @@ import Game.game.gameScreen.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -16,6 +18,7 @@ import Game.game.gameAssets.MapSoundManager;
 
 public class MenuStage extends Stage {
 
+    private Image backgroundImage;
     private static final int STAGE_INDEX = 3;
     private OrthographicCamera ortho;
     private BitmapFont font;
@@ -41,9 +44,16 @@ public class MenuStage extends Stage {
 
         this.screen = screen;
 
+        createBackground();
         createButtons();
     }
 
+    private void createBackground() {
+        Texture backgroundTexture = new Texture(Gdx.files.internal("Assets/MenuBackground.jpeg"));
+        backgroundImage = new Image(backgroundTexture);
+        backgroundImage.setFillParent(true);
+        table.setBackground(backgroundImage.getDrawable());
+    }
     private void createButtons() {
         BitmapFont font = new BitmapFont();
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();

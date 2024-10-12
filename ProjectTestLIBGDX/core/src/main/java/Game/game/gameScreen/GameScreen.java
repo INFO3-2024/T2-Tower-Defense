@@ -14,6 +14,14 @@ public class GameScreen implements Screen {
         stage = new MenuStage(this);
     }
 
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     @Override
     public void show() {
 
