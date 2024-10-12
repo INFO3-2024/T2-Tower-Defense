@@ -15,6 +15,7 @@ import Game.game.gameAssets.MapSoundManager;
 
 public class GameStage extends Stage {
 
+    private static final int STAGE_INDEX = 1;
 	private OrthographicCamera ortho;
 	private Background background;
 
