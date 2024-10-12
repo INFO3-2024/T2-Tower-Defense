@@ -24,33 +24,12 @@ public class TrapTower extends Tower {
             Gdx.app.error("TrapTower", "Texture 'TrapTower' could not be loaded");
         }
 
-        fireRate = 3;
-        shootingRange = 800;
-        projectileSpeed = 10;
-        damage = 3;
+        fireRate = 1.3;
+        shootingRange = 300;
+        projectileSpeed = 100;
+        damage = 7;
+        price = 700;
         bulletTipe = Game.game.gameActors.bulletTipe.NORMAL_PROJECTILE;
-        bulletsArray = new ArrayList<>(); // Inicializa o array de balas
-    }
-
-    // Implementação temporária de tiro
-    public ArrayList<Bullet> tryToShoot(Array<Actor> listaAtores) {
-        checkEnemiesInRange(listaAtores);
-        Vector2 positionToGo = getFarthestEnemyPosition();
-
-        if (positionToGo != null) {
-            updateTowerAngle(positionToGo);
-        }
-        elapsedTime += Gdx.graphics.getDeltaTime();
-
-        if (!enemiesInRange.isEmpty() && elapsedTime >= fireRate) {
-            elapsedTime = 0;
-            bulletsArray.add(new Bullet(this.getX(), this.getY(), positionToGo.x, positionToGo.y, projectileSpeed, damage, bulletTipe));
-
-            // Altera o frame para simular a animação no disparo
-            currentFrame = (currentFrame + 1) % 40;
-        }
-
-        return bulletsArray;
     }
 
     @Override

@@ -38,7 +38,7 @@ public class GameStage extends Stage {
 		this.addActor(background);
 
 		playerHealthPoints = 100; // definicao da quantidade de vidas do jogador
-		playerCoins = 0;
+		playerCoins = 400;
 
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
@@ -70,7 +70,7 @@ public class GameStage extends Stage {
 
 	}
 
-	public void spawnSMG(){
+	public void spawnSMG() {
 		this.addActor(new SMGTower(380, 100));
 	}
 
@@ -83,15 +83,14 @@ public class GameStage extends Stage {
 
 		rounds.updateSpawnCooldown();
 
-		if (background.getTypeMap() == 1){
-			//soundManager.playMusic("morning");
+		if (background.getTypeMap() == 1) {
+			// soundManager.playMusic("morning");
 			rounds.spawnMap1Enemies(getActors(), enemiesAlive(), background.getTypeMap());
-		}
-		else{
-			//soundManager.playMusic("night");
+		} else {
+			// soundManager.playMusic("night");
 			rounds.spawnMap2Enemies(getActors(), enemiesAlive(), background.getTypeMap());
-		}// rounds.spawnMap2Enemies(getActors(), enemiesAlive());
-		// rounds.spawnMap2Enemies(getActors(), enemiesAlive());
+		} // rounds.spawnMap2Enemies(getActors(), enemiesAlive());
+			// rounds.spawnMap2Enemies(getActors(), enemiesAlive());
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
 			generateActors();
@@ -163,34 +162,9 @@ public class GameStage extends Stage {
 	public void towersShoot() {
 		for (int i = 0; i < getActors().size; i++) {
 
-			if (this.getActors().get(i) instanceof SniperTower) {
+			if (this.getActors().get(i) instanceof Tower) {
 
-				SniperTower towerAux = (SniperTower) this.getActors().get(i);
-
-				if (!towerAux.tryToShoot(getActors()).isEmpty()) {
-					ArrayList<Bullet> arrayAux = towerAux.tryToShoot(getActors());
-
-					for (int j = 0; j < arrayAux.size(); j++) {
-						this.addActor(arrayAux.get(j));
-					}
-				}
-			}
-
-			if (this.getActors().get(i) instanceof BomberTower) {
-
-				BomberTower towerAux = (BomberTower) this.getActors().get(i);
-
-				if (!towerAux.tryToShoot(getActors()).isEmpty()) {
-					ArrayList<Bullet> arrayAux = towerAux.tryToShoot(getActors());
-
-					for (int j = 0; j < arrayAux.size(); j++) {
-						this.addActor(arrayAux.get(j));
-					}
-				}
-			}
-			if (this.getActors().get(i) instanceof TrapTower) {
-
-				TrapTower towerAux = (TrapTower) this.getActors().get(i);
+				Tower towerAux = (Tower) this.getActors().get(i);
 
 				if (!towerAux.tryToShoot(getActors()).isEmpty()) {
 					ArrayList<Bullet> arrayAux = towerAux.tryToShoot(getActors());
@@ -212,7 +186,7 @@ public class GameStage extends Stage {
 
 				// se o inimigo tiver saido da tela e se ele nao tiver dado dano ainda ao
 				// jogador
-				if (this.getActors().get(i).getX() > 639 && !((Enemy) this.getActors().get(i)).getAlreadyDoneDamage()) {
+				if (this.getActors().get(i).getX() > 1279 && !((Enemy) this.getActors().get(i)).getAlreadyDoneDamage()) {
 
 					if (((Enemy) this.getActors().get(i)).getHealthPoints() > 0) {
 
