@@ -25,8 +25,9 @@ public class SMGTower extends Tower {
 
 		fireRate = 0.2; // Cadencia de disparo temporaria
 		shootingRange = 200;
-		projectileSpeed = 10;
+		projectileSpeed = 30;
 		damage = (float) 2.5;
+		price = 200;
 		//tipo da bala 
 		bulletTipe = Game.game.gameActors.bulletTipe.NORMAL_PROJECTILE;
 	}

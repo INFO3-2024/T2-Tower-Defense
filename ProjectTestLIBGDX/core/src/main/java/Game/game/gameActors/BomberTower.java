@@ -23,9 +23,10 @@ public class BomberTower extends Tower{
 		}
 
 		fireRate = 2.5; // Cadencia de disparo temporaria
-		shootingRange = 150;
+		shootingRange = 350;
 		projectileSpeed = 60;
 		damage = 4;
+		price = 400;
 		bulletTipe = Game.game.gameActors.bulletTipe.EXPLOSIVE_PROJECTILE;
 	}
 

@@ -14,6 +14,7 @@ public abstract class Tower extends GameObject {
 
 	protected bulletTipe bulletTipe;
 	protected float damage;
+	protected int price;
 	protected double fireRate;
 	protected int shootingRange;
 	protected ArrayList<Bullet> bulletsArray;
@@ -70,7 +71,6 @@ public abstract class Tower extends GameObject {
 					positionX = enemiesInRange.get(i).getX();
 					positionY = enemiesInRange.get(i).getY();
 
-					// System.out.println( positionX + "-" + positionY);
 				}
 			}
 		}
