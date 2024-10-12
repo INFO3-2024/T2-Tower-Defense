@@ -64,18 +64,22 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         // TODO Auto-generated method stub
+    	stage.dispose();
 
     }
 
     public void changeStage(int i) {
         switch (i) {
             case 0:
+            	stage.clear();
                 stage = new GameStage();
                 break;
             case 1:
+            	stage.clear();
                 stage = new MenuStage(this);
                 break;
             case 2:
+            	stage.clear();
                 stage = new SettingsStage(this);
                 break;
         }
