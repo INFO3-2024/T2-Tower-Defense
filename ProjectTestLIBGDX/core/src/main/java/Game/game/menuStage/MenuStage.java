@@ -49,7 +49,7 @@ public class MenuStage extends Stage {
     }
 
     private void createBackground() {
-        Texture backgroundTexture = new Texture(Gdx.files.internal("Assets/MenuBackground.jpeg"));
+        Texture backgroundTexture = new Texture(Gdx.files.internal("MenuBackground.jpeg"));
         backgroundImage = new Image(backgroundTexture);
         backgroundImage.setFillParent(true);
         table.setBackground(backgroundImage.getDrawable());
