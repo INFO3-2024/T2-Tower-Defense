@@ -29,7 +29,6 @@ public class Rounds {
 	}
 
 	public void spawnMap1Enemies(Array<Actor> listaAtores, int enemiesAlive, int typeMap) {
-
 		if (round == 0) {
 			round = 1;
 		}
