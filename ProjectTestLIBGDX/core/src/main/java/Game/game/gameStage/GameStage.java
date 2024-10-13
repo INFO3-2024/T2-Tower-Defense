@@ -8,6 +8,7 @@ import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
@@ -42,7 +43,10 @@ public class GameStage extends Stage {
 	private GameScreen screen;
 	private MapManager soundManager;
 
-	Table store;
+	private Table store;
+
+	private boolean isClicked = false;
+	private Tower towerSelected;
 
 	public GameStage() {
 		// TODO Auto-generated constructor stub
@@ -77,10 +81,9 @@ public class GameStage extends Stage {
 
 		store = new Table();
 
-	
 		store.setDebug(true);
 		store.setTransform(true);
-		store.setScale(3f,2.5f);
+		store.setScale(3f, 2.5f);
 
 		store.setPosition(1050f, 750f);
 
@@ -98,24 +101,28 @@ public class GameStage extends Stage {
 		ButtonStyle style = new ButtonStyle();
 
 		Button Torre1 = new Button(style);
-		
+
 		Torre1.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
 
 		Button Torre2 = new Button(style);
-		
+
 		Torre2.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
 
 		Button Torre3 = new Button(style);
-		
+
 		Torre3.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
 
 		Button Torre4 = new Button(style);
-		
+
 		Torre4.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
 
 		Torre1.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 1");
+				isClicked = true;
+
+				towerSelected = new TrapTower(0, 0);
+
 				return true;
 			}
 			return false;
@@ -124,6 +131,8 @@ public class GameStage extends Stage {
 		Torre2.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 2");
+				isClicked = true;
+				towerSelected = new BomberTower(0, 0);
 				return true;
 			}
 			return false;
@@ -132,6 +141,8 @@ public class GameStage extends Stage {
 		Torre3.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 3");
+				isClicked = true;
+				towerSelected = new SMGTower(0, 0);
 				return true;
 			}
 			return false;
@@ -140,6 +151,8 @@ public class GameStage extends Stage {
 		Torre4.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 4");
+				isClicked = true;
+				towerSelected = new SniperTower(0, 0);
 				return true;
 			}
 			return false;
@@ -152,6 +165,50 @@ public class GameStage extends Stage {
 		store.add(Torre3);
 
 		store.add(Torre4);
+
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+
+		if (isClicked && button == Buttons.LEFT) {
+			Vector3 temp_coord = new Vector3(screenX, screenY, 0);
+			Vector3 coords = ortho.unproject(temp_coord);
+
+			screenX = (int) coords.x;
+			screenY = (int) coords.y;
+
+			setTower(towerSelected, screenX, screenY);
+
+			return true;
+		}
+
+		return super.touchDown(screenX, screenY, pointer, button);
+
+	}
+
+	private void setTower(Tower towerSelected, int screenX, int screenY) {
+		// TODO Auto-generated method stub
+
+		if (towerSelected instanceof SMGTower) {
+
+			this.addActor(new SMGTower(screenX, screenY));
+		}
+		if (towerSelected instanceof BomberTower) {
+
+			this.addActor(new BomberTower(screenX, screenY));
+		}
+		if (towerSelected instanceof SniperTower) {
+
+			this.addActor(new SniperTower(screenX, screenY));
+		}
+		if (towerSelected instanceof TrapTower) {
+
+			this.addActor(new TrapTower(screenX, screenY));
+		}
+
+		isClicked = false;
 
 	}
 
@@ -183,10 +240,12 @@ public class GameStage extends Stage {
 
 		if (background.getTypeMap() == 1) {
 			rounds.spawnMap1Enemies(getActors(), enemiesAlive(), background.getTypeMap());
-		} else {
+		} else if(background.getTypeMap() == 2) {
 			rounds.spawnMap2Enemies(getActors(), enemiesAlive(), background.getTypeMap());
-		} // rounds.spawnMap2Enemies(getActors(), enemiesAlive());
-			// rounds.spawnMap2Enemies(getActors(), enemiesAlive());
+		}else {
+			rounds.spawnMap3Enemies(getActors(), enemiesAlive(), background.getTypeMap());
+		}
+			
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
 			generateActors();

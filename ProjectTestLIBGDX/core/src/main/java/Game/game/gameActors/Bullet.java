@@ -45,7 +45,7 @@ public class Bullet extends GameObject {
 
 			this.imagem = new Texture(Gdx.files.internal("bullets/bulletBomberTower.png"));	
 		}else if(bulletTipe == bulletTipe.PROJETIL_SMGTOWER){
-			this.imagem = new Texture(Gdx.files.internal("bullets/pea.png"));
+			this.imagem = new Texture(Gdx.files.internal("Bullet.png"));
 
 		}else if(bulletTipe == bulletTipe.PROJETIL_SNIPERTOWER){
 
