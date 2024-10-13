@@ -71,7 +71,7 @@ public class SettingsStage extends Stage {
         textButtonStyle.fontColor = Color.WHITE;
         textButtonStyle.font.getData().setScale(5f, 5f);
 
-        TextButton playButton = new TextButton("Musica", textButtonStyle);
+        TextButton playButton = new TextButton("Desmutar", textButtonStyle);
         TextButton muteButton = new TextButton("Mutar", textButtonStyle);
         TextButton exitButton = new TextButton("Voltar", textButtonStyle);
 
