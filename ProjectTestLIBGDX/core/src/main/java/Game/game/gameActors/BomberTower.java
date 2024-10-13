@@ -27,7 +27,7 @@ public class BomberTower extends Tower{
 		projectileSpeed = 60;
 		damage = 4;
 		price = 400;
-		bulletTipe = Game.game.gameActors.bulletTipe.EXPLOSIVE_PROJECTILE;
+		bulletTipe = Game.game.gameActors.bulletTipe.PROJETIL_BOMBERTOWER;
 	}
 
 	//ação 

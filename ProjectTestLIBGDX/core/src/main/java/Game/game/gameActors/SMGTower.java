@@ -29,7 +29,7 @@ public class SMGTower extends Tower {
 		damage = (float) 2.5;
 		price = 200;
 		//tipo da bala 
-		bulletTipe = Game.game.gameActors.bulletTipe.NORMAL_PROJECTILE;
+		bulletTipe = Game.game.gameActors.bulletTipe.PROJETIL_SMGTOWER;
 	}
 
 	//ação 

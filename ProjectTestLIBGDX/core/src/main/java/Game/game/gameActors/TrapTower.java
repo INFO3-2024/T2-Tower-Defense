@@ -1,17 +1,15 @@
 package Game.game.gameActors;
 
-import Game.game.gameAssets.TowerTexture;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion; // Importação necessária
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.utils.Array;
-import java.util.ArrayList;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import Game.game.gameAssets.TowerTexture; // Importação necessária
 
 public class TrapTower extends Tower {
+
+    
     // Construtor
     public TrapTower(int positionX, int positionY) {
         setPosition(positionX, positionY);
@@ -29,7 +27,7 @@ public class TrapTower extends Tower {
         projectileSpeed = 100;
         damage = 7;
         price = 700;
-        bulletTipe = Game.game.gameActors.bulletTipe.NORMAL_PROJECTILE;
+        bulletTipe = Game.game.gameActors.bulletTipe.PROJETIL_TRAPTOWER;
     }
 
     @Override
