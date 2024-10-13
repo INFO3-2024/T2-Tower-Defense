@@ -112,26 +112,31 @@ public class GameStage extends Stage {
 		ImageButton Torre1 = new ImageButton(style);
 
 		Torre1.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("cacto-loja.png"))));
-
+		
 
 		ImageButton Torre2 = new ImageButton(style1);
 		Torre2.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("carrin.png"))));
-
+		
 
 		ImageButton Torre3 = new ImageButton(style2);
 		Torre3.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("smg.png"))));
-
+		
 		ImageButton Torre4 = new ImageButton(style3);
 		Torre4.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("plantaCapacete.png"))));
-
+		
 		Torre1.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 1");
-				isClicked = true;
+				
+				if(playerCoins>=700){
+					isClicked = true;
+					towerSelected = new TrapTower(0, 0);
+					playerCoins -= 700;
 
-				towerSelected = new TrapTower(0, 0);
-
-				return true;
+					return true;
+				}else{
+					System.out.println("Voce nao possui moedas o bastente");
+				}
 			}
 			return false;
 		});
@@ -139,9 +144,15 @@ public class GameStage extends Stage {
 		Torre2.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 2");
-				isClicked = true;
-				towerSelected = new BomberTower(0, 0);
-				return true;
+				
+				if(playerCoins>=400){
+					isClicked = true;
+					towerSelected = new BomberTower(0, 0);
+					playerCoins -= 400;
+					return true;
+				}else{
+					System.out.println("Voce nao possui moedas o bastente");
+				}
 			}
 			return false;
 		});
@@ -149,9 +160,15 @@ public class GameStage extends Stage {
 		Torre3.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 3");
-				isClicked = true;
-				towerSelected = new SMGTower(0, 0);
-				return true;
+				
+				if(playerCoins>=500){
+					isClicked = true;
+					towerSelected = new SMGTower(0, 0);
+					playerCoins -= 500;
+					return true;
+				}else{
+					System.out.println("Voce nao possui moedas o bastente");
+				}
 			}
 			return false;
 		});
@@ -159,9 +176,15 @@ public class GameStage extends Stage {
 		Torre4.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 4");
-				isClicked = true;
-				towerSelected = new SniperTower(0, 0);
-				return true;
+				
+				if(playerCoins>=200){
+					isClicked = true;
+					towerSelected = new SniperTower(0, 0);
+					playerCoins -= 200;
+					return true;
+				}else{
+					System.out.println("Voce nao possui moedas o bastente");
+				}
 			}
 			return false;
 		});
@@ -173,6 +196,7 @@ public class GameStage extends Stage {
 
 
 	}
+
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
@@ -251,7 +275,7 @@ public class GameStage extends Stage {
 		}else {
 			rounds.spawnMap3Enemies(getActors(), enemiesAlive(), background.getTypeMap());
 		}
-
+			
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
 			generateActors();
