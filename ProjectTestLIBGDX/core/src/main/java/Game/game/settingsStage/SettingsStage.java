@@ -71,11 +71,11 @@ public class SettingsStage extends Stage {
         textButtonStyle.fontColor = Color.WHITE;
         textButtonStyle.font.getData().setScale(5f, 5f);
 
-        TextButton playButton = new TextButton("Desmutar", textButtonStyle);
+        TextButton unmuteButton = new TextButton("Desmutar", textButtonStyle);
         TextButton muteButton = new TextButton("Mutar", textButtonStyle);
         TextButton exitButton = new TextButton("Voltar", textButtonStyle);
 
-        playButton.addListener(event -> {
+        unmuteButton.addListener(event -> {
             if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
                 System.out.println("Teste1 button clicked");
                 soundManager.playMusic("morning");
@@ -101,7 +101,7 @@ public class SettingsStage extends Stage {
             return false;
         });
 
-        table.add(playButton).fillX().uniformX().pad(20);
+        table.add(unmuteButton).fillX().uniformX().pad(20);
         table.row().pad(10, 0, 10, 0);
         table.add(muteButton).fillX().uniformX().pad(20);
         table.row();
