@@ -46,7 +46,7 @@ public class MenuStage extends Stage {
     }
 
     private void createBackground() {
-        Texture backgroundTexture = new Texture(Gdx.files.internal("MenuBackground.jpeg"));
+        Texture backgroundTexture = new Texture(Gdx.files.internal("MenuBackground.jpg"));
         backgroundImage = new Image(backgroundTexture);
         backgroundImage.setFillParent(true);
         table.setBackground(backgroundImage.getDrawable());
@@ -56,7 +56,7 @@ public class MenuStage extends Stage {
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.font = font;
         textButtonStyle.fontColor = Color.WHITE;
-        textButtonStyle.font.getData().setScale(5f, 5f);
+        textButtonStyle.font.getData().setScale(3, 3);
 
         TextButton playButton = new TextButton("Jogar", textButtonStyle);
         TextButton settingsButton = new TextButton("Configurações", textButtonStyle);
