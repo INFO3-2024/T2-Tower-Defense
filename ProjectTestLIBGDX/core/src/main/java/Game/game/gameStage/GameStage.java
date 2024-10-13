@@ -5,25 +5,32 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Buttons;
-import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.*;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-import Game.game.gameActors.*;
-import Game.game.rounds.Rounds;
+import Game.game.gameActors.Background;
+import Game.game.gameActors.BomberTower;
+import Game.game.gameActors.Bullet;
+import Game.game.gameActors.Enemy;
+import Game.game.gameActors.GameObject;
+import Game.game.gameActors.SMGTower;
+import Game.game.gameActors.SniperTower;
+import Game.game.gameActors.Tower;
+import Game.game.gameActors.TrapTower;
 import Game.game.gameAssets.MapManager;
 import Game.game.gameScreen.GameScreen;
+import Game.game.rounds.Rounds;
 
 @SuppressWarnings("unused")
 public class GameStage extends Stage {
@@ -42,7 +49,10 @@ public class GameStage extends Stage {
 	private GameScreen screen;
 	private MapManager soundManager;
 
-	Table store;
+	private Table store;
+
+	private boolean isClicked = false;
+	private Tower towerSelected;
 
 	public GameStage() {
 		// TODO Auto-generated constructor stub
@@ -77,16 +87,15 @@ public class GameStage extends Stage {
 
 		store = new Table();
 
-	
 		store.setDebug(true);
 		store.setTransform(true);
-		store.setScale(3f,2.5f);
+		store.setScale(2f, 1.5f);
 
-		store.setPosition(1050f, 750f);
+		store.setPosition(1070f, 750f);
 
 		createStoreButtons();
-		this.addActor(store);
 		this.addActor(background);
+		this.addActor(store);
 
 		Gdx.input.setInputProcessor(this);
 
@@ -95,28 +104,39 @@ public class GameStage extends Stage {
 	private void createStoreButtons() {
 		// TODO Auto-generated method stub
 
-		ButtonStyle style = new ButtonStyle();
+		ImageButtonStyle style = new ImageButtonStyle();
+		ImageButtonStyle style1 = new ImageButtonStyle();
+		ImageButtonStyle style2 = new ImageButtonStyle();
+		ImageButtonStyle style3 = new ImageButtonStyle();
 
-		Button Torre1 = new Button(style);
+		ImageButton Torre1 = new ImageButton(style);
+
+		Torre1.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("cacto-loja.png"))));
 		
-		Torre1.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
 
-		Button Torre2 = new Button(style);
+		ImageButton Torre2 = new ImageButton(style1);
+		Torre2.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("carrin.png"))));
 		
-		Torre2.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
 
-		Button Torre3 = new Button(style);
+		ImageButton Torre3 = new ImageButton(style2);
+		Torre3.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("smg.png"))));
 		
-		Torre3.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
-
-		Button Torre4 = new Button(style);
+		ImageButton Torre4 = new ImageButton(style3);
+		Torre4.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("plantaCapacete.png"))));
 		
-		Torre4.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
-
 		Torre1.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 1");
-				return true;
+				
+				if(playerCoins>=700){
+					isClicked = true;
+					towerSelected = new TrapTower(0, 0);
+					playerCoins -= 700;
+
+					return true;
+				}else{
+					System.out.println("Voce nao possui moedas o bastente");
+				}
 			}
 			return false;
 		});
@@ -124,7 +144,15 @@ public class GameStage extends Stage {
 		Torre2.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 2");
-				return true;
+				
+				if(playerCoins>=400){
+					isClicked = true;
+					towerSelected = new BomberTower(0, 0);
+					playerCoins -= 400;
+					return true;
+				}else{
+					System.out.println("Voce nao possui moedas o bastente");
+				}
 			}
 			return false;
 		});
@@ -132,7 +160,15 @@ public class GameStage extends Stage {
 		Torre3.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 3");
-				return true;
+				
+				if(playerCoins>=500){
+					isClicked = true;
+					towerSelected = new SMGTower(0, 0);
+					playerCoins -= 500;
+					return true;
+				}else{
+					System.out.println("Voce nao possui moedas o bastente");
+				}
 			}
 			return false;
 		});
@@ -140,18 +176,69 @@ public class GameStage extends Stage {
 		Torre4.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 4");
-				return true;
+				
+				if(playerCoins>=200){
+					isClicked = true;
+					towerSelected = new SniperTower(0, 0);
+					playerCoins -= 200;
+					return true;
+				}else{
+					System.out.println("Voce nao possui moedas o bastente");
+				}
 			}
 			return false;
 		});
 
-		store.add(Torre1);
+		store.add(Torre1).pad(10);
+    	store.add(Torre2).pad(10);
+    	store.add(Torre3).pad(10);
+    	store.add(Torre4).pad(10);
 
-		store.add(Torre2);
 
-		store.add(Torre3);
+	}
 
-		store.add(Torre4);
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+
+		if (isClicked && button == Buttons.LEFT) {
+			Vector3 temp_coord = new Vector3(screenX, screenY, 0);
+			Vector3 coords = ortho.unproject(temp_coord);
+
+			screenX = (int) coords.x;
+			screenY = (int) coords.y;
+
+			setTower(towerSelected, screenX, screenY);
+
+			return true;
+		}
+
+		return super.touchDown(screenX, screenY, pointer, button);
+
+	}
+
+	private void setTower(Tower towerSelected, int screenX, int screenY) {
+		// TODO Auto-generated method stub
+
+		if (towerSelected instanceof SMGTower) {
+
+			this.addActor(new SMGTower(screenX, screenY));
+		}
+		if (towerSelected instanceof BomberTower) {
+
+			this.addActor(new BomberTower(screenX, screenY));
+		}
+		if (towerSelected instanceof SniperTower) {
+
+			this.addActor(new SniperTower(screenX, screenY));
+		}
+		if (towerSelected instanceof TrapTower) {
+
+			this.addActor(new TrapTower(screenX, screenY));
+		}
+
+		isClicked = false;
 
 	}
 
@@ -183,10 +270,12 @@ public class GameStage extends Stage {
 
 		if (background.getTypeMap() == 1) {
 			rounds.spawnMap1Enemies(getActors(), enemiesAlive(), background.getTypeMap());
-		} else {
+		} else if(background.getTypeMap() == 2) {
 			rounds.spawnMap2Enemies(getActors(), enemiesAlive(), background.getTypeMap());
-		} // rounds.spawnMap2Enemies(getActors(), enemiesAlive());
-			// rounds.spawnMap2Enemies(getActors(), enemiesAlive());
+		}else {
+			rounds.spawnMap3Enemies(getActors(), enemiesAlive(), background.getTypeMap());
+		}
+			
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
 			generateActors();
