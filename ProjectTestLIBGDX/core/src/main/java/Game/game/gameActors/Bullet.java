@@ -42,22 +42,17 @@ public class Bullet extends GameObject {
 
 		
 		if(bulletTipe == bulletTipe.PROJETIL_BOMBERTOWER){
-
 			this.imagem = new Texture(Gdx.files.internal("bullets/bulletBomberTower.png"));	
 		}else if(bulletTipe == bulletTipe.PROJETIL_SMGTOWER){
 			this.imagem = new Texture(Gdx.files.internal("Bullet.png"));
-
 		}else if(bulletTipe == bulletTipe.PROJETIL_SNIPERTOWER){
-
 			this.imagem = new Texture(Gdx.files.internal("bullets/melon.png"));
 		}else if(bulletTipe == bulletTipe.PROJETIL_TRAPTOWER){
-
-			this.imagem = new Texture(Gdx.files.internal("Bullet.png"));
+			this.imagem = new Texture(Gdx.files.internal("bullets/Bullet.png"));
 		}
 
 	}
 
-	
 
 	@Override
 	public void act(float delta) {
