@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.*;
 
 public class Background extends Actor {
 
-	private TiledMap mapa1, mapa2;
+	private TiledMap mapa1, mapa2,mapa3;
 	private OrthogonalTiledMapRenderer renderer;
 	private int typeMap = 1;
 
@@ -20,6 +20,7 @@ public class Background extends Actor {
 
 		mapa1 = new TmxMapLoader().load("Mapa_Diurno.tmx");
 		mapa2 = new TmxMapLoader().load("Mapa_Noturno.tmx");
+		mapa3 = new TmxMapLoader().load("Mapa_Telhado.tmx");
 
 		renderer = new OrthogonalTiledMapRenderer(mapa1);
 
@@ -51,9 +52,11 @@ public class Background extends Actor {
 		if (renderer.getMap() == mapa1) {
 			aux = mapa2;
 
-		} else {
-			aux = mapa1;
+		} else if(renderer.getMap() == mapa2) {
+			aux = mapa3;
 
+		}else {
+			aux = mapa1;
 		}
 
 		renderer.setMap(aux);

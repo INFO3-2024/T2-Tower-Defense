@@ -23,11 +23,13 @@ public class Enemy extends GameObject {
 
 	private ArrayList<Vector2> waypointsMap1 = new ArrayList<Vector2>();
 	private ArrayList<Vector2> waypointsMap2 = new ArrayList<Vector2>();
+	private ArrayList<Vector2> waypointsMap3 = new ArrayList<Vector2>();
 
 	public Enemy(int positionX, int positionY, int configNumber, int typeMap) {
 		setWaypoints1();
 		setWaypoints2();
-		
+		setWaypoints3();
+
 		this.typeMap = typeMap;
 
 		setPosition(positionX, positionY);
@@ -35,7 +37,7 @@ public class Enemy extends GameObject {
 		switch (configNumber) {
 		case 1:
 			enemyAssets2();
-			
+
 			healthPoints = 5;
 			velocidade = 1;
 			damage = 1;
@@ -85,6 +87,42 @@ public class Enemy extends GameObject {
 		}
 		// counter++;
 		// id = counter;
+	}
+
+	private void setWaypoints3() {
+		// TODO Auto-generated method stub
+
+		Vector2 aux = new Vector2(170, 650);
+		waypointsMap3.add(aux);
+		aux = new Vector2(170, 100);
+		waypointsMap3.add(aux);
+		aux = new Vector2(325, 100);
+		waypointsMap3.add(aux);
+		aux = new Vector2(325, 680);
+		waypointsMap3.add(aux);
+		aux = new Vector2(460, 680);
+		waypointsMap3.add(aux);
+		aux = new Vector2(460, 360);
+		waypointsMap3.add(aux);
+		aux = new Vector2(550, 360);
+		waypointsMap3.add(aux);
+		aux = new Vector2(550, 175);
+		waypointsMap3.add(aux);
+		aux = new Vector2(710, 175);
+		waypointsMap3.add(aux);
+		aux = new Vector2(710, 680);
+		waypointsMap3.add(aux);
+		aux = new Vector2(840, 680);
+		waypointsMap3.add(aux);
+		aux = new Vector2(840, 70);
+		waypointsMap3.add(aux);
+		aux = new Vector2(1000, 70);
+		waypointsMap3.add(aux);
+		aux = new Vector2(1000, 450);
+		waypointsMap3.add(aux);
+		aux = new Vector2(1280, 450);
+		waypointsMap3.add(aux);
+
 	}
 
 	private void setWaypoints2() {
@@ -181,49 +219,49 @@ public class Enemy extends GameObject {
 		elapsedTime += Gdx.graphics.getDeltaTime();
 	}
 
-	public void enemyAssets2(){
-		if (index ==0){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index ==1){
+	public void enemyAssets2() {
+		if (index == 0) {
+			imagem = new Texture("enemiesAssets/zombie_1.png");
+		} else if (index == 1) {
 			imagem = new Texture("setaBaixo.png");
-		} else if (index == 2){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 3){
-			imagem = new Texture("setaCima.png"); 
-		} else if (index == 4){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 5){
-			imagem = new Texture("setaBaixo.png");
-		} else if (index == 6){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 7){
+		} else if (index == 2) {
+			imagem = new Texture("enemiesAssets/zombie_1.png");
+		} else if (index == 3) {
 			imagem = new Texture("setaCima.png");
-		} else if (index == 8){
-			imagem = new Texture("enemyLeft.png"); 
-		} else if (index ==9){
-			imagem = new Texture("setaCima.png");
-		} else if (index ==10){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 11){
+		} else if (index == 4) {
+			imagem = new Texture("enemiesAssets/zombie_1.png");
+		} else if (index == 5) {
 			imagem = new Texture("setaBaixo.png");
-		} else if (index == 12){
+		} else if (index == 6) {
+			imagem = new Texture("enemiesAssets/zombie_1.png");
+		} else if (index == 7) {
+			imagem = new Texture("setaCima.png");
+		} else if (index == 8) {
 			imagem = new Texture("enemyLeft.png");
-		} else if (index == 13){
-			imagem = new Texture("setaBaixo.png");
-		} else if (index == 14){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 15){
+		} else if (index == 9) {
 			imagem = new Texture("setaCima.png");
-		} else if (index == 16){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 17){
+		} else if (index == 10) {
+			imagem = new Texture("enemiesAssets/zombie_1.png");
+		} else if (index == 11) {
 			imagem = new Texture("setaBaixo.png");
-		} else if (index == 18){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 19){
-			imagem = new Texture("setaCima.png"); 
-		} else if (index == 20){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
+		} else if (index == 12) {
+			imagem = new Texture("enemyLeft.png");
+		} else if (index == 13) {
+			imagem = new Texture("setaBaixo.png");
+		} else if (index == 14) {
+			imagem = new Texture("enemiesAssets/zombie_1.png");
+		} else if (index == 15) {
+			imagem = new Texture("setaCima.png");
+		} else if (index == 16) {
+			imagem = new Texture("enemiesAssets/zombie_1.png");
+		} else if (index == 17) {
+			imagem = new Texture("setaBaixo.png");
+		} else if (index == 18) {
+			imagem = new Texture("enemiesAssets/zombie_1.png");
+		} else if (index == 19) {
+			imagem = new Texture("setaCima.png");
+		} else if (index == 20) {
+			imagem = new Texture("enemiesAssets/zombie_1.png");
 		}
 	}
 
@@ -263,12 +301,15 @@ public class Enemy extends GameObject {
 
 		if (typeMap == 1) {
 			moveLogic(waypointsMap1);
-		} else {
+		} else if (typeMap == 2) {
 			moveLogic(waypointsMap2);
+		} else {
+			moveLogic(waypointsMap3);
 		}
 		setX(getX() + velX);
 		setY(getY() + velY);
-		System.out.println(index+": "+ getX() + " - " + getY());
+
+		System.out.println(index + ": " + getX() + " - " + getY());
 	}
 
 	private void doDamage() {
