@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -113,22 +112,22 @@ public class GameStage extends Stage {
 		ImageButton Torre1 = new ImageButton(style);
 
 		Torre1.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("cacto-loja.png"))));
-
+		
 
 		ImageButton Torre2 = new ImageButton(style1);
 		Torre2.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("carrin.png"))));
-
+		
 
 		ImageButton Torre3 = new ImageButton(style2);
 		Torre3.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("smg.png"))));
-
+		
 		ImageButton Torre4 = new ImageButton(style3);
 		Torre4.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("plantaCapacete.png"))));
-
+		
 		Torre1.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 1");
-
+				
 				if(playerCoins>=700){
 					isClicked = true;
 					towerSelected = new TrapTower(0, 0);
@@ -145,7 +144,7 @@ public class GameStage extends Stage {
 		Torre2.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 2");
-
+				
 				if(playerCoins>=400){
 					isClicked = true;
 					towerSelected = new BomberTower(0, 0);
@@ -161,10 +160,10 @@ public class GameStage extends Stage {
 		Torre3.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 3");
-
+				
 				if(playerCoins>=500){
 					isClicked = true;
-					towerSelected = new SniperTower(0, 0);
+					towerSelected = new SMGTower(0, 0);
 					playerCoins -= 500;
 					return true;
 				}else{
@@ -177,10 +176,10 @@ public class GameStage extends Stage {
 		Torre4.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 4");
-
+				
 				if(playerCoins>=200){
 					isClicked = true;
-					towerSelected = new SMGTower(0, 0);
+					towerSelected = new SniperTower(0, 0);
 					playerCoins -= 200;
 					return true;
 				}else{
@@ -210,9 +209,7 @@ public class GameStage extends Stage {
 			screenX = (int) coords.x;
 			screenY = (int) coords.y;
 
-            if (!isCollidingWithLayer2(screenX, screenY)) {
-                setTower(towerSelected, screenX, screenY);
-            }
+			setTower(towerSelected, screenX, screenY);
 
 			return true;
 		}
@@ -220,24 +217,6 @@ public class GameStage extends Stage {
 		return super.touchDown(screenX, screenY, pointer, button);
 
 	}
-
-    private boolean isCollidingWithLayer2(int x, int y) {
-        // Supondo que você tenha um método para obter a camada 2 do tilemap
-        TiledMapTileLayer layer2 = (TiledMapTileLayer) background.getTileMap().getLayers().get("Camada de Blocos 2");
-
-        // Converte as coordenadas de tela para coordenadas de tile
-        int tileX = x / layer2.getTileWidth();
-        int tileY = y / layer2.getTileHeight();
-
-        // Verifica se o tile na posição (tileX, tileY) está bloqueado
-        TiledMapTileLayer.Cell cell = layer2.getCell(tileX, tileY);
-        TiledMapTileLayer.Cell cellAbove = layer2.getCell(tileX, tileY + 1);
-        TiledMapTileLayer.Cell cellRight = layer2.getCell(tileX + 1, tileY);
-
-        return (cell != null && cell.getTile() != null) ||
-            (cellAbove != null && cellAbove.getTile() != null) ||
-            (cellRight != null && cellRight.getTile() != null);
-    }
 
 	private void setTower(Tower towerSelected, int screenX, int screenY) {
 		// TODO Auto-generated method stub
@@ -263,6 +242,22 @@ public class GameStage extends Stage {
 
 	}
 
+	public void generateActors() {
+
+		// Spawn de torres
+		// forma temporaria de spawnar ate a juncao
+		this.addActor(new TrapTower(410, 100));
+
+		this.addActor(new BomberTower(445, 100));
+
+		this.addActor(new SniperTower(470, 100));
+
+	}
+
+	public void spawnSMG() {
+		this.addActor(new SMGTower(380, 100));
+	}
+
 	@Override
 	public void act(float delta) {
 		// TODO Auto-generated method stub
@@ -279,6 +274,33 @@ public class GameStage extends Stage {
 			rounds.spawnMap2Enemies(getActors(), enemiesAlive(), background.getTypeMap());
 		}else {
 			rounds.spawnMap3Enemies(getActors(), enemiesAlive(), background.getTypeMap());
+		}
+		
+		if(rounds.getRound()==11 && background.isMap1()){
+			
+			background.changeBackground();
+			rounds.setRound(1);
+
+		}else if(rounds.getRound()==21 && background.isMap2()){
+			
+			background.changeBackground();
+			rounds.setRound(1);
+			 
+		}else if(rounds.getRound()==30 && enemiesAlive()==0){
+			Gdx.app.exit();
+		}
+
+		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
+			generateActors();
+		}
+
+		if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+			spawnSMG();
+		}
+
+		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+
+			rounds.setRound(1+rounds.getRound());
 		}
 
 		// loop percorrendo todos os Atores do GameStage

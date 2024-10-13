@@ -27,6 +27,10 @@ public class Rounds {
 	public int getRound() {
 		return round;
 	}
+	public int setRound(int Newround) {
+		round = Newround;
+		return round;
+	}
 
 	public void spawnMap1Enemies(Array<Actor> listaAtores, int enemiesAlive, int typeMap) {
 		if (round == 0) {

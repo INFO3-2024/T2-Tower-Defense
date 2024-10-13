@@ -1,12 +1,11 @@
 package Game.game.gameActors;
 
-import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.*;
-import com.badlogic.gdx.maps.Map;
-import com.badlogic.gdx.maps.tiled.*;
-import com.badlogic.gdx.maps.tiled.renderers.*;
-
-import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Background extends Actor {
 
@@ -45,6 +44,8 @@ public class Background extends Actor {
 
 	}
 
+
+
 	public void changeBackground() {
 		// TODO Auto-generated method stub
 
@@ -62,6 +63,13 @@ public class Background extends Actor {
 
 		renderer.setMap(aux);
 
+	}
+
+	public boolean isMap1() {
+		return renderer.getMap() == mapa1;
+	}
+	public boolean isMap2() {
+		return renderer.getMap() == mapa2;
 	}
 
 	public int getTypeMap() {
