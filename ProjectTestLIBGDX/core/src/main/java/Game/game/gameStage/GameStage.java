@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
@@ -15,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.utils.Align;
 
 import Game.game.gameActors.*;
 import Game.game.rounds.Rounds;
@@ -38,6 +42,8 @@ public class GameStage extends Stage {
 	private GameScreen screen;
 	private MapManager soundManager;
 
+	Table store;
+
 	public GameStage() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -47,7 +53,7 @@ public class GameStage extends Stage {
 		background = new Background(ortho);
 
 		screen = new GameScreen();
-		
+
 		playerHealthPoints = 100; // definicao da quantidade de vidas do jogador
 		playerCoins = 400;
 
@@ -60,20 +66,92 @@ public class GameStage extends Stage {
 
 		soundManager = new MapManager();
 		soundManager.loadSounds();
- 
+
 		if (background.getTypeMap() == 1) {
 			soundManager.playMusic("morning");
-		} 
-		else if(background.getTypeMap() == 2) {
+		} else if (background.getTypeMap() == 2) {
 			soundManager.playMusic("night");
-		}
-		else if(background.getTypeMap() == 3) {
+		} else if (background.getTypeMap() == 3) {
 			soundManager.playMusic("telha");
 		}
 
+		store = new Table();
+
+	
+		store.setDebug(true);
+		store.setTransform(true);
+		store.setScale(3f,2.5f);
+
+		store.setPosition(1050f, 750f);
+
+		createStoreButtons();
+		this.addActor(store);
 		this.addActor(background);
 
 		Gdx.input.setInputProcessor(this);
+
+	}
+
+	private void createStoreButtons() {
+		// TODO Auto-generated method stub
+
+		ButtonStyle style = new ButtonStyle();
+
+		Button Torre1 = new Button(style);
+		
+		Torre1.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
+
+		Button Torre2 = new Button(style);
+		
+		Torre2.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
+
+		Button Torre3 = new Button(style);
+		
+		Torre3.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
+
+		Button Torre4 = new Button(style);
+		
+		Torre4.setBackground(new Image(new Texture(Gdx.files.internal("plantaCapacete.png"))).getDrawable());
+
+		Torre1.addListener(event -> {
+			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
+				System.out.println("APERTOU O 1");
+				return true;
+			}
+			return false;
+		});
+
+		Torre2.addListener(event -> {
+			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
+				System.out.println("APERTOU O 2");
+				return true;
+			}
+			return false;
+		});
+
+		Torre3.addListener(event -> {
+			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
+				System.out.println("APERTOU O 3");
+				return true;
+			}
+			return false;
+		});
+
+		Torre4.addListener(event -> {
+			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
+				System.out.println("APERTOU O 4");
+				return true;
+			}
+			return false;
+		});
+
+		store.add(Torre1);
+
+		store.add(Torre2);
+
+		store.add(Torre3);
+
+		store.add(Torre4);
 
 	}
 
@@ -99,6 +177,7 @@ public class GameStage extends Stage {
 		super.act(delta);
 
 		background.act(delta);
+		store.act(delta);
 
 		rounds.updateSpawnCooldown();
 
@@ -219,62 +298,6 @@ public class GameStage extends Stage {
 			}
 		}
 	}
-	//Projeto de loja
-
-	/*
-	 * 
-	 * @Override public boolean touchDown(int screenX, int screenY, int pointer, int
-	 * button) { // TODO Auto-generated method stub
-	 * 
-	 * if (button == Input.Buttons.LEFT) { generateStore(Gdx.input.getX(),
-	 * Gdx.input.getX()); return true; } return false;
-	 * 
-	 * }
-	 * 
-	 * private void generateStore(int x, int y) { // TODO Auto-generated method stub
-	 * 
-	 * Table table = new Table(); table.setFillParent(true);
-	 * 
-	 * TextButton.TextButtonStyle textButtonStyle = new
-	 * TextButton.TextButtonStyle(); textButtonStyle.font = font;
-	 * 
-	 * 
-	 * 
-	 * TextButton BomberTower = new TextButton("TrapTower", textButtonStyle);
-	 * TextButton SniperTower = new TextButton("SniperTower", textButtonStyle);
-	 * TextButton SMGTower = new TextButton("SMGTower", textButtonStyle);
-	 * 
-	 * 
-	 * BomberTower.addListener(event -> { if (event instanceof InputEvent &&
-	 * ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-	 * System.out.println("Play button clicked"); // screen.changeStage(0);
-	 * deleteStore(); return true; } return false; });
-	 * 
-	 * SniperTower.addListener(event -> { if (event instanceof InputEvent &&
-	 * ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-	 * System.out.println("Settings button clicked"); // screen.changeStage(2);
-	 * deleteStore(); return true; } return false; });
-	 * 
-	 * SMGTower.addListener(event -> { if (event instanceof InputEvent &&
-	 * ((InputEvent) event).getType() == InputEvent.Type.touchDown) { deleteStore();
-	 * return true; } return false; });
-	 * 
-	 * 
-	 * BomberTower.setPosition(x, y);
-	 * 
-	 * table.add(BomberTower).fillX().uniformX().pad(20); table.row().pad(10, 0, 10,
-	 * 0); table.add(SniperTower).fillX().uniformX().pad(20); table.row();
-	 * table.add(SMGTower).fillX().uniformX().pad(20); this.addActor(table);
-	 * 
-	 * }
-	 * 
-	 * private void deleteStore() { // TODO Auto-generated method stub
-	 * 
-	 * for (int i = 0; i < this.getActors().size; i++) { if (this.getActors().get(i)
-	 * instanceof Table) { this.getActors().removeIndex(i); } }
-	 * 
-	 * }
-	 */
 
 	@Override
 	public void draw() {
