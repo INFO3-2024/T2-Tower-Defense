@@ -112,18 +112,18 @@ public class GameStage extends Stage {
 		ImageButton Torre1 = new ImageButton(style);
 
 		Torre1.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("cacto-loja.png"))));
-		
+
 
 		ImageButton Torre2 = new ImageButton(style1);
 		Torre2.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("carrin.png"))));
-		
+
 
 		ImageButton Torre3 = new ImageButton(style2);
 		Torre3.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("smg.png"))));
-		
+
 		ImageButton Torre4 = new ImageButton(style3);
 		Torre4.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("plantaCapacete.png"))));
-		
+
 		Torre1.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 1");
@@ -251,7 +251,7 @@ public class GameStage extends Stage {
 		}else {
 			rounds.spawnMap3Enemies(getActors(), enemiesAlive(), background.getTypeMap());
 		}
-			
+
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
 			generateActors();

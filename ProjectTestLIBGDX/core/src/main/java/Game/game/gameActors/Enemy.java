@@ -89,128 +89,127 @@ public class Enemy extends GameObject {
 		// id = counter;
 	}
 
-	private void setWaypoints3() {
-		// TODO Auto-generated method stub
+    private void setWaypoints3() {
+        // TODO Auto-generated method stub
 
-		Vector2 aux = new Vector2(170, 650);
-		waypointsMap3.add(aux);
-		aux = new Vector2(170, 100);
-		waypointsMap3.add(aux);
-		aux = new Vector2(325, 100);
-		waypointsMap3.add(aux);
-		aux = new Vector2(325, 680);
-		waypointsMap3.add(aux);
-		aux = new Vector2(460, 680);
-		waypointsMap3.add(aux);
-		aux = new Vector2(460, 360);
-		waypointsMap3.add(aux);
-		aux = new Vector2(550, 360);
-		waypointsMap3.add(aux);
-		aux = new Vector2(550, 175);
-		waypointsMap3.add(aux);
-		aux = new Vector2(710, 175);
-		waypointsMap3.add(aux);
-		aux = new Vector2(710, 680);
-		waypointsMap3.add(aux);
-		aux = new Vector2(840, 680);
-		waypointsMap3.add(aux);
-		aux = new Vector2(840, 70);
-		waypointsMap3.add(aux);
-		aux = new Vector2(1000, 70);
-		waypointsMap3.add(aux);
-		aux = new Vector2(1000, 450);
-		waypointsMap3.add(aux);
-		aux = new Vector2(1280, 450);
-		waypointsMap3.add(aux);
+        Vector2 aux = new Vector2(165, 680);
+        waypointsMap3.add(aux);
+        aux = new Vector2(165, 130);
+        waypointsMap3.add(aux);
+        aux = new Vector2(320, 130);
+        waypointsMap3.add(aux);
+        aux = new Vector2(320, 710);
+        waypointsMap3.add(aux);
+        aux = new Vector2(455, 710);
+        waypointsMap3.add(aux);
+        aux = new Vector2(455, 390);
+        waypointsMap3.add(aux);
+        aux = new Vector2(545, 390);
+        waypointsMap3.add(aux);
+        aux = new Vector2(545, 205);
+        waypointsMap3.add(aux);
+        aux = new Vector2(705, 205);
+        waypointsMap3.add(aux);
+        aux = new Vector2(705, 710);
+        waypointsMap3.add(aux);
+        aux = new Vector2(835, 710);
+        waypointsMap3.add(aux);
+        aux = new Vector2(835, 100);
+        waypointsMap3.add(aux);
+        aux = new Vector2(995, 100);
+        waypointsMap3.add(aux);
+        aux = new Vector2(995, 480);
+        waypointsMap3.add(aux);
+        aux = new Vector2(1275, 480);
+        waypointsMap3.add(aux);
+    }
 
-	}
+    private void setWaypoints2() {
 
-	private void setWaypoints2() {
+        Vector2 aux = new Vector2(165, 135);
+        waypointsMap2.add(aux);
+        aux = new Vector2(165, 680);
+        waypointsMap2.add(aux);
+        aux = new Vector2(320, 680);
+        waypointsMap2.add(aux);
+        aux = new Vector2(320, 515);
+        waypointsMap2.add(aux);
+        aux = new Vector2(485, 515);
+        waypointsMap2.add(aux);
+        aux = new Vector2(485, 680);
+        waypointsMap2.add(aux);
+        aux = new Vector2(645, 680);
+        waypointsMap2.add(aux);
+        aux = new Vector2(645, 360);
+        waypointsMap2.add(aux);
+        aux = new Vector2(320, 360);
+        waypointsMap2.add(aux);
+        aux = new Vector2(320, 135);
+        waypointsMap2.add(aux);
+        aux = new Vector2(805, 135);
+        waypointsMap2.add(aux);
+        aux = new Vector2(805, 680);
+        waypointsMap2.add(aux);
+        aux = new Vector2(965, 680);
+        waypointsMap2.add(aux);
+        aux = new Vector2(965, 135);
+        waypointsMap2.add(aux);
+        aux = new Vector2(1155, 135);
+        waypointsMap2.add(aux);
+        aux = new Vector2(1155, 680);
+        waypointsMap2.add(aux);
+        aux = new Vector2(1275, 680);
+        waypointsMap2.add(aux);
+    }
 
-		Vector2 aux = new Vector2(170, 105);
-		waypointsMap2.add(aux);
-		aux = new Vector2(170, 650);
-		waypointsMap2.add(aux);
-		aux = new Vector2(325, 650);
-		waypointsMap2.add(aux);
-		aux = new Vector2(325, 485);
-		waypointsMap2.add(aux);
-		aux = new Vector2(490, 485);
-		waypointsMap2.add(aux);
-		aux = new Vector2(490, 650);
-		waypointsMap2.add(aux);
-		aux = new Vector2(650, 650);
-		waypointsMap2.add(aux);
-		aux = new Vector2(650, 330);
-		waypointsMap2.add(aux);
-		aux = new Vector2(325, 330);
-		waypointsMap2.add(aux);
-		aux = new Vector2(325, 105);
-		waypointsMap2.add(aux);
-		aux = new Vector2(810, 105);
-		waypointsMap2.add(aux);
-		aux = new Vector2(810, 650);
-		waypointsMap2.add(aux);
-		aux = new Vector2(970, 650);
-		waypointsMap2.add(aux);
-		aux = new Vector2(970, 105);
-		waypointsMap2.add(aux);
-		aux = new Vector2(1160, 105);
-		waypointsMap2.add(aux);
-		aux = new Vector2(1160, 650);
-		waypointsMap2.add(aux);
-		aux = new Vector2(1280, 650);
-		waypointsMap2.add(aux);
-	}
+    private void setWaypoints1() {
 
-	private void setWaypoints1() {
+        // Spawn dos inimigos mapa 1 (0,615)
 
-		// Spawn dos inimigos mapa 1 (0,615)
+        Vector2 aux = new Vector2(165, 665);
+        waypointsMap1.add(aux);
+        aux = new Vector2(165, 125);
+        waypointsMap1.add(aux);
+        aux = new Vector2(260, 125);
+        waypointsMap1.add(aux);
+        aux = new Vector2(260, 665);
+        waypointsMap1.add(aux);
+        aux = new Vector2(355, 665);
+        waypointsMap1.add(aux);
+        aux = new Vector2(355, 125);
+        waypointsMap1.add(aux);
+        aux = new Vector2(575, 125);
+        waypointsMap1.add(aux);
+        aux = new Vector2(575, 220);
+        waypointsMap1.add(aux);
+        aux = new Vector2(480, 220);
+        waypointsMap1.add(aux);
+        aux = new Vector2(480, 665);
+        waypointsMap1.add(aux);
+        aux = new Vector2(770, 665);
+        waypointsMap1.add(aux);
+        aux = new Vector2(770, 220);
+        waypointsMap1.add(aux);
+        aux = new Vector2(675, 220);
+        waypointsMap1.add(aux);
+        aux = new Vector2(675, 125);
+        waypointsMap1.add(aux);
+        aux = new Vector2(900, 125);
+        waypointsMap1.add(aux);
+        aux = new Vector2(900, 665);
+        waypointsMap1.add(aux);
+        aux = new Vector2(995, 665);
+        waypointsMap1.add(aux);
+        aux = new Vector2(995, 165);
+        waypointsMap1.add(aux);
+        aux = new Vector2(1090, 125);
+        waypointsMap1.add(aux);
+        aux = new Vector2(1090, 665);
+        waypointsMap1.add(aux);
+        aux = new Vector2(1275, 665);
+        waypointsMap1.add(aux);
 
-		Vector2 aux = new Vector2(170, 615);
-		waypointsMap1.add(aux);
-		aux = new Vector2(170, 75);
-		waypointsMap1.add(aux);
-		aux = new Vector2(265, 75);
-		waypointsMap1.add(aux);
-		aux = new Vector2(265, 615);
-		waypointsMap1.add(aux);
-		aux = new Vector2(360, 615);
-		waypointsMap1.add(aux);
-		aux = new Vector2(360, 75);
-		waypointsMap1.add(aux);
-		aux = new Vector2(580, 75);
-		waypointsMap1.add(aux);
-		aux = new Vector2(580, 170);
-		waypointsMap1.add(aux);
-		aux = new Vector2(485, 170);
-		waypointsMap1.add(aux);
-		aux = new Vector2(485, 615);
-		waypointsMap1.add(aux);
-		aux = new Vector2(775, 615);
-		waypointsMap1.add(aux);
-		aux = new Vector2(775, 170);
-		waypointsMap1.add(aux);
-		aux = new Vector2(680, 170);
-		waypointsMap1.add(aux);
-		aux = new Vector2(680, 75);
-		waypointsMap1.add(aux);
-		aux = new Vector2(905, 75);
-		waypointsMap1.add(aux);
-		aux = new Vector2(905, 615);
-		waypointsMap1.add(aux);
-		aux = new Vector2(1000, 615);
-		waypointsMap1.add(aux);
-		aux = new Vector2(1000, 75);
-		waypointsMap1.add(aux);
-		aux = new Vector2(1095, 75);
-		waypointsMap1.add(aux);
-		aux = new Vector2(1095, 615);
-		waypointsMap1.add(aux);
-		aux = new Vector2(1280, 615);
-		waypointsMap1.add(aux);
-
-	}
+    }
 
 	public void act(float delta) {
 		super.act(delta);
@@ -348,7 +347,7 @@ public class Enemy extends GameObject {
 	}
 	/*
 	 * @Override public String toString() { return "Enemy [id=" + id + "]"; }
-	 * 
+	 *
 	 */
 
 	public int getTypeMap() {
