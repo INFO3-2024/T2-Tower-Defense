@@ -41,7 +41,7 @@ public class Enemy extends GameObject {
 			healthPoints = 5;
 			velocidade = 1;
 			damage = 1;
-			coinsDropped = 1;
+			coinsDropped = 10;
 			break;
 
 		case 2:
@@ -50,7 +50,7 @@ public class Enemy extends GameObject {
 			healthPoints = 10;
 			velocidade = 1;
 			damage = 2;
-			coinsDropped = 2;
+			coinsDropped = 20;
 			break;
 
 		case 3:
@@ -58,7 +58,7 @@ public class Enemy extends GameObject {
 			healthPoints = 15;
 			velocidade = 1;
 			damage = 3;
-			coinsDropped = 3;
+			coinsDropped = 30;
 			break;
 
 		case 4:
@@ -66,7 +66,7 @@ public class Enemy extends GameObject {
 			healthPoints = 25;
 			velocidade = 1;
 			damage = 4;
-			coinsDropped = 4;
+			coinsDropped = 40;
 			break;
 
 		case 5:
@@ -74,7 +74,7 @@ public class Enemy extends GameObject {
 			healthPoints = 40;
 			velocidade = 1;
 			damage = 5;
-			coinsDropped = 5;
+			coinsDropped = 50;
 			break;
 
 		default:
@@ -82,7 +82,7 @@ public class Enemy extends GameObject {
 			healthPoints = 5;
 			velocidade = 1;
 			damage = 1;
-			coinsDropped = 1;
+			coinsDropped = 10;
 			break;
 		}
 		// counter++;
@@ -168,41 +168,41 @@ public class Enemy extends GameObject {
 
         Vector2 aux = new Vector2(165, 665);
         waypointsMap1.add(aux);
-        aux = new Vector2(165, 125);
+        aux = new Vector2(165, 95);
         waypointsMap1.add(aux);
-        aux = new Vector2(260, 125);
+        aux = new Vector2(260, 95);
         waypointsMap1.add(aux);
         aux = new Vector2(260, 665);
         waypointsMap1.add(aux);
         aux = new Vector2(355, 665);
         waypointsMap1.add(aux);
-        aux = new Vector2(355, 125);
+        aux = new Vector2(355, 95);
         waypointsMap1.add(aux);
-        aux = new Vector2(575, 125);
+        aux = new Vector2(575, 95);
         waypointsMap1.add(aux);
-        aux = new Vector2(575, 220);
+        aux = new Vector2(575, 200);
         waypointsMap1.add(aux);
-        aux = new Vector2(480, 220);
+        aux = new Vector2(480, 200);
         waypointsMap1.add(aux);
         aux = new Vector2(480, 665);
         waypointsMap1.add(aux);
         aux = new Vector2(770, 665);
         waypointsMap1.add(aux);
-        aux = new Vector2(770, 220);
+        aux = new Vector2(770, 200);
         waypointsMap1.add(aux);
-        aux = new Vector2(675, 220);
+        aux = new Vector2(675, 200);
         waypointsMap1.add(aux);
-        aux = new Vector2(675, 125);
+        aux = new Vector2(675, 95);
         waypointsMap1.add(aux);
-        aux = new Vector2(900, 125);
+        aux = new Vector2(900, 95);
         waypointsMap1.add(aux);
         aux = new Vector2(900, 665);
         waypointsMap1.add(aux);
         aux = new Vector2(995, 665);
         waypointsMap1.add(aux);
-        aux = new Vector2(995, 165);
+        aux = new Vector2(995, 145);
         waypointsMap1.add(aux);
-        aux = new Vector2(1090, 125);
+        aux = new Vector2(1090, 95);
         waypointsMap1.add(aux);
         aux = new Vector2(1090, 665);
         waypointsMap1.add(aux);
