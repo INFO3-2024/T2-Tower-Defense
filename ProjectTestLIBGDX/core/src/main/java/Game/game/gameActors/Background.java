@@ -2,6 +2,7 @@ package Game.game.gameActors;
 
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.maps.tiled.*;
 import com.badlogic.gdx.maps.tiled.renderers.*;
 
@@ -27,7 +28,7 @@ public class Background extends Actor {
 		renderer.setView(ortho);
 		// 1280, 736
 	}
-	
+
 	@Override
 	public void act(float delta) {
 		// TODO Auto-generated method stub
@@ -71,4 +72,7 @@ public class Background extends Actor {
 		this.typeMap = typeMap;
 	}
 
+    public TiledMap getTileMap() {
+        return renderer.getMap();
+    }
 }

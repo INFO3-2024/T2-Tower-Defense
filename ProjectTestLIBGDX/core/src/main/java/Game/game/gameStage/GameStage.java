@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -209,7 +210,9 @@ public class GameStage extends Stage {
 			screenX = (int) coords.x;
 			screenY = (int) coords.y;
 
-			setTower(towerSelected, screenX, screenY);
+            if (!isCollidingWithLayer2(screenX, screenY)) {
+                setTower(towerSelected, screenX, screenY);
+            }
 
 			return true;
 		}
@@ -217,6 +220,24 @@ public class GameStage extends Stage {
 		return super.touchDown(screenX, screenY, pointer, button);
 
 	}
+
+    private boolean isCollidingWithLayer2(int x, int y) {
+        // Supondo que você tenha um método para obter a camada 2 do tilemap
+        TiledMapTileLayer layer2 = (TiledMapTileLayer) background.getTileMap().getLayers().get("Camada de Blocos 2");
+
+        // Converte as coordenadas de tela para coordenadas de tile
+        int tileX = x / layer2.getTileWidth();
+        int tileY = y / layer2.getTileHeight();
+
+        // Verifica se o tile na posição (tileX, tileY) está bloqueado
+        TiledMapTileLayer.Cell cell = layer2.getCell(tileX, tileY);
+        TiledMapTileLayer.Cell cellAbove = layer2.getCell(tileX, tileY + 1);
+        TiledMapTileLayer.Cell cellRight = layer2.getCell(tileX + 1, tileY);
+
+        return (cell != null && cell.getTile() != null) ||
+            (cellAbove != null && cellAbove.getTile() != null) ||
+            (cellRight != null && cellRight.getTile() != null);
+    }
 
 	private void setTower(Tower towerSelected, int screenX, int screenY) {
 		// TODO Auto-generated method stub
