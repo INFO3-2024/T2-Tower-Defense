@@ -386,8 +386,9 @@ public class GameStage extends Stage {
 		batch.begin();
 
 		font.getData().setScale(3f, 3f);
-		font.draw(batch, "Moedas: " + playerCoins, 10, 780);
-		font.draw(batch, "Rodada: " + rounds.getRound(), 350, 780);
+		font.draw(batch, "Sóis: " + playerCoins, 10, 780);
+        batch.draw(new Texture(Gdx.files.internal("sol.png")), 200, 740, 40, 40);
+		font.draw(batch, "Rodada: " + rounds.getRound(), 330, 780);
 		font.draw(batch, "Vidas: " + playerHealthPoints, 610, 780);
 		batch.end();
 
