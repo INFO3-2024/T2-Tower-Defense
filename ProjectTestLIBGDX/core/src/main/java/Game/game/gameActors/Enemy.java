@@ -20,6 +20,7 @@ public class Enemy extends GameObject {
 	private int index = 0;
 	private Vector2 currentPosition;
 	private Vector2 nextPosition;
+	private int configNumber;
 
 	private ArrayList<Vector2> waypointsMap1 = new ArrayList<Vector2>();
 	private ArrayList<Vector2> waypointsMap2 = new ArrayList<Vector2>();
@@ -29,12 +30,13 @@ public class Enemy extends GameObject {
 		setWaypoints2();
 		
 		this.typeMap = typeMap;
+		this.configNumber = configNumber;
 
 		setPosition(positionX, positionY);
 
 		switch (configNumber) {
 		case 1:
-			enemyAssets2();
+			enemyAssets();
 			
 			healthPoints = 5;
 			velocidade = 1;
@@ -43,7 +45,7 @@ public class Enemy extends GameObject {
 			break;
 
 		case 2:
-			imagem = new Texture(Gdx.files.internal("enemiesAssets/zombie_1.png"));
+			enemyAssets();
 
 			healthPoints = 10;
 			velocidade = 1;
@@ -52,7 +54,7 @@ public class Enemy extends GameObject {
 			break;
 
 		case 3:
-			imagem = new Texture(Gdx.files.internal("enemiesAssets/zombie_1.png"));
+			enemyAssets();
 			healthPoints = 15;
 			velocidade = 1;
 			damage = 3;
@@ -60,7 +62,7 @@ public class Enemy extends GameObject {
 			break;
 
 		case 4:
-			imagem = new Texture(Gdx.files.internal("enemiesAssets/zombie_1.png"));
+			enemyAssets();
 			healthPoints = 25;
 			velocidade = 1;
 			damage = 4;
@@ -68,7 +70,7 @@ public class Enemy extends GameObject {
 			break;
 
 		case 5:
-			imagem = new Texture(Gdx.files.internal("enemiesAssets/zombie_1.png"));
+			enemyAssets();
 			healthPoints = 40;
 			velocidade = 1;
 			damage = 5;
@@ -76,7 +78,7 @@ public class Enemy extends GameObject {
 			break;
 
 		default:
-			imagem = new Texture(Gdx.files.internal("enemiesAssets/zombie_1.png"));
+			enemyAssets();
 			healthPoints = 5;
 			velocidade = 1;
 			damage = 1;
@@ -177,53 +179,283 @@ public class Enemy extends GameObject {
 	public void act(float delta) {
 		super.act(delta);
 		move();
-		enemyAssets2();
+		enemyAssets();
 		elapsedTime += Gdx.graphics.getDeltaTime();
 	}
 
-	public void enemyAssets2(){
+	public void enemyAssets(){
 		if (index ==0){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index ==1){
-			imagem = new Texture("setaBaixo.png");
-		} else if (index == 2){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 3){
-			imagem = new Texture("setaCima.png"); 
-		} else if (index == 4){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 5){
-			imagem = new Texture("setaBaixo.png");
-		} else if (index == 6){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 7){
-			imagem = new Texture("setaCima.png");
-		} else if (index == 8){
-			imagem = new Texture("enemyLeft.png"); 
-		} else if (index ==9){
-			imagem = new Texture("setaCima.png");
-		} else if (index ==10){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 11){
-			imagem = new Texture("setaBaixo.png");
-		} else if (index == 12){
-			imagem = new Texture("enemyLeft.png");
-		} else if (index == 13){
-			imagem = new Texture("setaBaixo.png");
-		} else if (index == 14){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 15){
-			imagem = new Texture("setaCima.png");
-		} else if (index == 16){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 17){
-			imagem = new Texture("setaBaixo.png");
-		} else if (index == 18){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
-		} else if (index == 19){
-			imagem = new Texture("setaCima.png"); 
-		} else if (index == 20){
-			imagem = new Texture("enemiesAssets/zombie_1.png"); 
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/direita.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/direita.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/direita.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/direita.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/direita.png");
+			}
+		} 
+		else if (index ==1){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/baixo.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/baixo.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/baixo.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/baixo.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/baixo.png");
+			}
+		} 
+		else if (index == 2){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/direita.png"); 
+			}else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/direita.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/direita.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/direita.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/direita.png");
+			}
+		} 
+		else if (index == 3){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/cima.png"); 
+			} else if (configNumber ==2){
+				imagem = new Texture("enemiesAssets/enemy2/cima.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/cima.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/cima.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/cima.png");
+			}
+		} 
+		else if (index == 4){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/direita.png"); 
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/direita.png"); 
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/direita.png"); 
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/direita.png"); 
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/direita.png"); 
+			}
+		} 
+		else if (index == 5){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/baixo.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/baixo.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/baixo.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/baixo.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/baixo.png");
+			}
+		} 
+		else if (index == 6){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/direita.png"); 
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/direita.png"); 
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/direita.png"); 
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/direita.png"); 
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/direita.png"); 
+			}
+		} 
+		else if (index == 7){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/cima.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/cima.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/cima.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/cima.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/cima.png");
+			}
+		} 
+		else if (index == 8){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/esquerda.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/esquerda.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/esquerda.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/esquerda.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/esquerda.png");
+			}
+		} 
+		else if (index ==9){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/cima.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/cima.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/cima.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/cima.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/cima.png");
+			}
+		}
+		else if (index ==10){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/direita.png"); 
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/direita.png"); 
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/direita.png"); 
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/direita.png"); 
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/direita.png"); 
+			}
+		} 
+		else if (index == 11){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/baixo.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/baixo.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/baixo.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/baixo.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/baixo.png");
+			}
+		} 
+		else if (index == 12){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/esquerda.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/esquerda.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/esquerda.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/esquerda.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/esquerda.png");
+			}
+		} 
+		else if (index == 13){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/baixo.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/baixo.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/baixo.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/baixo.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/baixo.png");
+			}
+		} 
+		else if (index == 14){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/direita.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/direita.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/direita.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/direita.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/direita.png");
+			}
+		} 
+		else if (index == 15){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/cima.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/cima.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/cima.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/cima.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/cima.png");
+			}
+		} 
+		else if (index == 16){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/direita.png"); 
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/direita.png"); 
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/direita.png"); 
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/direita.png"); 
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/direita.png"); 
+			}
+		} 
+		else if (index == 17){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/baixo.png");
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/baixo.png");
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/baixo.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/baixo.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/baixo.png");
+			}
+		} 
+		else if (index == 18){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/direita.png"); 
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/direita.png"); 
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/direita.png");
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/direita.png");
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/direita.png");
+			}
+		} 
+		else if (index == 19){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/cima.png"); 
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/cima.png"); 
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/cima.png"); 
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/cima.png"); 
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/cima.png"); 
+			}
+		} 
+		else if (index == 20){
+			if (configNumber == 1){
+				imagem = new Texture("enemiesAssets/enemy1/direita.png"); 
+			} else if (configNumber == 2){
+				imagem = new Texture("enemiesAssets/enemy2/direita.png"); 
+			} else if (configNumber == 3){
+				imagem = new Texture("enemiesAssets/enemy3/direita.png"); 
+			} else if (configNumber == 4){
+				imagem = new Texture("enemiesAssets/enemy4/direita.png"); 
+			} else if (configNumber == 5){
+				imagem = new Texture("enemiesAssets/enemy5/direita.png"); 
+			}
 		}
 	}
 
@@ -268,7 +500,7 @@ public class Enemy extends GameObject {
 		}
 		setX(getX() + velX);
 		setY(getY() + velY);
-		System.out.println(index+": "+ getX() + " - " + getY());
+		//System.out.println(index+": "+ getX() + " - " + getY());
 	}
 
 	private void doDamage() {
