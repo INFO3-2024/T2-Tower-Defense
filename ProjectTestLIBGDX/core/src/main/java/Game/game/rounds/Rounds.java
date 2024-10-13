@@ -39,7 +39,7 @@ public class Rounds {
 			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= spawnCooldown
 					&& enemiesInThisRound < 10) {
 
-				listaAtores.add(new Enemy(0, 615, 1,typeMap));
+				listaAtores.add(new Enemy(0, 665, 1,typeMap));
 				enemiesInThisRound++;
 				counterSpawnCooldown = 0;
 			}
@@ -57,9 +57,9 @@ public class Rounds {
 					&& enemiesInThisRound < 10) {
 
 				if (enemiesInThisRound % 2 == 0) {
-					listaAtores.add(new Enemy(0, 615, 1,typeMap));
+					listaAtores.add(new Enemy(0, 665, 1,typeMap));
 				} else {
-					listaAtores.add(new Enemy(0, 615, 2,typeMap));
+					listaAtores.add(new Enemy(0, 665, 2,typeMap));
 				}
 				enemiesInThisRound++;
 				counterSpawnCooldown = 0;
@@ -78,9 +78,9 @@ public class Rounds {
 					&& enemiesInThisRound < 15) {
 
 				if (enemiesInThisRound <= 7) {
-					listaAtores.add(new Enemy(0, 615, 1,typeMap));
+					listaAtores.add(new Enemy(0, 665, 1,typeMap));
 				} else {
-					listaAtores.add(new Enemy(0, 615, 2,typeMap));
+					listaAtores.add(new Enemy(0, 665, 2,typeMap));
 				}
 
 				enemiesInThisRound++;
@@ -100,11 +100,11 @@ public class Rounds {
 					&& enemiesInThisRound < 20) {
 
 				if (enemiesInThisRound % 3 == 2) { // 3
-					listaAtores.add(new Enemy(0, 615, 1,typeMap));
+					listaAtores.add(new Enemy(0, 665, 1,typeMap));
 				} else if (enemiesInThisRound % 3 == 1) { // 1
-					listaAtores.add(new Enemy(0, 615, 2,typeMap));
+					listaAtores.add(new Enemy(0, 665, 2,typeMap));
 				} else {
-					listaAtores.add(new Enemy(0, 615, 3,typeMap)); // 2
+					listaAtores.add(new Enemy(0, 665, 3,typeMap)); // 2
 				}
 
 				enemiesInThisRound++;
@@ -124,11 +124,11 @@ public class Rounds {
 					&& enemiesInThisRound < 50) {
 
 				if (enemiesInThisRound < 20) {
-					listaAtores.add(new Enemy(0, 615, 1,typeMap));
+					listaAtores.add(new Enemy(0, 665, 1,typeMap));
 				} else if (enemiesInThisRound >= 20 && enemiesInThisRound < 35) {
-					listaAtores.add(new Enemy(0, 615, 2,typeMap));
+					listaAtores.add(new Enemy(0, 665, 2,typeMap));
 				} else if (enemiesInThisRound >= 35) {
-					listaAtores.add(new Enemy(0, 615, 3,typeMap));
+					listaAtores.add(new Enemy(0, 665, 3,typeMap));
 				}
 
 				enemiesInThisRound++;
@@ -149,9 +149,9 @@ public class Rounds {
 					&& enemiesInThisRound < 25) {
 
 				if (enemiesInThisRound <= 10) {
-					listaAtores.add(new Enemy(0, 615, 2,typeMap));
+					listaAtores.add(new Enemy(0, 665, 2,typeMap));
 				} else {
-					listaAtores.add(new Enemy(0, 615, 3,typeMap));
+					listaAtores.add(new Enemy(0, 665, 3,typeMap));
 				}
 
 				enemiesInThisRound++;
@@ -171,9 +171,9 @@ public class Rounds {
 					&& enemiesInThisRound < 30) {
 
 				if (enemiesInThisRound <= 28) {
-					listaAtores.add(new Enemy(0, 615, 3,typeMap));
+					listaAtores.add(new Enemy(0, 665, 3,typeMap));
 				} else {
-					listaAtores.add(new Enemy(0, 615, 4,typeMap));
+					listaAtores.add(new Enemy(0, 665, 4,typeMap));
 				}
 
 				enemiesInThisRound++;
@@ -193,11 +193,11 @@ public class Rounds {
 					&& enemiesInThisRound < 35) {
 
 				if (enemiesInThisRound <= 15) {
-					listaAtores.add(new Enemy(0, 615, 3,typeMap));
+					listaAtores.add(new Enemy(0, 665, 3,typeMap));
 				} else if (enemiesInThisRound > 15 && enemiesInThisRound <= 28) {
-					listaAtores.add(new Enemy(0, 615, 4,typeMap));
+					listaAtores.add(new Enemy(0, 665, 4,typeMap));
 				} else {
-					listaAtores.add(new Enemy(0, 615, 5,typeMap));
+					listaAtores.add(new Enemy(0, 665, 5,typeMap));
 				}
 
 				enemiesInThisRound++;
@@ -217,15 +217,15 @@ public class Rounds {
 					&& enemiesInThisRound < 40) {
 
 				if (enemiesInThisRound <= 5) {
-					listaAtores.add(new Enemy(0, 615, 1,typeMap));
+					listaAtores.add(new Enemy(0, 665, 1,typeMap));
 				} else if (enemiesInThisRound > 5 && enemiesInThisRound <= 10) {
-					listaAtores.add(new Enemy(0, 615, 2,typeMap));
+					listaAtores.add(new Enemy(0, 665, 2,typeMap));
 				} else if (enemiesInThisRound > 10 && enemiesInThisRound <= 20) {
-					listaAtores.add(new Enemy(0, 615, 3,typeMap));
+					listaAtores.add(new Enemy(0, 665, 3,typeMap));
 				} else if (enemiesInThisRound > 20 && enemiesInThisRound <= 30) {
-					listaAtores.add(new Enemy(0, 615, 4,typeMap));
+					listaAtores.add(new Enemy(0, 665, 4,typeMap));
 				} else {
-					listaAtores.add(new Enemy(0, 615, 5,typeMap));
+					listaAtores.add(new Enemy(0, 665, 5,typeMap));
 				}
 
 				enemiesInThisRound++;
@@ -245,19 +245,19 @@ public class Rounds {
 					&& enemiesInThisRound < 100) {
 
 				if (enemiesInThisRound <= 25) {
-					listaAtores.add(new Enemy(0, 615, 1,typeMap));
-					listaAtores.add(new Enemy(-30, 615, 2,typeMap));
+					listaAtores.add(new Enemy(0, 665, 1,typeMap));
+					listaAtores.add(new Enemy(-30, 665, 2,typeMap));
 					enemiesInThisRound++;
 					enemiesInThisRound++;
 
 				} else if (enemiesInThisRound > 25 && enemiesInThisRound <= 45) {
-					listaAtores.add(new Enemy(0, 615, 3,typeMap));
+					listaAtores.add(new Enemy(0, 665, 3,typeMap));
 					enemiesInThisRound++;
 				} else if (enemiesInThisRound > 45 && enemiesInThisRound <= 60) {
-					listaAtores.add(new Enemy(0, 615, 4,typeMap));
+					listaAtores.add(new Enemy(0, 665, 4,typeMap));
 					enemiesInThisRound++;
 				} else if (enemiesInThisRound > 60) {
-					listaAtores.add(new Enemy(0, 615, 5,typeMap));
+					listaAtores.add(new Enemy(0, 665, 5,typeMap));
 					enemiesInThisRound++;
 
 					counterSpawnCooldown = 0;
@@ -285,7 +285,7 @@ public class Rounds {
 			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= spawnCooldown
 					&& enemiesInThisRound < 10) {
 
-				listaAtores.add(new Enemy(0, 105, 1,typeMap));
+				listaAtores.add(new Enemy(0, 155, 1,typeMap));
 				enemiesInThisRound++;
 				counterSpawnCooldown = 0;
 
@@ -302,7 +302,7 @@ public class Rounds {
 			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= spawnCooldown
 					&& enemiesInThisRound < 15) {
 
-				listaAtores.add(new Enemy(0, 105, 1,typeMap));
+				listaAtores.add(new Enemy(0, 155, 1,typeMap));
 				enemiesInThisRound++;
 				counterSpawnCooldown = 0;
 
@@ -319,7 +319,7 @@ public class Rounds {
 			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= spawnCooldown
 					&& enemiesInThisRound < 20) {
 
-				listaAtores.add(new Enemy(0, 105, 1,typeMap));
+				listaAtores.add(new Enemy(0, 155, 1,typeMap));
 				enemiesInThisRound++;
 				counterSpawnCooldown = 0;
 
@@ -336,7 +336,7 @@ public class Rounds {
 			if (counterRoundCooldown >= roundCooldown && counterSpawnCooldown >= spawnCooldown
 					&& enemiesInThisRound < 5) {
 
-				listaAtores.add(new Enemy(0, 105, 2,typeMap));
+				listaAtores.add(new Enemy(0, 155, 2,typeMap));
 				enemiesInThisRound++;
 				counterSpawnCooldown = 0;
 
@@ -354,11 +354,11 @@ public class Rounds {
 					&& enemiesInThisRound < 10) {
 
 				if (enemiesInThisRound < 8) {
-					listaAtores.add(new Enemy(0, 105, 1,typeMap));
+					listaAtores.add(new Enemy(0, 155, 1,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				} else {
-					listaAtores.add(new Enemy(0, 105, 1,typeMap));
+					listaAtores.add(new Enemy(0, 155, 1,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				}
@@ -376,11 +376,11 @@ public class Rounds {
 					&& enemiesInThisRound < 15) {
 
 				if (enemiesInThisRound < 6) {
-					listaAtores.add(new Enemy(0, 105, 1,typeMap));
+					listaAtores.add(new Enemy(0, 155, 1,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				} else {
-					listaAtores.add(new Enemy(0, 105, 1,typeMap));
+					listaAtores.add(new Enemy(0, 155, 1,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				}
@@ -398,11 +398,11 @@ public class Rounds {
 					&& enemiesInThisRound < 20) {
 
 				if (enemiesInThisRound < 11) {
-					listaAtores.add(new Enemy(0, 105, 1,typeMap));
+					listaAtores.add(new Enemy(0, 155, 1,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				} else {
-					listaAtores.add(new Enemy(0, 105, 1,typeMap));
+					listaAtores.add(new Enemy(0, 155, 1,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				}
@@ -421,11 +421,11 @@ public class Rounds {
 					&& enemiesInThisRound < 10) {
 
 				if (enemiesInThisRound < 7) {
-					listaAtores.add(new Enemy(0, 105, 2,typeMap));
+					listaAtores.add(new Enemy(0, 155, 2,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				} else {
-					listaAtores.add(new Enemy(0, 105, 3,typeMap));
+					listaAtores.add(new Enemy(0, 155, 3,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				}
@@ -443,15 +443,15 @@ public class Rounds {
 					&& enemiesInThisRound < 20) {
 
 				if (enemiesInThisRound < 6) {
-					listaAtores.add(new Enemy(0, 105, 1,typeMap));
+					listaAtores.add(new Enemy(0, 155, 1,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				} else if (enemiesInThisRound >= 6 && enemiesInThisRound < 15) {
-					listaAtores.add(new Enemy(0, 105, 2,typeMap));
+					listaAtores.add(new Enemy(0, 155, 2,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				} else {
-					listaAtores.add(new Enemy(0, 105, 3,typeMap));
+					listaAtores.add(new Enemy(0, 155, 3,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				}
@@ -470,11 +470,11 @@ public class Rounds {
 					&& enemiesInThisRound < 50) {
 
 				if (enemiesInThisRound < 15) {
-					listaAtores.add(new Enemy(0, 105, 2,typeMap));
+					listaAtores.add(new Enemy(0, 155, 2,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				} else {
-					listaAtores.add(new Enemy(0, 105, 3,typeMap));
+					listaAtores.add(new Enemy(0, 155, 3,typeMap));
 					enemiesInThisRound++;
 					counterSpawnCooldown = 0;
 				}
