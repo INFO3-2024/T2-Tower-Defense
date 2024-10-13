@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 public class Enemy extends GameObject {
@@ -15,18 +16,15 @@ public class Enemy extends GameObject {
 	private int damage;
 	private int typeMap;
 	private float velX = 0, velY = 0;
-	// private static int counter = 0;
-	// private int id;
 	private boolean alreadyDoneDamage = false;
-
 	private int index = 0;
+	private Vector2 currentPosition;
+	private Vector2 nextPosition;
 
 	private ArrayList<Vector2> waypointsMap1 = new ArrayList<Vector2>();
 	private ArrayList<Vector2> waypointsMap2 = new ArrayList<Vector2>();
 
 	public Enemy(int positionX, int positionY, int configNumber, int typeMap) {
-		// TODO Auto-generated constructor stub
-
 		setWaypoints1();
 		setWaypoints2();
 		
@@ -35,9 +33,9 @@ public class Enemy extends GameObject {
 		setPosition(positionX, positionY);
 
 		switch (configNumber) {
-
 		case 1:
-			imagem = new Texture(Gdx.files.internal("EnemyLvl1.png"));
+			enemyAssets2();
+			
 			healthPoints = 5;
 			velocidade = 1;
 			damage = 1;
@@ -45,7 +43,8 @@ public class Enemy extends GameObject {
 			break;
 
 		case 2:
-			imagem = new Texture(Gdx.files.internal("EnemyLvl2.png"));
+			imagem = new Texture(Gdx.files.internal("enemiesAssets/zombie_1.png"));
+
 			healthPoints = 10;
 			velocidade = 1;
 			damage = 2;
@@ -53,7 +52,7 @@ public class Enemy extends GameObject {
 			break;
 
 		case 3:
-			imagem = new Texture(Gdx.files.internal("EnemyLvl3.png"));
+			imagem = new Texture(Gdx.files.internal("enemiesAssets/zombie_1.png"));
 			healthPoints = 15;
 			velocidade = 1;
 			damage = 3;
@@ -61,7 +60,7 @@ public class Enemy extends GameObject {
 			break;
 
 		case 4:
-			imagem = new Texture(Gdx.files.internal("EnemyLvl4.png"));
+			imagem = new Texture(Gdx.files.internal("enemiesAssets/zombie_1.png"));
 			healthPoints = 25;
 			velocidade = 1;
 			damage = 4;
@@ -69,7 +68,7 @@ public class Enemy extends GameObject {
 			break;
 
 		case 5:
-			imagem = new Texture(Gdx.files.internal("EnemyLvl5.png"));
+			imagem = new Texture(Gdx.files.internal("enemiesAssets/zombie_1.png"));
 			healthPoints = 40;
 			velocidade = 1;
 			damage = 5;
@@ -77,7 +76,7 @@ public class Enemy extends GameObject {
 			break;
 
 		default:
-			imagem = new Texture(Gdx.files.internal("EnemyLvl1.png"));
+			imagem = new Texture(Gdx.files.internal("enemiesAssets/zombie_1.png"));
 			healthPoints = 5;
 			velocidade = 1;
 			damage = 1;
@@ -178,16 +177,61 @@ public class Enemy extends GameObject {
 	public void act(float delta) {
 		super.act(delta);
 		move();
+		enemyAssets2();
 		elapsedTime += Gdx.graphics.getDeltaTime();
+	}
+
+	public void enemyAssets2(){
+		if (index ==0){
+			imagem = new Texture("enemiesAssets/zombie_1.png"); 
+		} else if (index ==1){
+			imagem = new Texture("setaBaixo.png");
+		} else if (index == 2){
+			imagem = new Texture("enemiesAssets/zombie_1.png"); 
+		} else if (index == 3){
+			imagem = new Texture("setaCima.png"); 
+		} else if (index == 4){
+			imagem = new Texture("enemiesAssets/zombie_1.png"); 
+		} else if (index == 5){
+			imagem = new Texture("setaBaixo.png");
+		} else if (index == 6){
+			imagem = new Texture("enemiesAssets/zombie_1.png"); 
+		} else if (index == 7){
+			imagem = new Texture("setaCima.png");
+		} else if (index == 8){
+			imagem = new Texture("enemyLeft.png"); 
+		} else if (index ==9){
+			imagem = new Texture("setaCima.png");
+		} else if (index ==10){
+			imagem = new Texture("enemiesAssets/zombie_1.png"); 
+		} else if (index == 11){
+			imagem = new Texture("setaBaixo.png");
+		} else if (index == 12){
+			imagem = new Texture("enemyLeft.png");
+		} else if (index == 13){
+			imagem = new Texture("setaBaixo.png");
+		} else if (index == 14){
+			imagem = new Texture("enemiesAssets/zombie_1.png"); 
+		} else if (index == 15){
+			imagem = new Texture("setaCima.png");
+		} else if (index == 16){
+			imagem = new Texture("enemiesAssets/zombie_1.png"); 
+		} else if (index == 17){
+			imagem = new Texture("setaBaixo.png");
+		} else if (index == 18){
+			imagem = new Texture("enemiesAssets/zombie_1.png"); 
+		} else if (index == 19){
+			imagem = new Texture("setaCima.png"); 
+		} else if (index == 20){
+			imagem = new Texture("enemiesAssets/zombie_1.png"); 
+		}
 	}
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		// TODO Auto-generated method stub
 		if (healthPoints > 0) {
 			batch.draw(imagem, getX(), getY(), imagem.getWidth(), imagem.getHeight());
 		}
-
 	}
 
 	private void moveLogic(ArrayList<Vector2> waypoints) {
@@ -224,7 +268,7 @@ public class Enemy extends GameObject {
 		}
 		setX(getX() + velX);
 		setY(getY() + velY);
-		// System.out.println(getX() + " - " + getY());
+		System.out.println(index+": "+ getX() + " - " + getY());
 	}
 
 	private void doDamage() {
