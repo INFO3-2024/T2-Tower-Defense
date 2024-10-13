@@ -24,7 +24,7 @@ public class SniperTower extends Tower {
 		projectileSpeed = 100;
 		damage = 5;
 		price = 500;
-		bulletTipe = Game.game.gameActors.bulletTipe.NORMAL_PROJECTILE;
+		bulletTipe = Game.game.gameActors.bulletTipe.PROJETIL_SNIPERTOWER;
 	}
 
 	@Override

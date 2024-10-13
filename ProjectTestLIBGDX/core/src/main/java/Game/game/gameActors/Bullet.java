@@ -21,6 +21,10 @@ public class Bullet extends GameObject {
 	private final static float actingTime = 3;
 	private bulletTipe bulletTipe;
 	private final static float explosionRange = 50;
+	private Texture bulletTrapTower; 
+	private Texture bulletBomberTower; 
+	private Texture bulletSniperTower; 
+	private Texture bulletSMGTower;
 
 	public Bullet(float positionX, float positionY, float positionXToGo, float positionYToGo, float bulletSpeed,
 			float damage, bulletTipe bulletTipe) {
@@ -36,9 +40,24 @@ public class Bullet extends GameObject {
 		lastPosition = new Vector2();
 		this.bulletTipe = bulletTipe;
 
-		this.imagem = new Texture(Gdx.files.internal("Bullet.png"));
+		
+		if(bulletTipe == bulletTipe.PROJETIL_BOMBERTOWER){
+
+			this.imagem = new Texture(Gdx.files.internal("bullets/bulletBomberTower.png"));	
+		}else if(bulletTipe == bulletTipe.PROJETIL_SMGTOWER){
+			this.imagem = new Texture(Gdx.files.internal("bullets/pea.png"));
+
+		}else if(bulletTipe == bulletTipe.PROJETIL_SNIPERTOWER){
+
+			this.imagem = new Texture(Gdx.files.internal("bullets/melon.png"));
+		}else if(bulletTipe == bulletTipe.PROJETIL_TRAPTOWER){
+
+			this.imagem = new Texture(Gdx.files.internal("Bullet.png"));
+		}
 
 	}
+
+	
 
 	@Override
 	public void act(float delta) {
