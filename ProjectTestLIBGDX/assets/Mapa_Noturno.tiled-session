@@ -1,4 +1,8 @@
 {
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
     "activeFile": "Mapa_Noturno.tmx",
     "expandedProjectPaths": [
         "."
@@ -15,27 +19,38 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 750,
-                "y": 643.9393939393939
+                "x": 640.9090909090909,
+                "y": 365.1515151515151
             }
         },
         "Mapa_Noturno.tmx": {
-            "scale": 0.75,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 980.6666666666666,
-                "y": 376.6666666666667
+                "x": 635,
+                "y": 459
             }
+        },
+        "Roof_Day.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
+    "last.imagePath": "C:/Users/Migue/OneDrive/Documentos/repositório/T2-Tower-Defense/ProjectTestLIBGDX/assets",
+    "map.height": 23,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 40,
     "openFiles": [
         "Mapa_Diurno.tmx",
         "Mapa_Noturno.tmx",
         "Grass_Night.tsx"
     ],
+    "project": "",
     "recentFiles": [
-        "Mapa_Diurno.tmx",
+        "Roof_Day.tsx",
         "Grass_Night.tsx",
+        "Mapa_Diurno.tmx",
         "Mapa_Noturno.tmx"
-    ]
+    ],
+    "tileset.lastUsedFormat": "tsx"
 }
