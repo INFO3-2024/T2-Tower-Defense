@@ -57,7 +57,6 @@ public class GameStage extends Stage {
 	private boolean isClicked = false;
 	private Tower towerSelected;
 
-
 	private Array<Actor> towers = new Array<Actor>();
 
 	public GameStage(int volume) {
@@ -308,6 +307,11 @@ public class GameStage extends Stage {
 				background.setTypeMap(background.getTypeMap() + 1);
 				background.changeBackground();
 				deleteTowers();
+				if (background.getTypeMap() == 2) {
+					soundManager.playMusic("night");
+				} else if (background.getTypeMap() == 3) {
+					soundManager.playMusic("telha");
+				}
 				playerCoins = 400;
 				playerHealthPoints = 100;
 			} else {
@@ -333,7 +337,7 @@ public class GameStage extends Stage {
 			}
 		}
 		getActors().removeAll(towers, true);
-		
+
 		towers.clear();
 
 	}
