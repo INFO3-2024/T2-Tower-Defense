@@ -26,86 +26,90 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class SettingsStage extends Stage {
-    private static final int STAGE_INDEX = 3;
-    private Image backgroundImage;
-    private OrthographicCamera ortho;
-    private BitmapFont font;
-    private SpriteBatch batch;
-    private GameScreen screen;
-    private MapManager soundManager;
-    private Table table;
+	private static final int STAGE_INDEX = 3;
+	private Image backgroundImage;
+	private OrthographicCamera ortho;
+	private BitmapFont font;
+	private SpriteBatch batch;
+	private GameScreen screen;
+	private MapManager soundManager;
+	private Table table;
 
-    private MenuStage stageMenu;
+	private MenuStage stageMenu;
 
-    public SettingsStage(GameScreen screen) {
-        super(new ScreenViewport());
+	
 
-        Gdx.input.setInputProcessor(this);
+	public SettingsStage(GameScreen screen) {
+		super(new ScreenViewport());
 
-        ortho = new OrthographicCamera();
-        ortho.setToOrtho(false, 1280, 736);
+		Gdx.input.setInputProcessor(this);
 
-        soundManager = new MapManager();
-        soundManager.loadSounds();
+		ortho = new OrthographicCamera();
+		ortho.setToOrtho(false, 1280, 736);
 
-        table = new Table();
-        table.setFillParent(true);
-        this.addActor(table);
+		soundManager = new MapManager();
+		soundManager.loadSounds();
 
-        this.screen = screen;
+		table = new Table();
+		table.setFillParent(true);
+		this.addActor(table);
 
-        createBackground();
-        createButtons();
-    }
+		this.screen = screen;
 
-    private void createBackground() {
-        Texture backgroundTexture = new Texture(Gdx.files.internal("MenuBackground.jpg"));
-        backgroundImage = new Image(backgroundTexture);
-        backgroundImage.setFillParent(true);
-        table.setBackground(backgroundImage.getDrawable());
-    }
-    private void createButtons() {
-        BitmapFont font = new BitmapFont();
-        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.font = font;
-        textButtonStyle.fontColor = Color.WHITE;
-        textButtonStyle.font.getData().setScale(3f, 3f);
+		createBackground();
+		createButtons();
+	}
 
-        TextButton unmuteButton = new TextButton("Desmutar", textButtonStyle);
-        TextButton muteButton = new TextButton("Mutar", textButtonStyle);
-        TextButton exitButton = new TextButton("Voltar", textButtonStyle);
+	private void createBackground() {
+		Texture backgroundTexture = new Texture(Gdx.files.internal("MenuBackground.jpg"));
+		backgroundImage = new Image(backgroundTexture);
+		backgroundImage.setFillParent(true);
+		table.setBackground(backgroundImage.getDrawable());
+	}
 
-        unmuteButton.addListener(event -> {
-            if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-                System.out.println("Teste1 button clicked");
-                soundManager.playMusic("morning");
-                return true;
-            }
-            return false;
-        });
+	private void createButtons() {
+		BitmapFont font = new BitmapFont();
+		TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+		textButtonStyle.font = font;
+		textButtonStyle.fontColor = Color.WHITE;
+		textButtonStyle.font.getData().setScale(3f, 3f);
 
-        muteButton.addListener(event -> {
-            if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-                System.out.println("Mute button clicked");
-                soundManager.stopMusic();
-                return true;
-            }
-            return false;
-        });
+		TextButton unmuteButton = new TextButton("Desmutar", textButtonStyle);
+		TextButton muteButton = new TextButton("Mutar", textButtonStyle);
+		TextButton exitButton = new TextButton("Voltar", textButtonStyle);
 
-        exitButton.addListener(event -> {
-            if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-                screen.changeStage(1);
-                return true;
-            }
-            return false;
-        });
+		unmuteButton.addListener(event -> {
+			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
+				System.out.println("Teste1 button clicked");
+				soundManager.playMusic("morning");
+				screen.setVolume(50);
+				return true;
+			}
+			return false;
+		});
 
-        table.add(unmuteButton).fillX().uniformX().pad(20);
-        table.row().pad(10, 0, 10, 0);
-        table.add(muteButton).fillX().uniformX().pad(20);
-        table.row();
-        table.add(exitButton).fillX().uniformX().pad(20);
-    }
+		muteButton.addListener(event -> {
+			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
+				System.out.println("Mute button clicked");
+				screen.setVolume(0);
+
+				return true;
+			}
+			return false;
+		});
+
+		exitButton.addListener(event -> {
+			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
+				screen.changeStage(1);
+				return true;
+			}
+			return false;
+		});
+
+		table.add(unmuteButton).fillX().uniformX().pad(20);
+		table.row().pad(10, 0, 10, 0);
+		table.add(muteButton).fillX().uniformX().pad(20);
+		table.row();
+		table.add(exitButton).fillX().uniformX().pad(20);
+	}
 }
-

@@ -10,8 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class GameScreen implements Screen {
     private Stage stage;
 
+    private int volume = 50;
+    
     public GameScreen() {
         stage = new MenuStage(this);
+        
     }
 
     public Stage getStage() {
@@ -72,7 +75,7 @@ public class GameScreen implements Screen {
         switch (i) {
             case 0:
             	stage.clear();
-                stage = new GameStage();
+                stage = new GameStage(volume);
                 break;
             case 1:
             	stage.clear();
@@ -84,4 +87,12 @@ public class GameScreen implements Screen {
                 break;
         }
     }
+
+	public int getVolume() {
+		return volume;
+	}
+
+	public void setVolume(int volume) {
+		this.volume = volume;
+	}
 }

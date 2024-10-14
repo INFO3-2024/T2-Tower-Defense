@@ -37,6 +37,10 @@ public abstract class SoundManager {
             currentMusic.stop(); 
         }
     }
+    
+    public void setVolume(int volume) {
+    	currentMusic.setVolume(volume);
+    }
 
     public void dispose() {
         stopMusic();

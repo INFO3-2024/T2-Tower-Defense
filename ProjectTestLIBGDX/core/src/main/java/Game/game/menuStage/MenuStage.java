@@ -27,6 +27,8 @@ public class MenuStage extends Stage {
     private GameScreen screen;
     private Table table;
 
+    
+    
     public MenuStage(GameScreen screen) {
         super(new ScreenViewport());
 
@@ -94,4 +96,8 @@ public class MenuStage extends Stage {
         table.row();
         table.add(exitButton).fillX().uniformX().pad(20);
     }
+    
+    
+   
+    
 }

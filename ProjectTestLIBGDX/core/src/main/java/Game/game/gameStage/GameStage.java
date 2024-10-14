@@ -55,7 +55,13 @@ public class GameStage extends Stage {
 	private boolean isClicked = false;
 	private Tower towerSelected;
 
+<<<<<<< Updated upstream
 	public GameStage() {
+=======
+	private Array<Actor> towers = new Array<Actor>();
+
+	public GameStage(int volume) {
+>>>>>>> Stashed changes
 		// TODO Auto-generated constructor stub
 		super();
 
@@ -85,6 +91,7 @@ public class GameStage extends Stage {
 		} else if (background.getTypeMap() == 3) {
 			soundManager.playMusic("telha");
 		}
+		soundManager.setVolume(volume);
 
 		store = new Table();
 
