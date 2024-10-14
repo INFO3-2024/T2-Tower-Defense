@@ -88,8 +88,7 @@ public class Enemy extends GameObject {
 			coinsDropped = 10;
 			break;
 		}
-		// counter++;
-		// id = counter;
+
 	}
 
     private void setWaypoints3() {

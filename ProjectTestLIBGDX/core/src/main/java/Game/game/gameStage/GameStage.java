@@ -57,7 +57,6 @@ public class GameStage extends Stage {
 	private boolean isClicked = false;
 	private Tower towerSelected;
 
-
 	private Array<Actor> towers = new Array<Actor>();
 
 	public GameStage(int volume) {
@@ -143,8 +142,6 @@ public class GameStage extends Stage {
 					playerCoins -= 700;
 
 					return true;
-				} else {
-					System.out.println("Voce nao possui moedas o bastente");
 				}
 			}
 			return false;
@@ -159,9 +156,7 @@ public class GameStage extends Stage {
 					towerSelected = new BomberTower(0, 0);
 					playerCoins -= 400;
 					return true;
-				} else {
-					System.out.println("Voce nao possui moedas o bastente");
-				}
+				} 
 			}
 			return false;
 		});
@@ -175,9 +170,7 @@ public class GameStage extends Stage {
 					towerSelected = new SniperTower(0, 0);
 					playerCoins -= 500;
 					return true;
-				} else {
-					System.out.println("Voce nao possui moedas o bastente");
-				}
+				} 
 			}
 			return false;
 		});
@@ -191,9 +184,7 @@ public class GameStage extends Stage {
 					towerSelected = new SMGTower(0, 0);
 					playerCoins -= 200;
 					return true;
-				} else {
-					System.out.println("Voce nao possui moedas o bastente");
-				}
+				} 
 			}
 			return false;
 		});
@@ -333,7 +324,7 @@ public class GameStage extends Stage {
 			}
 		}
 		getActors().removeAll(towers, true);
-		
+
 		towers.clear();
 
 	}

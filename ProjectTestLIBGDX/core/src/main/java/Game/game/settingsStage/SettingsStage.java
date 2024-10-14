@@ -80,7 +80,6 @@ public class SettingsStage extends Stage {
 
 		unmuteButton.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-				System.out.println("Teste1 button clicked");
 				soundManager.playMusic("morning");
 				screen.setVolume(50);
 				return true;
@@ -90,7 +89,6 @@ public class SettingsStage extends Stage {
 
 		muteButton.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-				System.out.println("Mute button clicked");
 				screen.setVolume(0);
 
 				return true;

@@ -66,7 +66,6 @@ public class MenuStage extends Stage {
 
         playButton.addListener(event -> {
             if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-                System.out.println("Play button clicked");
                 screen.changeStage(0);
                 return true;
             }
@@ -75,7 +74,6 @@ public class MenuStage extends Stage {
 
         settingsButton.addListener(event -> {
             if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
-                System.out.println("Settings button clicked");
                 screen.changeStage(2);
                 return true;
             }
