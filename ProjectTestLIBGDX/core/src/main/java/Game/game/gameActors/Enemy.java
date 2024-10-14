@@ -95,31 +95,31 @@ public class Enemy extends GameObject {
     private void setWaypoints3() {
         // TODO Auto-generated method stub
 
-        Vector2 aux = new Vector2(165, 680);
+        Vector2 aux = new Vector2(165, 700);
         waypointsMap3.add(aux);
-        aux = new Vector2(165, 130);
+        aux = new Vector2(165, 120);
         waypointsMap3.add(aux);
-        aux = new Vector2(320, 130);
+        aux = new Vector2(320, 120);
         waypointsMap3.add(aux);
-        aux = new Vector2(320, 710);
+        aux = new Vector2(320, 720);
         waypointsMap3.add(aux);
-        aux = new Vector2(455, 710);
+        aux = new Vector2(455, 720);
         waypointsMap3.add(aux);
         aux = new Vector2(455, 390);
         waypointsMap3.add(aux);
         aux = new Vector2(545, 390);
         waypointsMap3.add(aux);
-        aux = new Vector2(545, 205);
+        aux = new Vector2(545, 195);
         waypointsMap3.add(aux);
-        aux = new Vector2(705, 205);
+        aux = new Vector2(705, 195);
         waypointsMap3.add(aux);
-        aux = new Vector2(705, 710);
+        aux = new Vector2(705, 720);
         waypointsMap3.add(aux);
-        aux = new Vector2(835, 710);
+        aux = new Vector2(835, 720);
         waypointsMap3.add(aux);
-        aux = new Vector2(835, 100);
+        aux = new Vector2(835, 90);
         waypointsMap3.add(aux);
-        aux = new Vector2(995, 100);
+        aux = new Vector2(995, 90);
         waypointsMap3.add(aux);
         aux = new Vector2(995, 480);
         waypointsMap3.add(aux);
@@ -129,39 +129,39 @@ public class Enemy extends GameObject {
 
     private void setWaypoints2() {
 
-        Vector2 aux = new Vector2(165, 135);
+        Vector2 aux = new Vector2(165, 120);
         waypointsMap2.add(aux);
-        aux = new Vector2(165, 680);
+        aux = new Vector2(165, 700);
         waypointsMap2.add(aux);
-        aux = new Vector2(320, 680);
+        aux = new Vector2(320, 700);
         waypointsMap2.add(aux);
-        aux = new Vector2(320, 515);
+        aux = new Vector2(320, 530);
         waypointsMap2.add(aux);
-        aux = new Vector2(485, 515);
+        aux = new Vector2(485, 530);
         waypointsMap2.add(aux);
-        aux = new Vector2(485, 680);
+        aux = new Vector2(485, 700);
         waypointsMap2.add(aux);
-        aux = new Vector2(645, 680);
+        aux = new Vector2(645, 700);
         waypointsMap2.add(aux);
         aux = new Vector2(645, 360);
         waypointsMap2.add(aux);
         aux = new Vector2(320, 360);
         waypointsMap2.add(aux);
-        aux = new Vector2(320, 135);
+        aux = new Vector2(320, 120);
         waypointsMap2.add(aux);
-        aux = new Vector2(805, 135);
+        aux = new Vector2(805, 120);
         waypointsMap2.add(aux);
-        aux = new Vector2(805, 680);
+        aux = new Vector2(805, 700);
         waypointsMap2.add(aux);
-        aux = new Vector2(965, 680);
+        aux = new Vector2(965, 700);
         waypointsMap2.add(aux);
-        aux = new Vector2(965, 135);
+        aux = new Vector2(965, 120);
         waypointsMap2.add(aux);
-        aux = new Vector2(1155, 135);
+        aux = new Vector2(1155, 120);
         waypointsMap2.add(aux);
-        aux = new Vector2(1155, 680);
+        aux = new Vector2(1155, 700);
         waypointsMap2.add(aux);
-        aux = new Vector2(1275, 680);
+        aux = new Vector2(1275, 700);
         waypointsMap2.add(aux);
     }
 
@@ -203,7 +203,7 @@ public class Enemy extends GameObject {
         waypointsMap1.add(aux);
         aux = new Vector2(995, 665);
         waypointsMap1.add(aux);
-        aux = new Vector2(995, 145);
+        aux = new Vector2(995, 95);
         waypointsMap1.add(aux);
         aux = new Vector2(1090, 95);
         waypointsMap1.add(aux);
