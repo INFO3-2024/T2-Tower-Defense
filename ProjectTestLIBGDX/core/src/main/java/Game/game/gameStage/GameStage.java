@@ -13,12 +13,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Array;
 
 import Game.game.gameActors.Background;
 import Game.game.gameActors.BomberTower;
@@ -55,13 +57,11 @@ public class GameStage extends Stage {
 	private boolean isClicked = false;
 	private Tower towerSelected;
 
-<<<<<<< Updated upstream
-	public GameStage() {
-=======
+
 	private Array<Actor> towers = new Array<Actor>();
 
 	public GameStage(int volume) {
->>>>>>> Stashed changes
+
 		// TODO Auto-generated constructor stub
 		super();
 
@@ -95,7 +95,6 @@ public class GameStage extends Stage {
 
 		store = new Table();
 
-		store.setDebug(true);
 		store.setTransform(true);
 		store.setScale(2f, 1.5f);
 
@@ -119,30 +118,32 @@ public class GameStage extends Stage {
 
 		ImageButton Torre1 = new ImageButton(style);
 
-		Torre1.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("cacto-loja.png"))));
-
+		Torre1.getStyle().imageUp = new TextureRegionDrawable(
+				new TextureRegion(new Texture(Gdx.files.internal("cacto-loja.png"))));
 
 		ImageButton Torre2 = new ImageButton(style1);
-		Torre2.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("carrin.png"))));
-
+		Torre2.getStyle().imageUp = new TextureRegionDrawable(
+				new TextureRegion(new Texture(Gdx.files.internal("carrin.png"))));
 
 		ImageButton Torre3 = new ImageButton(style2);
-		Torre3.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("smg.png"))));
+		Torre3.getStyle().imageUp = new TextureRegionDrawable(
+				new TextureRegion(new Texture(Gdx.files.internal("smg.png"))));
 
 		ImageButton Torre4 = new ImageButton(style3);
-		Torre4.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("plantaCapacete.png"))));
+		Torre4.getStyle().imageUp = new TextureRegionDrawable(
+				new TextureRegion(new Texture(Gdx.files.internal("plantaCapacete.png"))));
 
 		Torre1.addListener(event -> {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 1");
 
-				if(playerCoins>=700){
+				if (playerCoins >= 700) {
 					isClicked = true;
 					towerSelected = new TrapTower(0, 0);
 					playerCoins -= 700;
 
 					return true;
-				}else{
+				} else {
 					System.out.println("Voce nao possui moedas o bastente");
 				}
 			}
@@ -153,12 +154,12 @@ public class GameStage extends Stage {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 2");
 
-				if(playerCoins>=400){
+				if (playerCoins >= 400) {
 					isClicked = true;
 					towerSelected = new BomberTower(0, 0);
 					playerCoins -= 400;
 					return true;
-				}else{
+				} else {
 					System.out.println("Voce nao possui moedas o bastente");
 				}
 			}
@@ -169,12 +170,12 @@ public class GameStage extends Stage {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 3");
 
-				if(playerCoins>=500){
+				if (playerCoins >= 500) {
 					isClicked = true;
 					towerSelected = new SniperTower(0, 0);
 					playerCoins -= 500;
 					return true;
-				}else{
+				} else {
 					System.out.println("Voce nao possui moedas o bastente");
 				}
 			}
@@ -185,12 +186,12 @@ public class GameStage extends Stage {
 			if (event instanceof InputEvent && ((InputEvent) event).getType() == InputEvent.Type.touchDown) {
 				System.out.println("APERTOU O 4");
 
-				if(playerCoins>=200){
+				if (playerCoins >= 200) {
 					isClicked = true;
 					towerSelected = new SMGTower(0, 0);
 					playerCoins -= 200;
 					return true;
-				}else{
+				} else {
 					System.out.println("Voce nao possui moedas o bastente");
 				}
 			}
@@ -198,13 +199,11 @@ public class GameStage extends Stage {
 		});
 
 		store.add(Torre1).pad(10);
-    	store.add(Torre2).pad(10);
-    	store.add(Torre3).pad(10);
-    	store.add(Torre4).pad(10);
-
+		store.add(Torre2).pad(10);
+		store.add(Torre3).pad(10);
+		store.add(Torre4).pad(10);
 
 	}
-
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
@@ -217,9 +216,9 @@ public class GameStage extends Stage {
 			screenX = (int) coords.x;
 			screenY = (int) coords.y;
 
-            if (!isCollidingWithLayer2(screenX, screenY)) {
-                setTower(towerSelected, screenX, screenY);
-            }
+			if (!isCollidingWithLayer2(screenX, screenY)) {
+				setTower(towerSelected, screenX, screenY);
+			}
 
 			return true;
 		}
@@ -228,23 +227,22 @@ public class GameStage extends Stage {
 
 	}
 
-    private boolean isCollidingWithLayer2(int x, int y) {
-        // Supondo que você tenha um método para obter a camada 2 do tilemap
-        TiledMapTileLayer layer2 = (TiledMapTileLayer) background.getTileMap().getLayers().get("Camada de Blocos 2");
+	private boolean isCollidingWithLayer2(int x, int y) {
+		// Supondo que você tenha um método para obter a camada 2 do tilemap
+		TiledMapTileLayer layer2 = (TiledMapTileLayer) background.getTileMap().getLayers().get("Camada de Blocos 2");
 
-        // Converte as coordenadas de tela para coordenadas de tile
-        int tileX = x / layer2.getTileWidth();
-        int tileY = y / layer2.getTileHeight();
+		// Converte as coordenadas de tela para coordenadas de tile
+		int tileX = x / layer2.getTileWidth();
+		int tileY = y / layer2.getTileHeight();
 
-        // Verifica se o tile na posição (tileX, tileY) está bloqueado
-        TiledMapTileLayer.Cell cell = layer2.getCell(tileX, tileY);
-        TiledMapTileLayer.Cell cellAbove = layer2.getCell(tileX, tileY + 1);
-        TiledMapTileLayer.Cell cellRight = layer2.getCell(tileX + 1, tileY);
+		// Verifica se o tile na posição (tileX, tileY) está bloqueado
+		TiledMapTileLayer.Cell cell = layer2.getCell(tileX, tileY);
+		TiledMapTileLayer.Cell cellAbove = layer2.getCell(tileX, tileY + 1);
+		TiledMapTileLayer.Cell cellRight = layer2.getCell(tileX + 1, tileY);
 
-        return (cell != null && cell.getTile() != null) ||
-            (cellAbove != null && cellAbove.getTile() != null) ||
-            (cellRight != null && cellRight.getTile() != null);
-    }
+		return (cell != null && cell.getTile() != null) || (cellAbove != null && cellAbove.getTile() != null)
+				|| (cellRight != null && cellRight.getTile() != null);
+	}
 
 	private void setTower(Tower towerSelected, int screenX, int screenY) {
 		// TODO Auto-generated method stub
@@ -282,9 +280,9 @@ public class GameStage extends Stage {
 
 		if (background.getTypeMap() == 1) {
 			rounds.spawnMap1Enemies(getActors(), enemiesAlive(), background.getTypeMap());
-		} else if(background.getTypeMap() == 2) {
+		} else if (background.getTypeMap() == 2) {
 			rounds.spawnMap2Enemies(getActors(), enemiesAlive(), background.getTypeMap());
-		}else {
+		} else {
 			rounds.spawnMap3Enemies(getActors(), enemiesAlive(), background.getTypeMap());
 		}
 
@@ -303,7 +301,41 @@ public class GameStage extends Stage {
 		deleteBullets();
 		deleteEnemies();
 
+		if (rounds.isOver()) {
+			rounds.setOver(false);
+
+			if (background.getTypeMap() != 3) {
+				background.setTypeMap(background.getTypeMap() + 1);
+				background.changeBackground();
+				deleteTowers();
+				playerCoins = 400;
+				playerHealthPoints = 100;
+			} else {
+
+				Gdx.app.exit();
+			}
+		}
+
+		if (playerHealthPoints == 0) {
+			Gdx.app.exit();
+		}
+
 		// System.out.println(Gdx.input.getX() + "-" + Gdx.input.getY());
+	}
+
+	private void deleteTowers() {
+		// TODO Auto-generated method stub
+
+		for (int i = 0; i < getActors().size; i++) {
+			if (getActors().get(i) instanceof Tower) {
+
+				towers.add(getActors().get(i));
+			}
+		}
+		getActors().removeAll(towers, true);
+		
+		towers.clear();
+
 	}
 
 	public int enemiesAlive() {
@@ -394,7 +426,7 @@ public class GameStage extends Stage {
 
 		font.getData().setScale(3f, 3f);
 		font.draw(batch, "Sóis: " + playerCoins, 10, 780);
-        batch.draw(new Texture(Gdx.files.internal("sol.png")), 200, 740, 40, 40);
+		batch.draw(new Texture(Gdx.files.internal("sol.png")), 200, 740, 40, 40);
 		font.draw(batch, "Rodada: " + rounds.getRound(), 330, 780);
 		font.draw(batch, "Vidas: " + playerHealthPoints, 610, 780);
 		batch.end();
